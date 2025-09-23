@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LA CARPINTERÍA — Hecho a mano en madera</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header__bar">
+      <button class="header__menu-btn js-menu-toggle" aria-label="Abrir menú" aria-controls="offcanvas" aria-expanded="false">☰</button>
+
+      <a href="#" class="header__logo" aria-label="Inicio">
+        <img src="logo_blanco.png" alt="LA CARPINTERÍA" class="header__logo-img" />
+      </a>
+
+      <form class="header__search" role="search" aria-label="Buscar">
+        <input type="search" placeholder="Buscar productos o servicios" aria-label="Buscar" />
+      </form>
+
+      <nav class="header__icons" aria-label="Acciones">
+        <a class="icon-btn" href="#" aria-label="Ayuda">
+          <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M9.09 9a3 3 0 1 1 5.83 1c0 2-3 2-3 4"/>
+            <line x1="12" y1="17" x2="12" y2="17"/>
+          </svg>
+          <span class="visually-hidden">Ayuda</span>
+        </a>
+        <a class="icon-btn" href="#" aria-label="Cuenta">
+          <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21a8 8 0 0 0-16 0"/>
+            <circle cx="12" cy="8" r="4"/>
+          </svg>
+          <span class="visually-hidden">Cuenta</span>
+        </a>
+        <a class="icon-btn" href="#" aria-label="Carrito">
+          <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 6h15l-1.5 9h-12z"/>
+            <path d="M6 6l-1-3H3"/>
+            <circle cx="9" cy="20" r="1"/>
+            <circle cx="18" cy="20" r="1"/>
+          </svg>
+          <span class="visually-hidden">Carrito</span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- Desktop nav -->
+    <nav class="nav" aria-label="Categorías principales">
+      <ul class="nav__list">
+        <li class="nav__item">
+          <button class="nav__link" aria-haspopup="true" aria-expanded="false">Categorías</button>
+          <div class="nav__dropdown" role="menu" aria-label="Submenú Hogar">
+            <a href="#" role="menuitem">Mesas</a>
+            <a href="#" role="menuitem">Estanterías</a>
+            <a href="#" role="menuitem">Organizadores</a>
+            <a href="#" role="menuitem">Decoración</a>
+          </div>
+        </li>
+        <li class="nav__item">
+          <button class="nav__link" aria-haspopup="true" aria-expanded="false">Cotizar</button>
+          <div class="nav__dropdown" role="menu" aria-label="Submenú Cocina">
+            <a href="#" role="menuitem">Tablas</a>
+            <a href="#" role="menuitem">Porta cuchillos</a>
+            <a href="#" role="menuitem">Bandejas</a>
+            <a href="#" role="menuitem">Accesorios</a>
+          </div>
+        </li>
+        <li class="nav__item">
+          <button class="nav__link" aria-haspopup="true" aria-expanded="false">Proyectos</button>
+          <div class="nav__dropdown" role="menu" aria-label="Submenú Oficina">
+            <a href="#" role="menuitem">Escritorios</a>
+            <a href="#" role="menuitem">Soportes</a>
+            <a href="#" role="menuitem">Organizadores</a>
+          </div>
+        </li>
+        <li class="nav__item">
+          <button class="nav__link" aria-haspopup="true" aria-expanded="false">Novedades</button>
+          <div class="nav__dropdown" role="menu" aria-label="Submenú Personalizados">
+            <a href="#" role="menuitem">Grabado láser</a>
+            <a href="#" role="menuitem">A medida</a>
+            <a href="#" role="menuitem">Proyectos</a>
+          </div>
+        </li>
+        <li class="nav__item">
+          <button class="nav__link" aria-haspopup="true" aria-expanded="false">Compañía</button>
+          <div class="nav__dropdown" role="menu" aria-label="Submenú Materiales">
+            <a href="#" role="menuitem">Pino</a>
+            <a href="#" role="menuitem">Roble</a>
+            <a href="#" role="menuitem">Nogal</a>
+            <a href="#" role="menuitem">Teka</a>
+          </div>
+        </li>
+        <li class="nav__item">
+          <button class="nav__link" aria-haspopup="true" aria-expanded="false">Contacto</button>
+          <div class="nav__dropdown" role="menu" aria-label="Submenú Servicios">
+            <a href="#" role="menuitem">Diseño</a>
+            <a href="#" role="menuitem">Instalación</a>
+            <a href="#" role="menuitem">Restauración</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Offcanvas mobile -->
+  <aside id="offcanvas" class="offcanvas" aria-hidden="true">
+    <div class="offcanvas__panel" role="dialog" aria-label="Menú principal">
+      <div class="offcanvas__header">
+        <span>Menú</span>
+        <button class="offcanvas__close js-menu-toggle" aria-label="Cerrar menú">Cerrar</button>
+      </div>
+      <nav class="offcanvas__nav">
+        <a href="#">Categorías</a>
+        <a href="#">Cotizar</a>
+        <a href="#">Proyectos</a>
+        <a href="#">Novedades</a>
+        <a href="#">Compañía</a>
+        <a href="#">Contacto</a>
+      </nav>
+    </div>
+    <div class="offcanvas__backdrop js-menu-toggle" aria-hidden="true"></div>
+  </aside>
+
+  <main class="main">
+    <h1 class="visually-hidden">Colecciones destacadas en madera</h1>
+
+    <!-- Hero editorial -->
+    <section class="section section--hero" aria-label="Hero editorial">
+      <div class="grid">
+      <a class="tile tile--xl tile--hero" href="#" aria-label="Colección Hogar 2025">
+        <!-- Imagen principal: MesaBanner -->
+        <img
+          class="tile__img tile__img--base js-lazy"
+          alt="Mesa de madera - MesaBanner"
+          width="1600" height="1000"
+          data-src="Assets/MesaBanner.jpg"
+        />
+        <!-- Imagen alternativa en hover: MesaBanner2 -->
+        <img
+          class="tile__img tile__img--alt js-lazy"
+          alt="Mesa de madera - MesaBanner2"
+          width="1600" height="1000"
+          data-src="Assets/MesaBanner2.jpg"
+        />
+        <div class="tile__overlay tile__overlay--hero" role="dialog" aria-live="polite">
+          <div class="hero__copy">
+            <h2 class="hero__title">Hogar </h2>
+            <p class="hero__subtitle">Madera natural. Líneas puras. Hecho a medida.</p>
+          </div>
+          <span class="tile__cta">Ver colección</span>
+        </div>
+      </a>
+      </div>
+    </section>
+
+    <!-- CTA Redes Sociales -->
+    <section class="social-cta section" aria-label="Conecta con nosotros en redes">
+      <div class="social-cta__inner">
+        <div class="social-cta__copy">
+          <h2 class="social-cta__title">Conecta con nosotros</h2>
+          <p class="social-cta__desc">Ideas en madera, procesos detrás de cámaras y lanzamientos. ¡Síguenos para no perderte nada!</p>
+          <a class="social-cta__btn" href="#" aria-label="Seguir ahora">Seguir ahora</a>
+        </div>
+        <nav class="social-cta__links" aria-label="Redes sociales">
+          <a class="social-cta__icon" href="#" aria-label="Instagram" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="currentColor"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A5.5 5.5 0 1 1 6.5 13 5.5 5.5 0 0 1 12 7.5zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5z"/><circle cx="18.5" cy="5.5" r="1.2"/></svg>
+          </a>
+          <a class="social-cta__icon" href="#" aria-label="Facebook" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="currentColor"><path d="M13 22v-8h3l1-4h-4V8a1 1 0 0 1 1-1h3V3h-3a5 5 0 0 0-5 5v2H6v4h3v8z"/></svg>
+          </a>
+          <a class="social-cta__icon" href="#" aria-label="TikTok" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="currentColor"><path d="M14 3h3a5 5 0 0 0 5 5v3a7.9 7.9 0 0 1-5-1.6V15a6 6 0 1 1-6-6h1v3h-1a3 3 0 1 0 3 3z"/></svg>
+          </a>
+          <a class="social-cta__icon" href="#" aria-label="YouTube" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="currentColor"><path d="M23 12c0-3-1-5-1-5s-1-.9-2-.9C17 6 12 6 12 6s-5 0-8 .1C3 6.1 2 7 2 7S1 9 1 12s1 5 1 5 1 .9 2 .9C7 18 12 18 12 18s5 0 8-.1c1 0 2-.9 2-.9s1-2 1-5zM10 15V9l5 3-5 3z"/></svg>
+          </a>
+        </nav>
+      </div>
+    </section>
+
+    
+
+
+    <div class="section section--catalog no-reveal" id="ofertas">
+      <div class="section__header">
+        <h2 class="section__title">Nuestros Favoritos</h2>
+      </div>
+
+    <!-- Editorial Grid -->
+    <section class="grid" aria-label="Galería editorial">
+      <!-- Hogar -->
+      <a class="tile" href="#" aria-label="Hogar">
+        <span class="tile__badge tile__badge--top">Más vendido</span>
+        <img class="tile__img js-lazy" alt="Sala con estantería de madera"
+             width="800" height="900"
+             data-src="https://source.unsplash.com/800x900/?wood,shelf,living" />
+        <div class="tile__overlay"><h3 class="tile__title">Hogar</h3><span class="tile__cta">Ver más</span></div>
+      </a>
+
+      <!-- Cocina -->
+      <a class="tile" href="#" aria-label="Cocina">
+        <img class="tile__img js-lazy" alt="Tablas de cortar y utensilios de madera"
+             width="800" height="900"
+             data-src="https://source.unsplash.com/800x900/?wood,kitchen,boards" />
+        <div class="tile__overlay"><h3 class="tile__title">Cocina</h3><span class="tile__cta">Ver más</span></div>
+      </a>
+
+      <!-- Oficina -->
+      <a class="tile" href="#" aria-label="Oficina">
+        <img class="tile__img js-lazy" alt="Escritorio de madera con accesorios"
+             width="800" height="900"
+             data-src="https://source.unsplash.com/800x900/?wood,desk,workspace" />
+        <div class="tile__overlay"><h3 class="tile__title">Oficina</h3><span class="tile__cta">Ver más</span></div>
+      </a>
+
+      <!-- Personalizados (tile madera con specs) -->
+      <a class="tile tile--wood" href="#" aria-label="Personalizados">
+        <img class="tile__img js-lazy" alt="Textura de madera natural"
+             width="1200" height="900"
+             data-src="https://source.unsplash.com/1200x900/?wood,grain" />
+        <div class="tile__overlay"><h3 class="tile__title">Personalizados</h3><span class="tile__cta">Configurar</span></div>
+        <aside class="tile__specs" role="dialog" aria-label="Opciones de personalización">
+          <h4 class="tile__specs-title">Opciones</h4>
+          <ul class="tile__specs-list">
+            <li><strong>Madera:</strong> pino, roble, nogal</li>
+            <li><strong>Acabado:</strong> aceite, barniz mate, laca</li>
+            <li><strong>Grabado:</strong> láser, relieve</li>
+            <li><strong>Plazo:</strong> 7–14 días</li>
+          </ul>
+        </aside>
+      </a>
+
+      <!-- Regalos -->
+      <a class="tile" href="#" aria-label="Regalos">
+        <span class="tile__badge tile__badge--sale">Oferta</span>
+        <img class="tile__img js-lazy" alt="Cajas y bandejas de madera para regalo"
+             width="800" height="900"
+             data-src="https://source.unsplash.com/800x900/?wood,gift,box" />
+        <div class="tile__overlay"><h3 class="tile__title">Regalos</h3><span class="tile__cta">Ver más</span></div>
+      </a>
+
+      <!-- Materiales: Roble -->
+      <a class="tile" href="#" aria-label="Roble">
+        <img class="tile__img js-lazy" alt="Textura de roble"
+             width="800" height="900"
+             data-src="https://source.unsplash.com/800x900/?oak,wood" />
+        <div class="tile__overlay"><h3 class="tile__title">Roble</h3><span class="tile__cta">Explorar</span></div>
+      </a>
+
+      <!-- Materiales: Nogal -->
+      <a class="tile" href="#" aria-label="Nogal" style="display:none">
+        <img class="tile__img js-lazy" alt="Textura de nogal"
+             width="800" height="900"
+             data-src="https://source.unsplash.com/800x900/?walnut,wood" />
+        <div class="tile__overlay"><h3 class="tile__title">Nogal</h3><span class="tile__cta">Explorar</span></div>
+      </a>
+
+      <!-- Proyectos -->
+      <a class="tile" href="#" aria-label="Proyectos a medida" style="display:none">
+        <img class="tile__img js-lazy" alt="Taller de carpintería"
+             width="800" height="900"
+             data-src="https://source.unsplash.com/800x900/?carpentry,workshop" />
+        <div class="tile__overlay"><h3 class="tile__title">Proyectos</h3><span class="tile__cta">Ver más</span></div>
+      </a>
+    </section>
+    </div>
+
+    <section class="products" aria-label="Productos destacados">
+      <div class="products__filters" role="tablist" aria-label="Filtrar productos">
+        <button class="pill is-active" data-filter="nuevos" role="tab" aria-selected="true">Nuevos</button>
+        <button class="pill" data-filter="mas-vendidos" role="tab">Más vendidos</button>
+        <button class="pill" data-filter="recomendados" role="tab">Recomendados</button>
+        <button class="pill" data-filter="ofertas" role="tab">Ofertas</button>
+      </div>
+      <div class="products__viewport" aria-live="polite">
+        <button class="products__nav products__nav--prev" type="button" aria-label="Anterior">‹</button>
+        <div class="products__row js-products-row" tabindex="0">
+          <!-- Producto 1 -->
+          <article class="product-card" data-tags="nuevos mas-vendidos">
+            <a class="product-card__figure" href="#">
+              <img class="product-card__img js-lazy" alt="Mesa auxiliar de pared"
+                   width="800" height="600" data-src="Assets/Mesa_auxiliar.jpg" />
+              <span class="product-card__badge">-10%</span>
+            </a>
+            <div class="product-card__body">
+              <h3 class="product-card__title">Mesa auxiliar de pared</h3>
+              <div class="product-card__price">$289.900 <del>$321.000</del></div>
+              <button class="product-card__cta" type="button">Agregar</button>
+            </div>
+          </article>
+          <!-- Producto 2 -->
+          <article class="product-card" data-tags="mas-vendidos recomendados ofertas">
+            <a class="product-card__figure" href="#">
+              <img class="product-card__img js-lazy" alt="Mesa auxiliar con cajón"
+                   width="800" height="600" data-src="Assets/Mesa_auxiliar_cajon.jpg" />
+              <span class="product-card__badge">-15%</span>
+            </a>
+            <div class="product-card__body">
+              <h3 class="product-card__title">Mesa auxiliar con cajón</h3>
+              <div class="product-card__price">$329.900 <del>$388.000</del></div>
+              <button class="product-card__cta" type="button">Agregar</button>
+            </div>
+          </article>
+          <!-- Producto 3 -->
+          <article class="product-card" data-tags="nuevos mas-vendidos">
+            <a class="product-card__figure" href="#">
+              <img class="product-card__img js-lazy" alt="Mesita minimal"
+                   width="800" height="600" data-src="Assets/Mesita.jpg" />
+            </a>
+            <div class="product-card__body">
+              <h3 class="product-card__title">Mesita minimal</h3>
+              <div class="product-card__price">$199.900</div>
+              <button class="product-card__cta" type="button">Agregar</button>
+            </div>
+          </article>
+          <!-- Producto 4 -->
+          <article class="product-card" data-tags="recomendados">
+            <a class="product-card__figure" href="#">
+              <img class="product-card__img js-lazy" alt="Mesita dúo"
+                   width="800" height="600" data-src="Assets/Mesita2.jpg" />
+            </a>
+            <div class="product-card__body">
+              <h3 class="product-card__title">Mesita dúo</h3>
+              <div class="product-card__price">$249.900</div>
+              <button class="product-card__cta" type="button">Agregar</button>
+            </div>
+          </article>
+          <!-- Producto 5 -->
+          <article class="product-card" data-tags="nuevos ofertas">
+            <a class="product-card__figure" href="#">
+              <img class="product-card__img js-lazy" alt="Plato de madera"
+                   width="800" height="600" data-src="Assets/Plato.jpg" />
+              <span class="product-card__badge">-20%</span>
+            </a>
+            <div class="product-card__body">
+              <h3 class="product-card__title">Plato de madera</h3>
+              <div class="product-card__price">$59.900 <del>$75.000</del></div>
+              <button class="product-card__cta" type="button">Agregar</button>
+            </div>
+          </article>
+          <!-- Producto 6 (agotado) -->
+          <article class="product-card" data-tags="mas-vendidos">
+            <a class="product-card__figure" href="#">
+              <img class="product-card__img js-lazy" alt="Mesita IV"
+                   width="800" height="600" data-src="Assets/Mesita4.jpg" />
+            </a>
+            <div class="product-card__body">
+              <h3 class="product-card__title">Mesita IV</h3>
+              <div class="product-card__price">$239.900</div>
+              <button class="product-card__cta" type="button">Agregar</button>
+            </div>
+          </article>
+        </div>
+        <button class="products__nav products__nav--next" type="button" aria-label="Siguiente">›</button>
+      </div>
+    </section>
+
+    <!-- Categorías: Descubre tu categoría ideal -->
+    <section class="categories section no-reveal" aria-label="Descubre tu categoría ideal">
+      <div class="section__header">
+        <h2 class="section__title">Descubre tu categoría ideal</h2>
+        <p class="section__subtitle">Explora por tipo de producto y encuentra lo que mejor va con tu espacio.</p>
+      </div>
+      <div class="categories__viewport" aria-live="polite">
+        <button class="categories__nav categories__nav--prev" type="button" aria-label="Anterior">‹</button>
+        <div class="categories__row js-cats-row" tabindex="0">
+          <article class="cat-card">
+            <img class="cat-card__img js-lazy" alt="Hogar" width="800" height="600" data-src="Assets/Mesita2.jpg" />
+            <div class="cat-card__overlay">
+              <h3 class="cat-card__title">Hogar</h3>
+              <p class="cat-card__desc">Muebles esenciales para salas y habitaciones cálidas.</p>
+              <a class="cat-card__link" href="#">Ver más</a>
+            </div>
+          </article>
+          <article class="cat-card">
+            <img class="cat-card__img js-lazy" alt="Cocina" width="800" height="600" data-src="Assets/Plato2.jpg" />
+            <div class="cat-card__overlay">
+              <h3 class="cat-card__title">Cocina</h3>
+              <p class="cat-card__desc">Tablas, bandejas y piezas funcionales para cocinar y servir.</p>
+              <a class="cat-card__link" href="#">Ver más</a>
+            </div>
+          </article>
+          <article class="cat-card">
+            <img class="cat-card__img js-lazy" alt="Oficina" width="800" height="600" data-src="Assets/Mesita3.jpg" />
+            <div class="cat-card__overlay">
+              <h3 class="cat-card__title">Oficina</h3>
+              <p class="cat-card__desc">Escritorios y accesorios que elevan tu jornada.</p>
+              <a class="cat-card__link" href="#">Ver más</a>
+            </div>
+          </article>
+          <article class="cat-card">
+            <img class="cat-card__img js-lazy" alt="Almacenamiento" width="800" height="600" data-src="Assets/RACK 3.jpg" />
+            <div class="cat-card__overlay">
+              <h3 class="cat-card__title">Almacenamiento</h3>
+              <p class="cat-card__desc">Estanterías y organizadores para cada rincón.</p>
+              <a class="cat-card__link" href="#">Ver más</a>
+            </div>
+          </article>
+          <article class="cat-card">
+            <img class="cat-card__img js-lazy" alt="Personalizados" width="800" height="600" data-src="Assets/MesaBanner2.jpg" />
+            <div class="cat-card__overlay">
+              <h3 class="cat-card__title">Personalizados</h3>
+              <p class="cat-card__desc">Hecho a medida, con acabados y detalles únicos.</p>
+              <a class="cat-card__link" href="#">Ver más</a>
+            </div>
+          </article>
+          <article class="cat-card">
+            <img class="cat-card__img js-lazy" alt="Regalos" width="800" height="600" data-src="Assets/Plato.jpg" />
+            <div class="cat-card__overlay">
+              <h3 class="cat-card__title">Regalos</h3>
+              <p class="cat-card__desc">Detalles en madera para sorprender en cualquier ocasión.</p>
+              <a class="cat-card__link" href="#">Ver más</a>
+            </div>
+          </article>
+        </div>
+        <button class="categories__nav categories__nav--next" type="button" aria-label="Siguiente">›</button>
+      </div>
+    </section>
+
+    <!-- Newsletter moved into footer -->
+  </main>
+
+  <!-- CTA Redes Sociales (final antes de footer) -->
+  <section class="social-cta social-cta--bottom section" aria-label="Conecta con nosotros en redes">
+    <div class="social-cta__inner">
+      <div class="social-cta__copy">
+        <h2 class="social-cta__title">Conecta con nosotros</h2>
+        <p class="social-cta__desc">Ideas en madera, procesos detrás de cámaras y lanzamientos. ¡Síguenos para no perderte nada!</p>
+        <a class="social-cta__btn" href="#" aria-label="Seguir ahora">Seguir ahora</a>
+      </div>
+      <nav class="social-cta__links" aria-label="Redes sociales">
+        <a class="social-cta__icon" href="#" aria-label="Instagram" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="currentColor"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A5.5 5.5 0 1 1 6.5 13 5.5 5.5 0 0 1 12 7.5zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5z"/><circle cx="18.5" cy="5.5" r="1.2"/></svg>
+        </a>
+        <a class="social-cta__icon" href="#" aria-label="Facebook" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="currentColor"><path d="M13 22v-8h3l1-4h-4V8a1 1 0 0 1 1-1h3V3h-3a5 5 0 0 0-5 5v2H6v4h3v8z"/></svg>
+        </a>
+        <a class="social-cta__icon" href="#" aria-label="TikTok" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="currentColor"><path d="M14 3h3a5 5 0 0 0 5 5v3a7.9 7.9 0 0 1-5-1.6V15a6 6 0 1 1-6-6h1v3h-1a3 3 0 1 0 3 3z"/></svg>
+        </a>
+        <a class="social-cta__icon" href="#" aria-label="YouTube" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="currentColor"><path d="M23 12c0-3-1-5-1-5s-1-.9-2-.9C17 6 12 6 12 6s-5 0-8 .1C3 6.1 2 7 2 7S1 9 1 12s1 5 1 5 1 .9 2 .9C7 18 12 18 12 18s5 0 8-.1c1 0 2-.9 2-.9s1-2 1-5zM10 15V9l5 3-5 3z"/></svg>
+        </a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" aria-label="Información del sitio">
+    <div class="footer__inner">
+      <div class="footer__newsletter" aria-label="Suscripción">
+        <div class="newsletter__inner">
+          <h2 class="newsletter__title">Únete y obtén 10% OFF</h2>
+          <p class="newsletter__desc">Recibe novedades, lanzamientos y ofertas en piezas de madera.</p>
+          <form class="newsletter__form" onsubmit="event.preventDefault(); alert('¡Gracias por suscribirte!');">
+            <label class="visually-hidden" for="newsletter-email">Correo electrónico</label>
+            <input id="newsletter-email" type="email" required placeholder="Tu email" />
+            <button type="submit">Suscribirme</button>
+          </form>
+          <small class="newsletter__legal">Al suscribirte aceptas nuestra política de privacidad.</small>
+        </div>
+      </div>
+      <div class="footer__brand">
+        <a class="footer__logo" href="#" aria-label="Inicio">
+          <img src="logo_blanco.png" alt="LA CARPINTERÍA" class="footer__logo-img" />
+        </a>
+        <p class="footer__tagline">Hecho a mano en madera. Producción responsable.</p>
+        <div class="footer__social">
+          <span class="footer__social-label">Síguenos</span>
+          <div class="social">
+            <a class="social__link" href="#" aria-label="Instagram" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="currentColor">
+                <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A5.5 5.5 0 1 1 6.5 13 5.5 5.5 0 0 1 12 7.5zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5z"/>
+                <circle cx="18.5" cy="5.5" r="1.2"/>
+              </svg>
+              <span class="visually-hidden">Instagram</span>
+            </a>
+            <a class="social__link" href="#" aria-label="Facebook" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="currentColor">
+                <path d="M13 22v-8h3l1-4h-4V8a1 1 0 0 1 1-1h3V3h-3a5 5 0 0 0-5 5v2H6v4h3v8z"/>
+              </svg>
+              <span class="visually-hidden">Facebook</span>
+            </a>
+            <a class="social__link" href="#" aria-label="TikTok" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="currentColor">
+                <path d="M14 3h3a5 5 0 0 0 5 5v3a7.9 7.9 0 0 1-5-1.6V15a6 6 0 1 1-6-6h1v3h-1a3 3 0 1 0 3 3z"/>
+              </svg>
+              <span class="visually-hidden">TikTok</span>
+            </a>
+            <a class="social__link" href="#" aria-label="YouTube" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="currentColor">
+                <path d="M23 12c0-3-1-5-1-5s-1-.9-2-.9C17 6 12 6 12 6s-5 0-8 .1C3 6.1 2 7 2 7S1 9 1 12s1 5 1 5 1 .9 2 .9C7 18 12 18 12 18s5 0 8-.1c1 0 2-.9 2-.9s1-2 1-5zM10 15V9l5 3-5 3z"/>
+              </svg>
+              <span class="visually-hidden">YouTube</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <nav class="footer__nav" aria-label="Enlaces legales y ayuda">
+        <a href="#">Política de privacidad</a>
+        <a href="#">Términos y condiciones</a>
+        <a href="#">Política de cookies</a>
+        <a href="#">Seguridad</a>
+        <a href="#">Devoluciones</a>
+        <a href="#">Contacto</a>
+      </nav>
+    </div>
+    <div class="footer__bottom">
+      <small>© 2025 La Carpintería. Todos los derechos reservados.</small>
+    </div>
+  </footer>
+
+  
+
+  <!-- WhatsApp floating CTA -->
+  <a class="floating-cta" href="https://wa.me/573001234567?text=Hola%2C%20quiero%20una%20cotización" target="_blank" rel="noopener" aria-label="Chatear por WhatsApp">
+    <svg class="floating-cta__icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false" fill="currentColor">
+      <path d="M20.52 3.48A11.92 11.92 0 0012.03.5C6.01.5 1.04 5.42 1.04 11.3c0 1.99.52 3.84 1.42 5.47L.5 23.5l6.99-1.82a11.82 11.82 0 005.53 1.36h.01c6.02 0 10.99-4.92 10.99-10.8 0-2.9-1.13-5.61-3-7.66zM12.03 21.5c-1.66 0-3.29-.43-4.73-1.23l-.34-.19-4.15 1.08 1.12-3.94-.21-.41A8.84 8.84 0 013.2 11.3c0-4.9 4.16-8.8 8.83-8.8 2.36 0 4.57.93 6.23 2.6 1.66 1.68 2.58 3.93 2.58 6.29 0 4.9-4.16 8.84-8.82 8.84z"/>
+      <path d="M17.34 14.21c-.3-.15-1.78-.87-2.06-.97-.28-.1-.48-.15-.68.15-.2.3-.78.97-.95 1.17-.17.2-.34.22-.64.07-.3-.15-1.27-.47-2.42-1.48-.9-.8-1.5-1.78-1.67-2.08-.17-.3-.02-.46.13-.61.13-.13.3-.34.45-.51.15-.17.2-.28.3-.47.1-.2.05-.37-.02-.52-.07-.15-.68-1.64-.93-2.25-.24-.59-.48-.51-.68-.52-.17-.01-.37-.01-.57-.01-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.2 5.1 4.48 3 1.28 3.05.85 3.6.8.55-.05 1.78-.72 2.03-1.42.25-.69.25-1.28.17-1.41-.08-.12-.28-.2-.58-.35z"/>
+    </svg>
+    <span class="visually-hidden">WhatsApp</span>
+  </a>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

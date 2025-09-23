@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cotizar — La Carpintería</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="header__bar">
+      <a href="index.html" class="header__logo" aria-label="Inicio">
+        <img src="logo_blanco.png" alt="LA CARPINTERÍA" class="header__logo-img" />
+      </a>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="grid" aria-label="Hero cotizar">
+      <a class="tile tile--xl tile--hero" href="#" aria-label="Cotizar">
+        <img class="tile__img tile__img--base js-lazy" alt="Cotiza tu proyecto" width="1600" height="1000" data-src="Assets/RACK 3.jpg" />
+        <img class="tile__img tile__img--alt js-lazy" alt="Cotiza tu proyecto" width="1600" height="1000" data-src="Assets/Mesita4.jpg" />
+        <div class="tile__overlay tile__overlay--hero" role="dialog">
+          <div class="hero__copy">
+            <h2 class="hero__title">Cotizar</h2>
+            <p class="hero__subtitle">Cuéntanos tu idea y medidas</p>
+          </div>
+          <span class="tile__cta">Enviar solicitud</span>
+        </div>
+      </a>
+    </section>
+
+    <section class="categories" aria-label="Información">
+      <div class="section__header">
+        <h3 class="section__title">¿Qué necesitas?</h3>
+        <p class="section__subtitle">Describe el uso, madera preferida y acabados.</p>
+      </div>
+      <div class="categories__viewport">
+        <div class="categories__row js-cats-row">
+          <span id="tablas"></span>
+          <article class="cat-card"><img class="cat-card__img js-lazy" alt="Tablas" width="800" height="600" data-src="Assets/Plato.jpg" /><div class="cat-card__overlay"><h3 class="cat-card__title">Tablas</h3><p class="cat-card__desc">Corte y servir.</p><a class="cat-card__link" href="#">Ver más</a></div></article>
+          <span id="porta-cuchillos"></span>
+          <article class="cat-card"><img class="cat-card__img js-lazy" alt="Porta cuchillos" width="800" height="600" data-src="Assets/Mesa_auxiliar.jpg" /><div class="cat-card__overlay"><h3 class="cat-card__title">Porta cuchillos</h3><p class="cat-card__desc">Imantados y de encastre.</p><a class="cat-card__link" href="#">Ver más</a></div></article>
+          <span id="bandejas"></span>
+          <article class="cat-card"><img class="cat-card__img js-lazy" alt="Bandejas" width="800" height="600" data-src="Assets/Mesa_auxiliar_cajon.jpg" /><div class="cat-card__overlay"><h3 class="cat-card__title">Bandejas</h3><p class="cat-card__desc">Servicio y orden.</p><a class="cat-card__link" href="#">Ver más</a></div></article>
+          <span id="accesorios"></span>
+          <article class="cat-card"><img class="cat-card__img js-lazy" alt="Accesorios" width="800" height="600" data-src="Assets/Mesita4.jpg" /><div class="cat-card__overlay"><h3 class="cat-card__title">Accesorios</h3><p class="cat-card__desc">Extras útiles para la cocina.</p><a class="cat-card__link" href="#">Ver más</a></div></article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" aria-label="Información del sitio">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <a class="footer__logo" href="index.html" aria-label="Inicio">
+          <img src="logo_blanco.png" alt="LA CARPINTERÍA" class="footer__logo-img" />
+        </a>
+        <p class="footer__tagline">Hecho a mano en madera. Producción responsable.</p>
+      </div>
+    </div>
+    <div class="footer__bottom"><small>© 2025 La Carpintería.</small></div>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

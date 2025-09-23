@@ -1,0 +1,479 @@
+// ==== Lazy loading con IntersectionObserver ====
+(function(){
+  const tiles = Array.from(document.querySelectorAll('.tile'));
+  const images = Array.from(document.querySelectorAll('.js-lazy'));
+
+  const onEnter = (entry) => {
+    const img = entry.target;
+    const tile = img.closest('.tile');
+    img.src = img.dataset.src;
+    img.addEventListener('load', () => {
+      tile.classList.add('is-visible');
+    }, { once: true });
+  };
+
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          onEnter(entry);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '200px 0px' });
+    images.forEach(img => io.observe(img));
+  } else {
+    // Fallback
+    images.forEach(img => { img.src = img.dataset.src; });
+    tiles.forEach(t => t.classList.add('is-visible'));
+  }
+})();
+
+// ==== Conectar menú principal y offcanvas a módulos (nueva pestaña) ====
+(function(){
+  try {
+    const urls = [
+      'categorias.html',
+      'cotizar.html',
+      'proyectos.html',
+      'novedades.html',
+      'compania.html',
+      'contacto.html'
+    ];
+    const top = Array.from(document.querySelectorAll('.nav .nav__item > .nav__link'));
+    top.forEach((el, i) => {
+      if (!urls[i]) return;
+      // No alteramos estilos/markup: interceptamos click y abrimos en pestaña nueva
+      el.addEventListener('click', (e) => { e.preventDefault(); window.open(urls[i], '_blank'); });
+      el.setAttribute('role', 'link');
+      el.setAttribute('aria-label', (el.textContent || 'Sección') + ' (abre en nueva pestaña)');
+    });
+    // Subitems (dropdown) -> anclas internas en módulos
+    const subSlugs = [
+      ['mesas','estanterias','organizadores','decoracion'],
+      ['tablas','porta-cuchillos','bandejas','accesorios'],
+      ['escritorios','soportes','organizadores'],
+      ['grabado-laser','a-medida','proyectos'],
+      ['pino','roble','nogal','teka'],
+      ['diseno','instalacion','restauracion']
+    ];
+    const items = Array.from(document.querySelectorAll('.nav .nav__item'));
+    items.forEach((item, i) => {
+      const links = Array.from(item.querySelectorAll('.nav__dropdown a'));
+      links.forEach((a, j) => {
+        const slug = subSlugs[i] && subSlugs[i][j];
+        const base = urls[i];
+        if (!slug || !base) return;
+        const href = `${base}#${slug}`;
+        a.addEventListener('click', (e) => { e.preventDefault(); window.open(href, '_blank'); });
+        a.setAttribute('href', href);
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener');
+      });
+    });
+    const off = Array.from(document.querySelectorAll('.offcanvas__nav a'));
+    // Etiquetas de submódulos para offcanvas
+    const subLabels = [
+      ['Mesas','Estanterías','Organizadores','Decoración'],
+      ['Tablas','Porta cuchillos','Bandejas','Accesorios'],
+      ['Escritorios','Soportes','Organizadores'],
+      ['Grabado láser','A medida','Proyectos'],
+      ['Pino','Roble','Nogal','Teka'],
+      ['Diseño','Instalación','Restauración']
+    ];
+    function toggleOffSubmenu(anchor, i){
+      const next = anchor.nextElementSibling;
+      const isSub = next && next.classList && next.classList.contains('offcanvas__subnav');
+      if (isSub){
+        // Animar cierre y luego eliminar
+        next.classList.remove('is-open');
+        next.addEventListener('transitionend', () => { if (next && next.parentNode) next.parentNode.removeChild(next); }, { once: true });
+        anchor.setAttribute('aria-expanded', 'false');
+        return;
+      }
+      // Cerrar otros submenús abiertos (modo acordeón)
+      const container = anchor.closest('.offcanvas__panel') || document;
+      const openSubs = Array.from(container.querySelectorAll('.offcanvas__subnav.is-open'));
+      openSubs.forEach(subOpen => {
+        const prevAnchor = subOpen.previousElementSibling;
+        subOpen.classList.remove('is-open');
+        subOpen.addEventListener('transitionend', () => { if (subOpen && subOpen.parentNode) subOpen.parentNode.removeChild(subOpen); }, { once: true });
+        if (prevAnchor) prevAnchor.setAttribute('aria-expanded', 'false');
+      });
+      // Crea submenú
+      const sub = document.createElement('div');
+      sub.className = 'offcanvas__subnav';
+      const labels = subLabels[i] || [];
+      const slugs = subSlugs[i] || [];
+      labels.forEach((label, j) => {
+        const s = slugs[j];
+        if (!s) return;
+        const link = document.createElement('a');
+        link.href = `${urls[i]}#${s}`;
+        link.target = '_blank';
+        link.rel = 'noopener';
+        link.textContent = label;
+        sub.appendChild(link);
+      });
+      anchor.insertAdjacentElement('afterend', sub);
+      // Forzar reflow y abrir con animación
+      void sub.offsetHeight; // reflow
+      sub.classList.add('is-open');
+      anchor.setAttribute('aria-expanded', 'true');
+    }
+    off.forEach((a, i) => {
+      if (!urls[i]) return;
+      a.href = urls[i];
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.setAttribute('aria-expanded', 'false');
+      a.addEventListener('click', (e) => {
+        // Ctrl/Cmd/Shift: abrir en pestaña; Click normal: toggle submenú
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        e.preventDefault();
+        toggleOffSubmenu(a, i);
+      });
+    });
+  } catch (_) {}
+})();
+
+// ==== Envío formulario de contacto (WhatsApp) ====
+(function(){
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+
+  const fields = {
+    name: form.querySelector('#cf-name'),
+    email: form.querySelector('#cf-email'),
+    phone: form.querySelector('#cf-phone'),
+    subject: form.querySelector('#cf-subject'),
+    message: form.querySelector('#cf-message')
+  };
+
+  function getGroup(el){ return el.closest('.form__group') || el.parentElement; }
+
+  function getOrCreateErrorEl(el){
+    const group = getGroup(el);
+    let err = group.querySelector('.form__error');
+    if (!err){
+      err = document.createElement('small');
+      err.className = 'form__error';
+      err.id = 'err-' + (el.id || Math.random().toString(36).slice(2));
+      group.appendChild(err);
+    }
+    return err;
+  }
+
+  function setError(el, msg){
+    const group = getGroup(el);
+    const err = getOrCreateErrorEl(el);
+    err.textContent = msg || '';
+    group.classList.toggle('invalid', !!msg);
+    el.classList.toggle('is-invalid', !!msg);
+    el.classList.toggle('is-valid', !msg);
+    el.setAttribute('aria-invalid', msg ? 'true' : 'false');
+    el.setAttribute('aria-describedby', err.id);
+  }
+
+  function validateField(el){
+    const v = (el.value || '').trim();
+    const name = el.name;
+    if (name === 'name'){
+      if (v.length < 2) { setError(el, 'Ingresa tu nombre.'); return false; }
+    }
+    if (name === 'email'){
+      const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+      if (!ok) { setError(el, 'Ingresa un email válido.'); return false; }
+    }
+    if (name === 'phone'){
+      const ok = /^[0-9+\-\s]{7,15}$/.test(v);
+      if (!ok) { setError(el, 'Ingresa un teléfono válido.'); return false; }
+    }
+    if (name === 'message'){
+      if (v.length < 20) { setError(el, 'Escribe al menos 20 caracteres.'); return false; }
+    }
+    setError(el, '');
+    return true;
+  }
+
+  // Blur/input handlers
+  ['name','email','phone','message','subject'].forEach(key => {
+    const el = fields[key];
+    if (!el) return;
+    el.addEventListener('blur', () => validateField(el));
+    el.addEventListener('input', () => { if (el.classList.contains('is-invalid')) validateField(el); });
+  });
+
+  function validateForm(){
+    let firstInvalid = null;
+    ['name','email','phone','message'].forEach(key => {
+      const el = fields[key];
+      if (!el) return;
+      const ok = validateField(el);
+      if (!ok && !firstInvalid) firstInvalid = el;
+    });
+    if (firstInvalid){ firstInvalid.focus(); }
+    return !firstInvalid;
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!validateForm()) return;
+    const name = fields.name.value.trim();
+    const email = fields.email.value.trim();
+    const phone = fields.phone.value.trim();
+    const subject = (fields.subject.value || 'Nueva solicitud de contacto').trim();
+    const message = fields.message.value.trim();
+    const dest = '573001234567';
+    const plain = `Hola, soy ${name}.\nEmail: ${email}\nTeléfono: ${phone}\nAsunto: ${subject}\n\n${message}`;
+    const url = `https://wa.me/${dest}?text=${encodeURIComponent(plain)}`;
+    const btn = form.querySelector('button[type="submit"]');
+    if (btn) { btn.disabled = true; btn.textContent = 'Abriendo WhatsApp…'; }
+    // Copia el mensaje como respaldo
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(plain).catch(()=>{});
+    }
+    // Reset de formulario y feedback visual
+    form.reset();
+    Object.values(fields).forEach(el => { if (!el) return; el.classList.remove('is-invalid','is-valid'); const g = el.closest('.form__group'); if (g) g.classList.remove('invalid'); });
+    // Toast de éxito
+    const prevToast = document.querySelector('.toast'); if (prevToast && prevToast.parentNode) prevToast.parentNode.removeChild(prevToast);
+    const toast = document.createElement('div');
+    toast.className = 'toast toast--success';
+    toast.setAttribute('role','status');
+    toast.setAttribute('aria-live','polite');
+    toast.textContent = 'Mensaje copiado. Abriendo WhatsApp…';
+    const closeBtn = document.createElement('button');
+    closeBtn.type = 'button';
+    closeBtn.className = 'toast__close';
+    closeBtn.setAttribute('aria-label','Cerrar');
+    closeBtn.textContent = '×';
+    toast.appendChild(closeBtn);
+    document.body.appendChild(toast);
+    // Forzar reflow y mostrar
+    void toast.offsetHeight; toast.classList.add('is-visible');
+    const dismiss = () => {
+      toast.classList.remove('is-visible');
+      toast.addEventListener('transitionend', () => { if (toast && toast.parentNode) toast.parentNode.removeChild(toast); }, { once: true });
+      if (btn) { btn.disabled = false; btn.textContent = 'Enviar por WhatsApp'; }
+    };
+    closeBtn.addEventListener('click', dismiss);
+    // Navega a WhatsApp rápidamente y cierra toast
+    setTimeout(() => { window.location.href = url; }, 250);
+    setTimeout(dismiss, 1800);
+  });
+})();
+
+// ==== Reveal de secciones al entrar al viewport ====
+(function(){
+  const sections = Array.from(document.querySelectorAll('.section'));
+  if (!sections.length) return;
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-in');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -10% 0px' });
+    sections.forEach(s => io.observe(s));
+  } else {
+    sections.forEach(s => s.classList.add('is-in'));
+  }
+})();
+
+// ==== Carrusel y filtros de productos (sección ofertas) ====
+(function(){
+  const section = document.querySelector('section.products');
+  if (!section) return;
+
+  const row = section.querySelector('.js-products-row');
+  const prev = section.querySelector('.products__nav--prev');
+  const next = section.querySelector('.products__nav--next');
+  const pills = Array.from(section.querySelectorAll('.pill'));
+  const cards = Array.from(section.querySelectorAll('.product-card'));
+
+  function applyFilter(key){
+    const toShow = [];
+    const toHide = [];
+    cards.forEach(card => {
+      const tags = (card.dataset.tags || '').split(/\s+/);
+      const show = key === 'todos' || tags.includes(key);
+      (show ? toShow : toHide).push(card);
+    });
+    toHide.forEach(card => {
+      card.classList.remove('is-shown');
+      card.style.display = 'none';
+      card.setAttribute('aria-hidden', 'true');
+    });
+    if (row) { row.classList.add('is-swapping'); setTimeout(() => row.classList.remove('is-swapping'), 260); }
+    toShow.forEach((card, idx) => {
+      card.style.display = 'flex';
+      card.setAttribute('aria-hidden', 'false');
+      card.style.setProperty('--delay', `${Math.min(idx * 50, 300)}ms`);
+      requestAnimationFrame(() => card.classList.add('is-shown'));
+    });
+  }
+
+  pills.forEach(btn => {
+    btn.addEventListener('click', () => {
+      pills.forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      applyFilter(btn.dataset.filter || 'todos');
+    });
+  });
+
+  if (pills.length) applyFilter((section.querySelector('.pill.is-active') || pills[0]).dataset.filter || 'todos');
+
+  function scrollByAmount(dir){
+    if (!row) return;
+    // Desplazamiento más pequeño: aproximadamente el ancho de una tarjeta
+    const cardWidth = 280; // Ancho aproximado de una tarjeta de producto
+    const amount = cardWidth + 20; // Añadimos un poco de margen
+    row.scrollBy({ left: dir * amount, behavior: 'smooth' });
+  }
+  // Navegación con efecto y paso proporcional a la vista
+  function scrollByAmount2(dir){
+    if (!row) return;
+    const amount = Math.round(row.clientWidth * 0.9);
+    row.scrollBy({ left: dir * amount, behavior: 'smooth' });
+    row.classList.add(dir > 0 ? 'bump-right' : 'bump-left');
+    setTimeout(() => row.classList.remove('bump-right', 'bump-left'), 240);
+  }
+  prev && prev.addEventListener('click', () => scrollByAmount2(-1));
+  next && next.addEventListener('click', () => scrollByAmount2(1));
+})();
+
+// ==== Mejora de navegación: estados de flechas y teclado en carrusel ====
+(function(){
+  const section = document.querySelector('section.products');
+  if (!section) return;
+  const row = section.querySelector('.js-products-row');
+  const prev = section.querySelector('.products__nav--prev');
+  const next = section.querySelector('.products__nav--next');
+  if (!row || !prev || !next) return;
+
+  // Reemplaza botones para limpiar posibles listeners previos
+  const prevBtn = prev.cloneNode(true); prev.replaceWith(prevBtn);
+  const nextBtn = next.cloneNode(true); next.replaceWith(nextBtn);
+
+  function updateNav(){
+    const maxScroll = row.scrollWidth - row.clientWidth - 1;
+    prevBtn.toggleAttribute('disabled', row.scrollLeft <= 0);
+    nextBtn.toggleAttribute('disabled', row.scrollLeft >= maxScroll);
+  }
+  function scrollByView(dir){
+    const amount = Math.round(row.clientWidth * 0.9);
+    row.scrollBy({ left: dir * amount, behavior: 'smooth' });
+    setTimeout(updateNav, 250);
+  }
+  prevBtn.addEventListener('click', () => scrollByView(-1));
+  nextBtn.addEventListener('click', () => scrollByView(1));
+  row.addEventListener('scroll', () => updateNav(), { passive: true });
+  row.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') { e.preventDefault(); scrollByView(1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); scrollByView(-1); }
+  });
+  updateNav();
+})();
+
+// ==== Carrusel de categorías (slider horizontal) ====
+(function(){
+  const section = document.querySelector('section.categories');
+  if (!section) return;
+  const row = section.querySelector('.js-cats-row');
+  const prev = section.querySelector('.categories__nav--prev');
+  const next = section.querySelector('.categories__nav--next');
+  if (!row || !prev || !next) return;
+
+  const prevBtn = prev.cloneNode(true); prev.replaceWith(prevBtn);
+  const nextBtn = next.cloneNode(true); next.replaceWith(nextBtn);
+
+  function updateNav(){
+    const maxScroll = row.scrollWidth - row.clientWidth - 1;
+    prevBtn.toggleAttribute('disabled', row.scrollLeft <= 0);
+    nextBtn.toggleAttribute('disabled', row.scrollLeft >= maxScroll);
+  }
+  function scrollByView(dir){
+    const amount = Math.round(row.clientWidth * 0.9);
+    row.scrollBy({ left: dir * amount, behavior: 'smooth' });
+    row.classList.add(dir > 0 ? 'bump-right' : 'bump-left');
+    setTimeout(() => row.classList.remove('bump-right', 'bump-left'), 240);
+    setTimeout(updateNav, 260);
+  }
+  prevBtn.addEventListener('click', () => scrollByView(-1));
+  nextBtn.addEventListener('click', () => scrollByView(1));
+  row.addEventListener('scroll', () => updateNav(), { passive: true });
+  row.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') { e.preventDefault(); scrollByView(1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); scrollByView(-1); }
+  });
+  updateNav();
+})();
+
+// ==== Off-canvas menú mobile ====
+(function(){
+  const toggles = Array.from(document.querySelectorAll('.js-menu-toggle'));
+  const offcanvas = document.getElementById('offcanvas');
+  const body = document.body;
+  let isOpen = false;
+
+  function setOpen(open){
+    isOpen = open;
+    offcanvas.classList.toggle('is-open', open);
+    body.classList.toggle('noscroll', open);
+    const btn = document.querySelector('.header__menu-btn');
+    if (btn) btn.setAttribute('aria-expanded', String(open));
+    offcanvas.setAttribute('aria-hidden', String(!open));
+  }
+
+  toggles.forEach(btn => btn.addEventListener('click', () => setOpen(!isOpen)));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isOpen) setOpen(false);
+  });
+})();
+
+// ==== Overlay en móvil: primer tap muestra overlay, segundo navega ====
+(function(){
+  const tiles = Array.from(document.querySelectorAll('.tile'));
+  let activeTile = null;
+
+  function clearActive(){
+    if (activeTile){
+      activeTile.classList.remove('tile--active');
+      activeTile = null;
+    }
+  }
+
+  // Cerrar con tap/click fuera
+  document.addEventListener('click', (e) => {
+    if (activeTile && !activeTile.contains(e.target)) {
+      clearActive();
+    }
+  });
+
+  // Cerrar con Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') clearActive();
+  });
+
+  // Gestión por pointer (detecta táctil)
+  tiles.forEach(tile => {
+    tile.addEventListener('pointerdown', (e) => {
+      const isTouch = e.pointerType === 'touch';
+      if (!isTouch) return; // Desktop/mouse: sin bloquear navegación
+
+      if (activeTile !== tile){
+        // Primer tap: mostramos overlay y prevenimos navegación
+        e.preventDefault();
+        clearActive();
+        activeTile = tile;
+        tile.classList.add('tile--active');
+      } else {
+        // Segundo tap: permitir navegación (no preventDefault)
+        clearActive();
+      }
+    }, { passive: false });
+  });
+})();

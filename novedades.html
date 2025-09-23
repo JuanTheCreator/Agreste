@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Novedades — La Carpintería</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="header__bar">
+      <a href="index.html" class="header__logo" aria-label="Inicio">
+        <img src="logo_blanco.png" alt="LA CARPINTERÍA" class="header__logo-img" />
+      </a>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="grid" aria-label="Hero novedades">
+      <a class="tile tile--xl tile--hero" href="#" aria-label="Novedades">
+        <img class="tile__img tile__img--base js-lazy" alt="Novedades" width="1600" height="1000" data-src="Assets/Mesita2.jpg" />
+        <img class="tile__img tile__img--alt js-lazy" alt="Novedades" width="1600" height="1000" data-src="Assets/Plato2.jpg" />
+        <div class="tile__overlay tile__overlay--hero" role="dialog">
+          <div class="hero__copy">
+            <h2 class="hero__title">Novedades</h2>
+            <p class="hero__subtitle">Lo último en el taller</p>
+          </div>
+          <span class="tile__cta">Ver lanzamientos</span>
+        </div>
+      </a>
+    </section>
+
+    <section class="categories" aria-label="Artículos y anuncios">
+      <div class="section__header">
+        <h3 class="section__title">Lo nuevo</h3>
+        <p class="section__subtitle">Piezas, colecciones y noticias.</p>
+      </div>
+      <div class="categories__viewport">
+        <div class="categories__row js-cats-row">
+          <span id="grabado-laser"></span>
+          <article class="cat-card"><img class="cat-card__img js-lazy" alt="Grabado láser" width="800" height="600" data-src="Assets/Mesa_auxiliar.jpg" /><div class="cat-card__overlay"><h3 class="cat-card__title">Grabado láser</h3><p class="cat-card__desc">Personaliza tus piezas.</p><a class="cat-card__link" href="#">Ver más</a></div></article>
+          <span id="a-medida"></span>
+          <article class="cat-card"><img class="cat-card__img js-lazy" alt="A medida" width="800" height="600" data-src="Assets/MesaBanner.jpg" /><div class="cat-card__overlay"><h3 class="cat-card__title">A medida</h3><p class="cat-card__desc">Hecho para tu espacio.</p><a class="cat-card__link" href="#">Ver más</a></div></article>
+          <span id="proyectos"></span>
+          <article class="cat-card"><img class="cat-card__img js-lazy" alt="Proyectos" width="800" height="600" data-src="Assets/Mesita2.jpg" /><div class="cat-card__overlay"><h3 class="cat-card__title">Proyectos</h3><p class="cat-card__desc">Casos y lanzamientos.</p><a class="cat-card__link" href="#">Ver más</a></div></article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" aria-label="Información del sitio">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <a class="footer__logo" href="index.html" aria-label="Inicio">
+          <img src="logo_blanco.png" alt="LA CARPINTERÍA" class="footer__logo-img" />
+        </a>
+        <p class="footer__tagline">Hecho a mano en madera. Producción responsable.</p>
+      </div>
+    </div>
+    <div class="footer__bottom"><small>© 2025 La Carpintería.</small></div>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
