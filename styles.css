@@ -522,3 +522,232 @@ input, textarea { caret-color: var(--accent-2); }
 .back-button:hover {
   background-color: #5A0017; /* Slightly darker shade for hover effect */
 }
+
+/* Redesigned Quotation Form Styles */
+.quotation-form {
+  background-color: #f9f9f9;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 2rem auto;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+label {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: #555;
+}
+
+input, select, textarea {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #6F001D;
+  outline: none;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.form-hint {
+  font-size: 0.875rem;
+  color: #888;
+}
+
+.form-submit {
+  background-color: #6F001D;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-submit:hover {
+  background-color: #5A0017;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.form-submit:active {
+  background-color: #4A0014;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Step-by-Step Guide Styles */
+.step-by-step {
+  background-color: #fff;
+  padding: clamp(2rem, 4vw, 4rem);
+  border-radius: 20px;
+  box-shadow: 0 28px 60px rgba(15, 15, 15, 0.1);
+  max-width: min(1120px, 95vw);
+  margin: clamp(2rem, 5vw, 5rem) auto;
+}
+
+.step-layout {
+  display: grid;
+  gap: clamp(2rem, 4vw, 3.5rem);
+}
+
+@media (min-width: 960px) {
+  .step-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
+    align-items: start;
+  }
+}
+
+.steps-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  max-width: 420px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+@media (min-width: 960px) {
+  .steps-intro {
+    text-align: left;
+    margin: 0;
+  }
+}
+
+.steps-tag {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #a86b4a;
+}
+
+.steps-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 1.5rem + 2vw, 3rem);
+  font-weight: 600;
+  color: #2a2320;
+  margin: 0;
+}
+
+.steps-description {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.7;
+}
+
+.steps-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: clamp(1.75rem, 3vw, 2.5rem);
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+@media (min-width: 1200px) {
+  .steps-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.step-card {
+  background: #f8f5f2;
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 18px 40px rgba(15, 15, 15, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.step-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 26px 50px rgba(15, 15, 15, 0.12);
+}
+
+.step-media {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.step-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.step-card:hover .step-image {
+  transform: scale(1.05);
+}
+
+.step-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.6rem 1.8rem 2rem;
+}
+
+.step-index {
+  font-family: 'Fraunces', serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #b4875e;
+}
+
+.step-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #2a2320;
+  margin: 0;
+}
+
+.step-info p {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: #4b4542;
+  line-height: 1.7;
+}
+
+/* Ensure header icons are positioned absolutely to the right */
+.header__icons--absolute-right {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
