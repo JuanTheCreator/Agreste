@@ -5,10 +5,17 @@
 
   const onEnter = (entry) => {
     const img = entry.target;
-    const tile = img.closest('.tile');
+    const tile = img.closest('.tile') || img.closest('.product-card');
+    if (tile) {
+      tile.classList.add('is-visible');
+    } else {
+      console.warn('No se encontró un contenedor válido para la imagen:', img);
+    }
     img.src = img.dataset.src;
     img.addEventListener('load', () => {
-      tile.classList.add('is-visible');
+      if (tile) {
+        tile.classList.add('is-visible');
+      }
     }, { once: true });
   };
 
@@ -40,11 +47,25 @@
       'compania.html',
       'contacto.html'
     ];
+    console.log('URLs loaded:', urls);
+
     const top = Array.from(document.querySelectorAll('.nav .nav__item > .nav__link'));
+    console.log('Top navigation links:', top);
+
     top.forEach((el, i) => {
       if (!urls[i]) return;
+      if (el.classList.contains('nav__link--direct')) {
+        el.setAttribute('href', urls[i]);
+        el.setAttribute('role', 'link');
+        console.log(`Direct link set for ${el.textContent}: ${urls[i]}`);
+        return;
+      }
       // No alteramos estilos/markup: interceptamos click y abrimos en pestaña nueva
-      el.addEventListener('click', (e) => { e.preventDefault(); window.open(urls[i], '_blank'); });
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.open(urls[i], '_blank');
+        console.log(`Opening ${urls[i]} in a new tab.`);
+      });
       el.setAttribute('role', 'link');
       el.setAttribute('aria-label', (el.textContent || 'Sección') + ' (abre en nueva pestaña)');
     });
@@ -55,7 +76,7 @@
       ['escritorios','soportes','organizadores'],
       ['grabado-laser','a-medida','proyectos'],
       ['pino','roble','nogal','teka'],
-      ['diseno','instalacion','restauracion']
+      []
     ];
     const items = Array.from(document.querySelectorAll('.nav .nav__item'));
     items.forEach((item, i) => {
@@ -79,9 +100,15 @@
       ['Escritorios','Soportes','Organizadores'],
       ['Grabado láser','A medida','Proyectos'],
       ['Pino','Roble','Nogal','Teka'],
-      ['Diseño','Instalación','Restauración']
+      []
     ];
     function toggleOffSubmenu(anchor, i){
+      const labels = subLabels[i] || [];
+      const slugs = subSlugs[i] || [];
+      if (!labels.length || !slugs.length) {
+        window.open(urls[i], '_blank');
+        return;
+      }
       const next = anchor.nextElementSibling;
       const isSub = next && next.classList && next.classList.contains('offcanvas__subnav');
       if (isSub){
@@ -103,8 +130,6 @@
       // Crea submenú
       const sub = document.createElement('div');
       sub.className = 'offcanvas__subnav';
-      const labels = subLabels[i] || [];
-      const slugs = subSlugs[i] || [];
       labels.forEach((label, j) => {
         const s = slugs[j];
         if (!s) return;
@@ -124,6 +149,13 @@
     off.forEach((a, i) => {
       if (!urls[i]) return;
       a.href = urls[i];
+      const hasSub = Array.isArray(subSlugs[i]) && subSlugs[i].length;
+      if (!hasSub) {
+        a.removeAttribute('aria-expanded');
+        a.removeAttribute('target');
+        a.removeAttribute('rel');
+        return;
+      }
       a.target = '_blank';
       a.rel = 'noopener';
       a.setAttribute('aria-expanded', 'false');
@@ -135,6 +167,157 @@
       });
     });
   } catch (_) {}
+})();
+
+// ==== Panel de ayuda ====
+(function(){
+  const panel = document.getElementById('help-panel');
+  if (!panel) return;
+  const toggles = Array.from(document.querySelectorAll('.js-help-toggle'));
+  if (!toggles.length) return;
+  const closeEls = Array.from(panel.querySelectorAll('[data-help-close]'));
+  let isOpen = false;
+  let lastFocus = null;
+  function getFocusTarget(){
+    return panel.querySelector('[data-help-focus]') || panel.querySelector('.help-panel__close');
+  }
+  function focusElement(el){
+    if (!(el instanceof HTMLElement)) return;
+    setTimeout(() => {
+      try { el.focus({ preventScroll: true }); }
+      catch (err) { el.focus(); }
+    }, 10);
+  }
+  function setOpen(open){
+    if (isOpen === open) return;
+    isOpen = open;
+    panel.classList.toggle('is-open', open);
+    panel.setAttribute('aria-hidden', String(!open));
+    document.body.classList.toggle('help-open', open);
+    toggles.forEach(btn => btn.setAttribute('aria-expanded', String(open)));
+    if (open){
+      const menuToggle = document.querySelector('.header__menu-btn');
+      if (menuToggle && menuToggle.getAttribute('aria-expanded') === 'true') {
+        menuToggle.click();
+      }
+      lastFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+      focusElement(getFocusTarget());
+    } else {
+      focusElement(lastFocus);
+      lastFocus = null;
+    }
+  }
+  toggles.forEach(btn => {
+    btn.addEventListener('click', (event) => {
+      event.preventDefault();
+      setOpen(!isOpen);
+    });
+  });
+  closeEls.forEach(el => el.addEventListener('click', () => setOpen(false)));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && isOpen) {
+      setOpen(false);
+    }
+  });
+})();
+
+// ==== Panel de autenticación ====
+(function(){
+  const panel = document.getElementById('auth-panel');
+  if (!panel) return;
+  const toggles = Array.from(document.querySelectorAll('.js-auth-toggle'));
+  if (!toggles.length) return;
+  const closeEls = Array.from(panel.querySelectorAll('[data-auth-close]'));
+  const form = panel.querySelector('.auth-form');
+  const emailInput = panel.querySelector('#auth-email');
+  const submitBtn = form ? form.querySelector('.auth-form__submit') : null;
+  let isOpen = false;
+  let lastFocus = null;
+  function focusElement(el){
+    if (!(el instanceof HTMLElement)) return;
+    setTimeout(() => {
+      try { el.focus({ preventScroll: true }); }
+      catch (err) { el.focus(); }
+    }, 10);
+  }
+  function showToast(message){
+    const prev = document.querySelector('.toast');
+    if (prev && prev.parentNode) prev.parentNode.removeChild(prev);
+    const toast = document.createElement('div');
+    toast.className = 'toast toast--success';
+    toast.setAttribute('role','status');
+    toast.setAttribute('aria-live','polite');
+    toast.textContent = message;
+    const close = document.createElement('button');
+    close.type = 'button';
+    close.className = 'toast__close';
+    close.setAttribute('aria-label','Cerrar');
+    close.textContent = '\\u00D7';
+    toast.appendChild(close);
+    document.body.appendChild(toast);
+    void toast.offsetHeight;
+    toast.classList.add('is-visible');
+    const remove = () => {
+      toast.classList.remove('is-visible');
+      toast.addEventListener('transitionend', () => { if (toast && toast.parentNode) toast.parentNode.removeChild(toast); }, { once: true });
+    };
+    close.addEventListener('click', remove);
+    setTimeout(remove, 2400);
+  }
+  function closeHelpPanel(){
+    const help = document.getElementById('help-panel');
+    if (!help || !help.classList.contains('is-open')) return;
+    const closer = help.querySelector('[data-help-close]');
+    if (closer) closer.click();
+  }
+  function setOpen(open){
+    if (isOpen === open) return;
+    isOpen = open;
+    panel.classList.toggle('is-open', open);
+    panel.setAttribute('aria-hidden', String(!open));
+    document.body.classList.toggle('auth-open', open);
+    toggles.forEach(btn => btn.setAttribute('aria-expanded', String(open)));
+    if (open){
+      closeHelpPanel();
+      const menuToggle = document.querySelector('.header__menu-btn');
+      if (menuToggle && menuToggle.getAttribute('aria-expanded') === 'true') {
+        menuToggle.click();
+      }
+      lastFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+      focusElement(emailInput || panel.querySelector('.auth-panel__close'));
+    } else {
+      if (form) form.reset();
+      if (submitBtn){ submitBtn.disabled = false; submitBtn.textContent = 'Iniciar sesión'; }
+      focusElement(lastFocus);
+      lastFocus = null;
+    }
+  }
+  toggles.forEach(btn => {
+    btn.addEventListener('click', (event) => {
+      event.preventDefault();
+      setOpen(!isOpen);
+    });
+  });
+  closeEls.forEach(el => el.addEventListener('click', () => setOpen(false)));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && isOpen) {
+      setOpen(false);
+    }
+  });
+  if (form){
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+      if (submitBtn){
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Ingresando...';
+      }
+      showToast('Bienvenido de nuevo a Agreste.');
+      setTimeout(() => {
+        setOpen(false);
+      }, 1200);
+    });
+  }
 })();
 
 // ==== Envío formulario de contacto (WhatsApp) ====
@@ -247,7 +430,7 @@
     closeBtn.type = 'button';
     closeBtn.className = 'toast__close';
     closeBtn.setAttribute('aria-label','Cerrar');
-    closeBtn.textContent = '×';
+    closeBtn.textContent = '\\u00D7';
     toast.appendChild(closeBtn);
     document.body.appendChild(toast);
     // Forzar reflow y mostrar
