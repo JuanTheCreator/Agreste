@@ -751,3 +751,108 @@ textarea {
   top: 50%;
   transform: translateY(-50%);
 }
+
+/* Cookie consent banner */
+.cookie-banner {
+  position: fixed;
+  inset: auto clamp(1.25rem, 3vw, 2.5rem) clamp(1.25rem, 3vw, 2.5rem) clamp(1.25rem, 3vw, 2.5rem);
+  display: flex;
+  justify-content: flex-end;
+  z-index: 1200;
+  pointer-events: none;
+}
+
+.cookie-banner[hidden] {
+  display: none;
+}
+
+.cookie-card {
+  max-width: min(320px, 90vw);
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 2px 6px 2px rgba(60, 64, 67, 0.15);
+  padding: 2.75rem 1.75rem 1.6rem;
+  position: relative;
+  pointer-events: auto;
+  font-family: 'Inter', sans-serif;
+  color: #4b4542;
+}
+
+.cookie-card__art {
+  position: absolute;
+  top: -46px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+}
+
+.cookie-card__title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #2a2320;
+  margin: 0 0 0.75rem;
+}
+
+.cookie-card__body {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0 0 1.35rem;
+}
+
+.cookie-card__link {
+  color: #6F001D;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.cookie-card__actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.cookie-card__secondary {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #6f5a4f;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.cookie-card__secondary:hover {
+  color: #513931;
+  text-decoration: underline;
+}
+
+.cookie-card__primary {
+  background: #ddad81;
+  color: #644647;
+  border: none;
+  border-radius: 12px;
+  padding: 0.55rem 1.8rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.cookie-card__primary:hover {
+  background: #644647;
+  color: #ddad81;
+}
+
+@media (max-width: 640px) {
+  .cookie-banner {
+    justify-content: center;
+    inset: auto 0 clamp(1rem, 4vw, 2rem) 0;
+  }
+
+  .cookie-card {
+    max-width: min(360px, 92vw);
+  }
+}

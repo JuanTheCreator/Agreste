@@ -1,22 +1,163 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Cotizar — Agreste</title>
+  <title>Cotizar - Agreste</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #FCFCFC;
+      min-height: 100vh;
+      font-size: 16px;
+      font-family: 'Montserrat', sans-serif;
+      color: #000000;
+      margin: 0;
+    }
+    header {
+      width: 100%;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 10px 20px;
+    }
+    .header__bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .main {
+      flex: 1;
+      width: 100%;
+      max-width: 1200px;
+      padding: 20px;
+    }
+    footer {
+      width: 100%;
+      background-color: #F9F4E1;
+      padding: 20px;
+      text-align: center;
+    }
+    .footer__brand {
+      text-align: left;
+    }
+    .footer__social-label {
+      text-align: left;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .step-by-step {
+      background-color: #fff;
+      padding: 40px 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-top: 40px;
+    }
+    .step-layout {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .steps-intro {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .steps-tag {
+      display: inline-block;
+      font-size: 14px;
+      color: #6c757d;
+      margin-bottom: 10px;
+      font-family: 'Fraunces', serif;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .steps-title {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      font-family: 'Cormorant Garamond', serif;
+      color: #000000;
+    }
+    .steps-description {
+      font-size: 16px;
+      color: #495057;
+      margin-bottom: 0;
+      font-family: 'Inter', sans-serif;
+      color: #6b6b6b;
+    }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    .step-card {
+      background-color: #F9F4E1;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+    .step-card:hover {
+      transform: translateY(-5px);
+    }
+    .step-info {
+      text-align: center;
+    }
+    .step-index {
+      display: block;
+      font-size: 14px;
+      color: #6c757d;
+      margin-bottom: 10px;
+      font-family: 'Fraunces', serif;
+    }
+    .step-title {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 10px;
+      font-family: 'Cormorant Garamond', serif;
+      color: #000000;
+    }
+    .back-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #6F001D; /* Updated to the correct red color */
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    .back-button svg {
+      fill: white;
+    }
+
+    .back-button:hover {
+      background-color: #5A0017; /* Slightly darker shade for hover effect */
+    }
+  </style>
 </head>
 <body>
   <header class="header">
     <div class="header__bar">
       <a href="index.html" class="header__logo" aria-label="Inicio">
-        <img src="Logos/Agreste-44.png" alt="Agreste" class="header__logo-img" />
+        <img src="Logos/agreste-45.png" alt="Agreste" class="header__logo-img" />
       </a>
-      <nav class="header__icons header__icons--absolute-right" aria-label="Acciones">
+
+      <nav class="header__icons" aria-label="Acciones">
         <button class="icon-btn js-help-toggle" type="button" aria-label="Ayuda" aria-controls="help-panel" aria-expanded="false">
           <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="10"/>
@@ -45,206 +186,135 @@
         </form>
       </nav>
     </div>
+
+    <!-- Desktop nav -->
+    <nav class="nav" aria-label="Categorías principales">
+      <ul class="nav__list">
+        <li class="nav__item">
+          <button class="nav__link" aria-haspopup="true" aria-expanded="false">Categorías</button>
+          <div class="nav__dropdown" role="menu" aria-label="Submenú Hogar">
+            <a href="#" role="menuitem">Hogar</a>
+            <a href="#" role="menuitem">Cocina</a>
+            <a href="#" role="menuitem">Oficina</a>
+            <a href="#" role="menuitem">Decoración</a>
+          </div>
+        </li>
+        <li class="nav__item">
+          <button class="nav__link" aria-haspopup="true" aria-expanded="false">Cotizar</button>
+        </li>
+        <li class="nav__item">
+          <button class="nav__link" aria-haspopup="true" aria-expanded="false">Proyectos</button>
+          <div class="nav__dropdown" role="menu" aria-label="Submenú Oficina">
+            <a href="#" role="menuitem">Escritorios</a>
+            <a href="#" role="menuitem">Soportes</a>
+            <a href="#" role="menuitem">Organizadores</a>
+          </div>
+        </li>
+        <li class="nav__item">
+          <button class="nav__link" aria-haspopup="true" aria-expanded="false">Novedades</button>
+          <div class="nav__dropdown" role="menu" aria-label="Submenú Personalizados">
+            <a href="#" role="menuitem">Grabado láser</a>
+            <a href="#" role="menuitem">A medida</a>
+            <a href="#" role="menuitem">Proyectos</a>
+          </div>
+        </li>
+        <li class="nav__item">
+          <button class="nav__link" aria-haspopup="true" aria-expanded="false">Compañía</button>
+          <div class="nav__dropdown" role="menu" aria-label="Submenú Compañía">
+            <a href="#" role="menuitem">Historia</a>
+            <a href="#" role="menuitem">Valores</a>
+            <a href="#" role="menuitem">Equipo</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
   </header>
 
   <main class="main">
-    <!-- Interactive Step-by-Step Guide -->
-    <section class="step-by-step" aria-label="Guía paso a paso">
-      <div class="step-layout">
-        <header class="steps-intro">
-          <p class="steps-tag">Proceso acompañado</p>
-          <h2 class="steps-title">¿Cómo cotizar tu proyecto?</h2>
-          <p class="steps-description">Aprovecha nuestra guía visual para enviar cada detalle y obtener una propuesta precisa.</p>
-        </header>
-        <ol class="steps-grid">
-          <li class="step-card" id="step-1">
-            <figure class="step-media">
-              <img src="Assets/Mesa_auxiliar.jpg" alt="Selecciona tu proyecto" class="step-image" />
-            </figure>
-            <div class="step-info">
-              <span class="step-index">01</span>
-              <h3 class="step-title">Selecciona tu proyecto</h3>
-              <p>Elige el tipo de proyecto que deseas cotizar, como muebles, decoración o cocina.</p>
-            </div>
-          </li>
-          <li class="step-card" id="step-2">
-            <figure class="step-media">
-              <img src="Assets/Mesita.jpg" alt="Describe tu idea" class="step-image" />
-            </figure>
-            <div class="step-info">
-              <span class="step-index">02</span>
-              <h3 class="step-title">Describe tu idea</h3>
-              <p>Proporciona detalles como dimensiones, materiales y cualquier referencia visual.</p>
-            </div>
-          </li>
-          <li class="step-card" id="step-3">
-            <figure class="step-media">
-              <img src="Assets/Plato.jpg" alt="Sube tus archivos" class="step-image" />
-            </figure>
-            <div class="step-info">
-              <span class="step-index">03</span>
-              <h3 class="step-title">Sube tus archivos</h3>
-              <p>Adjunta imágenes, planos o bocetos que ayuden a entender mejor tu proyecto.</p>
-            </div>
-          </li>
-          <li class="step-card" id="step-4">
-            <figure class="step-media">
-              <img src="Assets/MesaBanner.jpg" alt="Envía tu solicitud" class="step-image" />
-            </figure>
-            <div class="step-info">
-              <span class="step-index">04</span>
-              <h3 class="step-title">Envía tu solicitud</h3>
-              <p>Completa el formulario y envía tu solicitud. ¡Nos pondremos en contacto contigo pronto!</p>
-            </div>
-          </li>
-        </ol>
+    <section class="step-by-step" aria-label="Guía paso a paso para cotizar" style="padding: 2rem 1rem; background-color: #FCFCFC;">
+      <div class="steps-intro" style="text-align: center; margin-bottom: 3rem;">
+        <span class="steps-tag" style="font-family: 'Fraunces', serif; font-size: 0.9rem; color: #6F001D; text-transform: uppercase; letter-spacing: 0.1em;">Guía rápida</span>
+        <h2 class="steps-title" style="font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; color: #372717;">Cotiza en minutos</h2>
+        <p class="steps-description" style="font-family: 'Inter', sans-serif; font-size: 1.1rem; color: #6b6b6b; max-width: 600px; margin: 0 auto;">Descubre lo fácil que es solicitar tu cotización personalizada con estos simples pasos.</p>
+      </div>
+      <div class="steps-container" style="display: flex; flex-direction: column; gap: 3rem;">
+        <div class="step" style="display: flex; align-items: center; gap: 2rem;">
+          <img class="step-image" src="Assets/Mesa_auxiliar.jpg" alt="Formulario de cotización" style="flex: 1; max-width: 50%; border-radius: 12px; aspect-ratio: 4/3;" />
+          <div class="step-content" style="flex: 1;">
+            <h3 class="step-title" style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: #372717;">Paso 1</h3>
+            <p style="font-family: 'Inter', sans-serif; font-size: 1rem; color: #6b6b6b;">Completa el formulario con tus datos y especificaciones del producto.</p>
+          </div>
+        </div>
+        <div class="step" style="display: flex; align-items: center; gap: 2rem; flex-direction: row-reverse;">
+          <img class="step-image" src="Assets/Mesa_auxiliar_cajon.jpg" alt="Revisión de información" style="flex: 1; max-width: 50%; border-radius: 12px; aspect-ratio: 4/3;" />
+          <div class="step-content" style="flex: 1;">
+            <h3 class="step-title" style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: #372717;">Paso 2</h3>
+            <p style="font-family: 'Inter', sans-serif; font-size: 1rem; color: #6b6b6b;">Revisa que toda la información sea correcta antes de enviarla.</p>
+          </div>
+        </div>
+        <div class="step" style="display: flex; align-items: center; gap: 2rem;">
+          <img class="step-image" src="Assets/Mesita.jpg" alt="Envío de solicitud" style="flex: 1; max-width: 50%; border-radius: 12px; aspect-ratio: 4/3;" />
+          <div class="step-content" style="flex: 1;">
+            <h3 class="step-title" style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: #372717;">Paso 3</h3>
+            <p style="font-family: 'Inter', sans-serif; font-size: 1rem; color: #6b6b6b;">Haz clic en "Enviar solicitud" y espera nuestra confirmación.</p>
+          </div>
+        </div>
+        <div class="step" style="display: flex; align-items: center; gap: 2rem; flex-direction: row-reverse;">
+          <img class="step-image" src="Assets/Mesita2.jpg" alt="Recibe tu cotización" style="flex: 1; max-width: 50%; border-radius: 12px; aspect-ratio: 4/3;" />
+          <div class="step-content" style="flex: 1;">
+            <h3 class="step-title" style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: #372717;">Paso 4</h3>
+            <p style="font-family: 'Inter', sans-serif; font-size: 1rem; color: #6b6b6b;">Recibe tu cotización en menos de 24 horas por correo.</p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- Redesigned Quotation Form -->
-    <section class="quotation-form" aria-label="Formulario de cotización">
-      <div class="form-container">
-        <h2 class="form-title">Solicita tu cotización</h2>
-        <form id="quotation-form" class="form" onsubmit="event.preventDefault(); alert('¡Gracias por tu solicitud!');">
-          <div class="form-group">
-            <label for="name">Nombre completo</label>
-            <input type="text" id="name" name="name" placeholder="Tu nombre" required />
-            <small class="form-hint">Por favor, ingresa tu nombre completo.</small>
+    <section class="py-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 col-xl-7">
+            <div class="card shadow-sm border-0">
+              <div class="card-body p-4 p-md-5">
+                <h1 class="h3 mb-4 text-center">Solicitar cotización</h1>
+                <p class="text-muted text-center mb-4">Completa el formulario y nos pondremos en contacto para coordinar tu pedido.</p>
+                <form class="row g-3">
+                  <div class="col-12">
+                    <label for="fullName" class="form-label">Nombre y apellido</label>
+                    <input type="text" class="form-control" id="fullName" placeholder="Ej. Ana Pérez" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="phone" class="form-label">Teléfono</label>
+                    <input type="tel" class="form-control" id="phone" placeholder="Ej. +54 9 11 1234-5678" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="email" class="form-label">Correo electrónico</label>
+                    <input type="email" class="form-control" id="email" placeholder="nombre@correo.com" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="deliveryDate" class="form-label">Fecha de entrega</label>
+                    <input type="date" class="form-control" id="deliveryDate" required>
+                  </div>
+                  <div class="col-12">
+                    <label for="productDetails" class="form-label">Detalles del producto</label>
+                    <textarea class="form-control" id="productDetails" rows="5" placeholder="Describe dimensiones, materiales, acabados y cualquier otra especificación relevante." required></textarea>
+                  </div>
+                  <div class="col-12">
+                    <button type="submit" class="btn btn-dark w-100 form-submit">Enviar solicitud</button>
+                  </div>
+                </form>
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="email">Correo electrónico</label>
-            <input type="email" id="email" name="email" placeholder="nombre@correo.com" required />
-            <small class="form-hint">Asegúrate de que sea un correo válido.</small>
-          </div>
-          <div class="form-group">
-            <label for="phone">Teléfono</label>
-            <input type="tel" id="phone" name="phone" placeholder="+57 300 123 4567" required />
-            <small class="form-hint">Incluye el código de área.</small>
-          </div>
-          <div class="form-group">
-            <label for="project-type">Tipo de proyecto</label>
-            <select id="project-type" name="project-type" required>
-              <option value="">Selecciona una opción</option>
-              <option value="muebles">Muebles</option>
-              <option value="decoracion">Decoración</option>
-              <option value="cocina">Cocina</option>
-              <option value="otros">Otros</option>
-            </select>
-            <small class="form-hint">Selecciona el tipo de proyecto que deseas cotizar.</small>
-          </div>
-          <div class="form-group">
-            <label for="description">Descripción del proyecto</label>
-            <textarea id="description" name="description" rows="4" placeholder="Describe tu idea y medidas" required></textarea>
-            <small class="form-hint">Proporciona detalles como dimensiones, materiales, etc.</small>
-          </div>
-          <div class="form-group">
-            <label for="file-upload">Subir imágenes o planos (opcional)</label>
-            <input type="file" id="file-upload" name="file-upload" accept="image/*" />
-            <small class="form-hint">Formatos aceptados: JPG, PNG.</small>
-          </div>
-          <button type="submit" class="form-submit">Enviar solicitud</button>
-        </form>
+        </div>
       </div>
     </section>
-
-    <!-- Authentication Panel -->
-    <div id="auth-panel" class="auth-panel" aria-hidden="true">
-      <button class="auth-panel__overlay" type="button" data-auth-close aria-label="Cerrar panel de acceso"></button>
-      <section class="auth-panel__dialog" role="dialog" aria-modal="true" aria-labelledby="auth-panel-title">
-        <button class="auth-panel__close" type="button" data-auth-close aria-label="Cerrar iniciar sesión">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <header class="auth-panel__header">
-          <h2 id="auth-panel-title">Inicia sesión</h2>
-          <p class="auth-panel__subtitle">Accede para seguir tus pedidos y guardar favoritos.</p>
-        </header>
-        <form class="auth-form" autocomplete="on">
-          <div class="auth-form__group">
-            <label for="auth-email">Correo electrónico</label>
-            <input id="auth-email" name="email" type="email" autocomplete="email" required placeholder="nombre@correo.com" />
-          </div>
-          <div class="auth-form__group">
-            <label for="auth-password">Contraseña</label>
-            <input id="auth-password" name="password" type="password" autocomplete="current-password" required minlength="6" placeholder="Tu contraseña" />
-          </div>
-          <div class="auth-form__actions">
-            <button type="submit" class="auth-form__submit">Iniciar sesión</button>
-            <a href="#" class="auth-form__link" data-auth-action="forgot">¿Olvidaste tu contraseña?</a>
-          </div>
-        </form>
-        <footer class="auth-panel__footer">
-          <p>¿Primera vez en Agreste?</p>
-          <a href="#" class="auth-form__link" data-auth-action="signup">Crear cuenta</a>
-        </footer>
-        <p class="auth-panel__legal">Al continuar aceptas nuestros <a href="#">Términos y condiciones</a> y <a href="#">Política de privacidad</a>.</p>
-      </section>
-    </div>
-
-    <!-- Help Panel -->
-    <div id="help-panel" class="help-panel" aria-hidden="true">
-      <button class="help-panel__overlay" type="button" data-help-close aria-label="Cerrar panel de ayuda"></button>
-      <section class="help-panel__dialog" role="dialog" aria-modal="true" aria-labelledby="help-panel-title">
-        <button class="help-panel__close" type="button" data-help-close aria-label="Cerrar ayuda">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <h2 id="help-panel-title">¿Necesitas ayuda?</h2>
-        <p class="help-panel__intro">Estamos aquí para acompañarte en cada proyecto a medida.</p>
-        <div class="help-panel__grid">
-          <section>
-            <h3 class="help-panel__subtitle">Atención personalizada</h3>
-            <ul class="help-panel__list">
-              <li>Horario: lunes a viernes, 9:00 - 18:00 (GMT-5).</li>
-              <li>Respuesta en menos de 24h para solicitudes de cotización.</li>
-              <li>Seguimiento de pedidos y ajustes de diseño incluidos.</li>
-            </ul>
-          </section>
-          <section>
-            <h3 class="help-panel__subtitle">Contacto rápido</h3>
-            <p><strong>WhatsApp:</strong> <a href="https://wa.me/573001112233" target="_blank" rel="noopener">+57 300 111 2233</a></p>
-            <p><strong>Email:</strong> <a href="mailto:hola@agreste.co">hola@agreste.co</a></p>
-            <p><strong>Showroom:</strong> Calle 48 #70-15, Medellín.</p>
-          </section>
-        </div>
-        <div class="help-panel__actions">
-          <a class="help-panel__action help-panel__action--primary" href="cotizar.html">Solicitar cotización</a>
-          <a class="help-panel__action help-panel__action--ghost" href="contacto.html" data-help-focus>Hablar con nosotros</a>
-        </div>
-        <div class="help-panel__faq">
-          <h3 class="help-panel__subtitle">Preguntas frecuentes</h3>
-          <details>
-            <summary>¿Cuánto tarda la fabricación?</summary>
-            <p>Los proyectos estándar se entregan en 7-10 días hábiles. Para piezas especiales acordamos el plan contigo.</p>
-          </details>
-          <details>
-            <summary>¿Realizan envíos nacionales?</summary>
-            <p>Enviamos a todo Colombia con aliados logísticos certificados. Empaques reforzados incluidos.</p>
-          </details>
-          <details>
-            <summary>¿Puedo solicitar muestras de materiales?</summary>
-            <p>Claro, programamos una visita o te enviamos un kit de muestras sin costo adicional.</p>
-          </details>
-        </div>
-      </section>
-    </div>
   </main>
 
   <footer class="footer" aria-label="Información del sitio">
     <div class="footer__inner">
-      <div class="footer__newsletter" aria-label="Suscripción">
-        <div class="newsletter__inner">
-          <h2 class="newsletter__title">Únete y obtén 10% OFF</h2>
-          <p class="newsletter__desc">Recibe novedades, lanzamientos y ofertas en piezas de madera.</p>
-          <form class="newsletter__form" onsubmit="event.preventDefault(); alert('¡Gracias por suscribirte!');">
-            <label class="visually-hidden" for="newsletter-email">Correo electrónico</label>
-            <input id="newsletter-email" type="email" required placeholder="Tu email" />
-            <button type="submit">Suscribirme</button>
-          </form>
-          <small class="newsletter__legal">Al suscribirte aceptas nuestra política de privacidad.</small>
-        </div>
-      </div>
       <div class="footer__brand">
         <a class="footer__logo" href="#" aria-label="Inicio">
-          <img src="Logos/Agreste-44.png" alt="Agreste" class="footer__logo-img" />
+          <img src="Logos/agreste-45.png" alt="Agreste" class="footer__logo-img" />
         </a>
         <p class="footer__tagline">Hecho a mano en madera. Producción responsable.</p>
         <div class="footer__social">
@@ -293,6 +363,133 @@
     </div>
   </footer>
 
+  <!-- Back Button -->
+  <button class="back-button" onclick="window.history.back()" aria-label="Volver atrás">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="white">
+      <path d="M19 12H6.83l5.59-5.59L11 5l-8 8 8 8 1.41-1.41L6.83 13H19v-1z"/>
+    </svg>
+  </button>
+
+  <!-- Panel de ayuda -->
+  <div id="help-panel" class="help-panel" aria-hidden="true">
+    <button class="help-panel__overlay" type="button" data-help-close aria-label="Cerrar panel de ayuda"></button>
+    <section class="help-panel__dialog" role="dialog" aria-modal="true" aria-labelledby="help-panel-title">
+      <button class="help-panel__close" type="button" data-help-close aria-label="Cerrar ayuda">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h2 id="help-panel-title">¿Necesitas ayuda?</h2>
+      <p class="help-panel__intro">Estamos aquí para acompañarte en cada proyecto a medida.</p>
+      <div class="help-panel__grid">
+        <section>
+          <h3 class="help-panel__subtitle">Atención personalizada</h3>
+          <ul class="help-panel__list">
+            <li>Horario: lunes a viernes, 9:00 - 18:00 (GMT-5).</li>
+            <li>Respuesta en menos de 24h para solicitudes de cotización.</li>
+            <li>Seguimiento de pedidos y ajustes de diseño incluidos.</li>
+          </ul>
+        </section>
+        <section>
+          <h3 class="help-panel__subtitle">Contacto rápido</h3>
+          <p><strong>WhatsApp:</strong> <a href="https://wa.me/573001112233" target="_blank" rel="noopener">+57 300 111 2233</a></p>
+          <p><strong>Email:</strong> <a href="mailto:hola@agreste.co">hola@agreste.co</a></p>
+          <p><strong>Showroom:</strong> Calle 48 #70-15, Medellín.</p>
+        </section>
+      </div>
+      <div class="help-panel__actions">
+        <a class="help-panel__action help-panel__action--primary" href="cotizar.html">Solicitar cotización</a>
+        <a class="help-panel__action help-panel__action--ghost" href="contacto.html" data-help-focus>Hablar con nosotros</a>
+      </div>
+      <div class="help-panel__faq">
+        <h3 class="help-panel__subtitle">Preguntas frecuentes</h3>
+        <details>
+          <summary>¿Cuánto tarda la fabricación?</summary>
+          <p>Los proyectos estándar se entregan en 7-10 días hábiles. Para piezas especiales acordamos el plan contigo.</p>
+        </details>
+        <details>
+          <summary>¿Realizan envíos nacionales?</summary>
+          <p>Enviamos a todo Colombia con aliados logísticos certificados. Empaques reforzados incluidos.</p>
+        </details>
+        <details>
+          <summary>¿Puedo solicitar muestras de materiales?</summary>
+          <p>Claro, programamos una visita o te enviamos un kit de muestras sin costo adicional.</p>
+        </details>
+      </div>
+    </section>
+  </div>
+
+  <!-- Panel de inicio de sesión -->
+  <div id="auth-panel" class="auth-panel" aria-hidden="true">
+    <button class="auth-panel__overlay" type="button" data-auth-close aria-label="Cerrar panel de acceso"></button>
+    <section class="auth-panel__dialog" role="dialog" aria-modal="true" aria-labelledby="auth-panel-title">
+      <button class="auth-panel__close" type="button" data-auth-close aria-label="Cerrar iniciar sesión">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <header class="auth-panel__header">
+        <h2 id="auth-panel-title">Inicia sesión</h2>
+        <p class="auth-panel__subtitle">Accede para seguir tus pedidos y guardar favoritos.</p>
+      </header>
+      <form class="auth-form" autocomplete="on">
+        <div class="auth-form__group">
+          <label for="auth-email">Correo electrónico</label>
+          <input id="auth-email" name="email" type="email" autocomplete="email" required placeholder="nombre@correo.com" />
+        </div>
+        <div class="auth-form__group">
+          <label for="auth-password">Contraseña</label>
+          <input id="auth-password" name="password" type="password" autocomplete="current-password" required minlength="6" placeholder="Tu contraseña" />
+        </div>
+        <div class="auth-form__actions">
+          <button type="submit" class="auth-form__submit">Iniciar sesión</button>
+          <a href="#" class="auth-form__link" data-auth-action="forgot">¿Olvidaste tu contraseña?</a>
+        </div>
+      </form>
+      <footer class="auth-panel__footer">
+        <p>¿Primera vez en Agreste?</p>
+        <a href="#" class="auth-form__link" data-auth-action="signup">Crear cuenta</a>
+      </footer>
+      <p class="auth-panel__legal">Al continuar aceptas nuestros <a href="#">Términos y condiciones</a> y <a href="#">Política de privacidad</a>.</p>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script src="app.js" defer></script>
+  <script>
+    // Search functionality
+    document.querySelector('.header__search').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const query = document.getElementById('category-search').value.toLowerCase();
+      const cards = document.querySelectorAll('.cat-card');
+
+      cards.forEach(card => {
+        const category = card.dataset.category.toLowerCase();
+        if (category.includes(query)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+
+    // Help and Auth panel functionality
+    document.querySelectorAll('.js-help-toggle').forEach(button => {
+      button.addEventListener('click', () => {
+        document.getElementById('help-panel').removeAttribute('aria-hidden');
+      });
+    });
+
+    document.querySelectorAll('.js-auth-toggle').forEach(button => {
+      button.addEventListener('click', () => {
+        document.getElementById('auth-panel').removeAttribute('aria-hidden');
+      });
+    });
+
+    document.querySelectorAll('[data-help_close], [data-auth-close]').forEach(button => {
+      button.addEventListener('click', (event) => {
+        const panel = event.target.closest('[role="dialog"]');
+        if (panel) {
+          panel.setAttribute('aria-hidden', 'true');
+        }
+      });
+    });
+  </script>
 </body>
 </html>

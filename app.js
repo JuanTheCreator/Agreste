@@ -660,3 +660,28 @@
     }, { passive: false });
   });
 })();
+// ==== Aviso de cookies ====/
+(function(){
+  const banner = document.getElementById('cookie-banner');
+  if (!banner) return;
+  const storageKey = 'agreste-cookie-consent';
+  let hasConsent = false;
+  try {
+    hasConsent = localStorage.getItem(storageKey) === 'accepted';
+  } catch (err) {
+    console.warn('No se pudo acceder a localStorage para cookies:', err);
+  }
+  if (hasConsent) return;
+  banner.removeAttribute('hidden');
+  const acceptBtn = banner.querySelector('[data-cookie-accept]');
+  if (acceptBtn) {
+    acceptBtn.addEventListener('click', () => {
+      banner.setAttribute('hidden', '');
+      try {
+        localStorage.setItem(storageKey, 'accepted');
+      } catch (err) {
+        console.warn('No se pudo guardar el consentimiento de cookies:', err);
+      }
+    });
+  }
+})();
