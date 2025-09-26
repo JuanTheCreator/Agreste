@@ -113,20 +113,52 @@
             <a class="projects-hero__cta" href="#catalogo">Ver cat&aacute;logo</a>
             <a class="projects-hero__link" href="cotizar.html">Solicitar propuesta</a>
           </div>
-          <ul class="projects-hero__stats" aria-label="Resumen de la colecci&oacute;n">
-            <li><strong>85+</strong> referencias activas</li>
-            <li><strong>15</strong> combinaciones sugeridas</li>
-            <li><strong>3</strong> l&iacute;neas sostenibles certificadas</li>
-          </ul>
         </div>
         <div class="projects-hero__media" aria-hidden="true">
-          <img src="Assets/MesaBanner2.jpg" alt="Colecci&oacute;n Agreste" />
-          <div class="projects-hero__badge">Nuevas llegadas</div>
+          <div class="hero-slider">
+            <div class="hero-slider__track" id="hero-slider-track">
+              <div class="hero-slider__slide active">
+                <img src="Assets/MesaBanner2.jpg" alt="Colecci&oacute;n Agreste" />
+                <div class="projects-hero__badge">Nuevas llegadas</div>
+              </div>
+              <div class="hero-slider__slide">
+                <video autoplay muted loop playsinline>
+                  <source src="videos/Trend llego agreste 1.mp4" type="video/mp4">
+                  <img src="Assets/MesaBanner2.jpg" alt="Video no soportado" />
+                </video>
+                <div class="projects-hero__badge">Hecho a mano</div>
+              </div>
+              <div class="hero-slider__slide">
+                <video autoplay muted loop playsinline>
+                  <source src="videos/TREND MUEBLES v2.mp4" type="video/mp4">
+                  <img src="Assets/RACK 3.jpg" alt="Proceso de fabricaci&oacute;n" />
+                </video>
+                <div class="projects-hero__badge">Nuestro proceso</div>
+              </div>
+            </div>
+            
+            <div class="hero-slider__controls">
+              <button class="hero-slider__dot active" data-slide="0" aria-label="Slide 1"></button>
+              <button class="hero-slider__dot" data-slide="1" aria-label="Slide 2"></button>
+              <button class="hero-slider__dot" data-slide="2" aria-label="Slide 3"></button>
+            </div>
+            
+            <button class="hero-slider__nav hero-slider__nav--prev" aria-label="Slide anterior">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 18l-6-6 6-6"/>
+              </svg>
+            </button>
+            <button class="hero-slider__nav hero-slider__nav--next" aria-label="Slide siguiente">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 18l6-6-6-6"/>
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Cat&aacute;logo principal -->
+    <!-- productos -->
     <section id="catalogo" class="section projects-catalog">
       <div class="section__header">
         <h2 class="section__title">Piezas protagonistas del taller</h2>
@@ -152,8 +184,7 @@
             <div class="product-card__body">
               <h3 class="product-card__title">Mesa auxiliar Terra</h3>
               <p class="product-card__copy">Roble cultivado y acabado al aceite vegetal. Ideal para rincones de lectura.</p>
-              <p class="product-card__price">$680.000</p>
-              <a class="product-card__cta" href="cotizar.html">Cotizar</a>
+              <a class="product-card__cta" href="cotizar.html">Ver más</a>
             </div>
           </article>
 
@@ -164,8 +195,7 @@
             <div class="product-card__body">
               <h3 class="product-card__title">Mesa de comedor Andina</h3>
               <p class="product-card__copy">Estructura maciza en nogal con sobre expandible para seis u ocho puestos.</p>
-              <p class="product-card__price">$3.450.000</p>
-              <a class="product-card__cta" href="cotizar.html">Reservar visita</a>
+              <a class="product-card__cta" href="cotizar.html">Ver más</a>
             </div>
           </article>
 
@@ -177,8 +207,7 @@
             <div class="product-card__body">
               <h3 class="product-card__title">Escritorio modular Loma</h3>
               <p class="product-card__copy">Sistema modular con canaletas ocultas y accesorios impresos en 3D.</p>
-              <p class="product-card__price">$2.150.000</p>
-              <a class="product-card__cta" href="cotizar.html">Agregar al pedido</a>
+              <a class="product-card__cta" href="cotizar.html">Ver más</a>
             </div>
           </article>
 
@@ -189,8 +218,7 @@
             <div class="product-card__body">
               <h3 class="product-card__title">Cama flotante Bruma</h3>
               <p class="product-card__copy">Base suspendida con cabecero tapizado en lino org&aacute;nico y luces led regulables.</p>
-              <p class="product-card__price">$4.290.000</p>
-              <a class="product-card__cta" href="cotizar.html">Solicitar medidas</a>
+              <a class="product-card__cta" href="cotizar.html">Ver más</a>
             </div>
           </article>
 
@@ -202,8 +230,7 @@
             <div class="product-card__body">
               <h3 class="product-card__title">Centro multimedia Horizonte</h3>
               <p class="product-card__copy">Panel ripado con almacenamiento oculto y pasacables integrados.</p>
-              <p class="product-card__price">$2.890.000</p>
-              <a class="product-card__cta" href="cotizar.html">Ver planos</a>
+              <a class="product-card__cta" href="cotizar.html">Ver más</a>
             </div>
           </article>
 
@@ -214,8 +241,7 @@
             <div class="product-card__body">
               <h3 class="product-card__title">Buffet Prisma</h3>
               <p class="product-card__copy">Almacenamiento con puertas correderas en vidrio acanalado y madera de teka.</p>
-              <p class="product-card__price">$2.050.000</p>
-              <a class="product-card__cta" href="cotizar.html">Cotizar</a>
+              <a class="product-card__cta" href="cotizar.html">Ver más</a>
             </div>
           </article>
 
@@ -226,8 +252,7 @@
             <div class="product-card__body">
               <h3 class="product-card__title">Organizador de pared Orbit</h3>
               <p class="product-card__copy">Panel magn&eacute;tico con accesorios intercambiables para escritorio creativo.</p>
-              <p class="product-card__price">$420.000</p>
-              <a class="product-card__cta" href="cotizar.html">Agregar</a>
+              <a class="product-card__cta" href="cotizar.html">Ver más</a>
             </div>
           </article>
 
@@ -238,8 +263,7 @@
             <div class="product-card__body">
               <h3 class="product-card__title">Veladores Nimbus</h3>
               <p class="product-card__copy">Set de dos mesas con cargadores inalambricos y caj&oacute;n oculto.</p>
-              <p class="product-card__price">$880.000</p>
-              <a class="product-card__cta" href="cotizar.html">Solicitar</a>
+              <a class="product-card__cta" href="cotizar.html">Ver más</a>
             </div>
           </article>
 
@@ -250,8 +274,7 @@
             <div class="product-card__body">
               <h3 class="product-card__title">Set decorativo Ritmo</h3>
               <p class="product-card__copy">Colecci&oacute;n de cuencos torneados en tres alturas con acabado natural.</p>
-              <p class="product-card__price">$290.000</p>
-              <a class="product-card__cta" href="cotizar.html">Quiero este set</a>
+              <a class="product-card__cta" href="cotizar.html">Ver más</a>
             </div>
           </article>
 
@@ -262,8 +285,7 @@
             <div class="product-card__body">
               <h3 class="product-card__title">Soporte dual Elevate</h3>
               <p class="product-card__copy">Eleva dos monitores con bandeja para accesorios y canaleta posterior.</p>
-              <p class="product-card__price">$360.000</p>
-              <a class="product-card__cta" href="cotizar.html">Agregar</a>
+              <a class="product-card__cta" href="cotizar.html">Ver más</a>
             </div>
           </article>
 
@@ -274,8 +296,7 @@
             <div class="product-card__body">
               <h3 class="product-card__title">Tablas de servir Boreal</h3>
               <p class="product-card__copy">Set de tres piezas en fresno con tratamiento alimentario.</p>
-              <p class="product-card__price">$180.000</p>
-              <a class="product-card__cta" href="cotizar.html">Sumar al pedido</a>
+              <a class="product-card__cta" href="cotizar.html">Ver más</a>
             </div>
           </article>
 
@@ -286,10 +307,16 @@
             <div class="product-card__body">
               <h3 class="product-card__title">Banca tapizada Flora</h3>
               <p class="product-card__copy">Estructura en roble y coj&iacute;n en boucl&eacute; sustentable, perfecta para pie de cama.</p>
-              <p class="product-card__price">$1.050.000</p>
-              <a class="product-card__cta" href="cotizar.html">Ver disponibilidad</a>
+              <a class="product-card__cta" href="cotizar.html">Ver más</a>
             </div>
           </article>
+          
+          <div class="catalog__show-more">
+            <button class="catalog__show-more-btn" type="button">
+              Ver todos los productos
+              <span class="catalog__show-more-count">(+8 más)</span>
+            </button>
+          </div>
         </div>
       </div>
     </section>
@@ -510,6 +537,44 @@
     <div class="footer__bottom"><small>&copy; 2025 Agreste.</small></div>
   </footer>
 
+  <!-- Product Modal -->
+  <div id="product-modal" class="product-modal" aria-hidden="true">
+    <div class="product-modal__overlay" aria-hidden="true"></div>
+    <div class="product-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="product-modal-title">
+      <button class="product-modal__close" type="button" aria-label="Cerrar modal">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div class="product-modal__content">
+        <div class="product-modal__image">
+          <img id="modal-product-image" src="" alt="" />
+          <div id="modal-product-badge" class="product-modal__badge"></div>
+        </div>
+        <div class="product-modal__info">
+          <div class="product-modal__header">
+            <h2 id="product-modal-title" class="product-modal__title">Título del producto</h2>
+            <p id="modal-product-description" class="product-modal__description">Descripción del producto</p>
+          </div>
+          
+          <div class="product-modal__scrollable">
+            <div class="product-modal__specs">
+              <h3>Especificaciones</h3>
+              <dl id="modal-product-specs">
+                <!-- Las especificaciones se llenarán dinámicamente -->
+              </dl>
+            </div>
+          </div>
+          
+          <div class="product-modal__footer">
+            <div class="product-modal__actions">
+              <a href="cotizar.html" class="product-modal__cta">Solicitar cotización</a>
+              <button type="button" class="product-modal__secondary">Contactar asesor</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Back Button -->
   <button class="back-button" type="button" onclick="window.history.back()" aria-label="Volver atr&aacute;s">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="white">
@@ -538,93 +603,480 @@
         });
       }
 
-      pills.forEach(btn => {
-        btn.addEventListener('click', () => applyFilter(btn.dataset.filter));
-      });
+      // Make applyFilter globally accessible
+      window.applyFilter = applyFilter;
+
+      // Initial filter application
       applyFilter('todos');
     })();
-  </script>
-</body>
-</html>
 
+    // Hero Slider Functionality
+    (function(){
+      const slider = document.querySelector('.hero-slider');
+      const slides = document.querySelectorAll('.hero-slider__slide');
+      const dots = document.querySelectorAll('.hero-slider__dot');
+      const prevBtn = document.querySelector('.hero-slider__nav--prev');
+      const nextBtn = document.querySelector('.hero-slider__nav--next');
+      
+      if (!slider || slides.length === 0) return;
+      
+      let currentSlide = 0;
+      let autoplayInterval;
+      
+      function showSlide(index) {
+        // Remove active class from all slides and dots
+        slides.forEach(slide => slide.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+        
+        // Add active class to current slide and dot
+        slides[index].classList.add('active');
+        dots[index].classList.add('active');
+        
+        currentSlide = index;
+      }
+      
+      function nextSlide() {
+        const next = (currentSlide + 1) % slides.length;
+        showSlide(next);
+      }
+      
+      function prevSlide() {
+        const prev = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(prev);
+      }
+      
+      function startAutoplay() {
+        // Check if user prefers reduced motion
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!prefersReducedMotion) {
+          autoplayInterval = setInterval(nextSlide, 8000); // Change slide every 8 seconds
+        }
+      }
+      
+      function stopAutoplay() {
+        if (autoplayInterval) {
+          clearInterval(autoplayInterval);
+          autoplayInterval = null;
+        }
+      }
+      
+      // Event listeners
+      if (nextBtn) nextBtn.addEventListener('click', () => {
+        nextSlide();
+        stopAutoplay();
+        startAutoplay(); // Restart autoplay after manual interaction
+      });
+      
+      if (prevBtn) prevBtn.addEventListener('click', () => {
+        prevSlide();
+        stopAutoplay();
+        startAutoplay();
+      });
+      
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          showSlide(index);
+          stopAutoplay();
+          startAutoplay();
+        });
+      });
+      
+      // Pause autoplay on hover
+      slider.addEventListener('mouseenter', stopAutoplay);
+      slider.addEventListener('mouseleave', startAutoplay);
+      
+      // Pause autoplay when page is not visible
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          stopAutoplay();
+        } else {
+          startAutoplay();
+        }
+      });
+      
+      // Touch/swipe support for mobile
+      let touchStartX = 0;
+      let touchEndX = 0;
+      
+      slider.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      });
+      
+      slider.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+      });
+      
+      function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+        
+        if (Math.abs(diff) > swipeThreshold) {
+          if (diff > 0) {
+            nextSlide(); // Swipe left - next slide
+          } else {
+            prevSlide(); // Swipe right - previous slide
+          }
+          stopAutoplay();
+          startAutoplay();
+        }
+      }
+      
+      // Initialize slider
+      showSlide(0);
+      startAutoplay();
+    })();
 
+    // Mobile responsive functionality
+    (function(){
+      const catalogGrid = document.querySelector('.catalog__grid');
+      const showMoreBtn = document.querySelector('.catalog__show-more-btn');
+      const showMoreContainer = document.querySelector('.catalog__show-more');
+      let isMobile = window.innerWidth <= 768;
+      let showingAll = false;
 
+      function updateMobileView() {
+        isMobile = window.innerWidth <= 768;
+        
+        if (isMobile && !showingAll) {
+          catalogGrid.classList.add('mobile-limited');
+          // Show only first 4 products on mobile initially
+          const cards = Array.from(catalogGrid.querySelectorAll('.product-card'));
+          cards.forEach((card, index) => {
+            if (index < 4) {
+              card.classList.add('mobile-visible');
+            } else {
+              card.classList.remove('mobile-visible');
+            }
+          });
+          showMoreContainer.classList.add('visible');
+        } else {
+          catalogGrid.classList.remove('mobile-limited');
+          const cards = Array.from(catalogGrid.querySelectorAll('.product-card'));
+          cards.forEach(card => {
+            card.classList.remove('mobile-visible');
+          });
+          showMoreContainer.classList.remove('visible');
+        }
+      }
 
+      function showAllProducts() {
+        showingAll = true;
+        catalogGrid.classList.remove('mobile-limited');
+        const cards = Array.from(catalogGrid.querySelectorAll('.product-card'));
+        cards.forEach(card => {
+          card.classList.remove('mobile-visible');
+        });
+        showMoreContainer.classList.remove('visible');
+      }
 
+      // Show more button event
+      if (showMoreBtn) {
+        showMoreBtn.addEventListener('click', showAllProducts);
+      }
 
-tch = key === 'todos' || categories.includes(key);
-          card.classList.toggle('is-hidden', !match);
-          card.classList.toggle('is-shown', match);
-          card.setAttribute('aria-hidden', match ? 'false' : 'true');
-          if (match) {
-            card.style.setProperty('--delay', `${Math.min(idx * 60, 360)}ms`);
+      // Update on resize
+      window.addEventListener('resize', () => {
+        if (!showingAll) {
+          updateMobileView();
+        }
+      });
+
+      // Initial setup
+      updateMobileView();
+
+      // Update filter function to work with mobile responsiveness
+      const pills = Array.from(document.querySelectorAll('[data-filter]'));
+      pills.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const key = btn.dataset.filter;
+          
+          // Apply filter logic
+          window.applyFilter(key);
+          
+          // Handle mobile responsiveness
+          if (isMobile) {
+            if (key === 'todos' && !showingAll) {
+              // Reset to showing only 4 products
+              showingAll = false;
+              updateMobileView();
+            } else {
+              // When filtering by category, show all matching products
+              showingAll = true;
+              catalogGrid.classList.remove('mobile-limited');
+              showMoreContainer.classList.remove('visible');
+              const cards = Array.from(catalogGrid.querySelectorAll('.product-card'));
+              cards.forEach(card => {
+                card.classList.remove('mobile-visible');
+              });
+            }
           }
         });
-      }
-
-      pills.forEach(btn => {
-        btn.addEventListener('click', () => applyFilter(btn.dataset.filter));
       });
     })();
-  </script>
-</body>
-</html>
 
-     card.classList.toggle('is-hidden', !match);
-          card.classList.toggle('is-shown', match);
-          card.setAttribute('aria-hidden', match ? 'false' : 'true');
-          if (match) {
-            card.style.setProperty('--delay', `${Math.min(idx * 60, 360)}ms`);
+    // Product Modal Functionality
+    (function(){
+      const modal = document.getElementById('product-modal');
+      const modalOverlay = modal.querySelector('.product-modal__overlay');
+      const modalClose = modal.querySelector('.product-modal__close');
+      const modalImage = document.getElementById('modal-product-image');
+      const modalTitle = document.getElementById('product-modal-title');
+      const modalDescription = document.getElementById('modal-product-description');
+      const modalSpecs = document.getElementById('modal-product-specs');
+      const modalBadge = document.getElementById('modal-product-badge');
+
+      // Product specifications data
+      const productSpecs = {
+        'Mesa auxiliar Terra': {
+          image: 'Assets/Mesita.jpg',
+          badge: 'Serie Terra',
+          description: 'Mesa auxiliar fabricada con roble cultivado y acabado al aceite vegetal. Diseñada especialmente para rincones de lectura y espacios íntimos.',
+          specs: {
+            'Material': 'Roble cultivado con certificación FSC',
+            'Acabado': 'Aceite vegetal natural',
+            'Dimensiones': '50cm x 40cm x 60cm (alto)',
+            'Peso': '12 kg aproximadamente',
+            'Cuidados': 'Limpiar con paño húmedo, reaplicar aceite cada 6 meses',
+            'Tiempo de fabricación': '7-10 días hábiles',
+            'Garantía': '2 años contra defectos de fabricación'
           }
-        });
-      }
-
-      pills.forEach(btn => {
-        btn.addEventListener('click', () => applyFilter(btn.dataset.filter));
-      });
-    })();
-  </script>
-</body>
-</html>
-
-   });
-      }
-
-      pills.forEach(btn => {
-        btn.addEventListener('click', () => applyFilter(btn.dataset.filter));
-      });
-    })();
-  </script>
-</body>
-</html>
-
-         card.setAttribute('aria-hidden', match ? 'false' : 'true');
-          if (match) {
-            card.style.setProperty('--delay', `${Math.min(idx * 60, 360)}ms`);
+        },
+        'Mesa de comedor Andina': {
+          image: 'Assets/MesaBanner.jpg',
+          badge: '',
+          description: 'Mesa de comedor con estructura maciza en nogal y sobre expandible que se adapta para seis u ocho comensales según la ocasión.',
+          specs: {
+            'Material': 'Nogal macizo premium',
+            'Acabado': 'Barniz poliuretano mate',
+            'Dimensiones cerrada': '160cm x 90cm x 75cm (alto)',
+            'Dimensiones expandida': '200cm x 90cm x 75cm (alto)',
+            'Capacidad': '6-8 personas',
+            'Peso': '85 kg aproximadamente',
+            'Mecanismo': 'Sistema de extensión con rieles alemanes',
+            'Tiempo de fabricación': '15-20 días hábiles'
           }
-        });
-      }
-
-      pills.forEach(btn => {
-        btn.addEventListener('click', () => applyFilter(btn.dataset.filter));
-      });
-    })();
-  </script>
-</body>
-</html>
-
-    const match = key === 'todos' || categories.includes(key);
-          card.classList.toggle('is-hidden', !match);
-          card.classList.toggle('is-shown', match);
-          card.setAttribute('aria-hidden', match ? 'false' : 'true');
-          if (match) {
-            card.style.setProperty('--delay', `${Math.min(idx * 60, 360)}ms`);
+        },
+        'Escritorio modular Loma': {
+          image: 'Assets/Mesa_auxiliar_cajon.jpg',
+          badge: 'Nuevo',
+          description: 'Sistema modular de escritorio con canaletas ocultas para cables y accesorios impresos en 3D. Perfecto para el trabajo remoto.',
+          specs: {
+            'Material': 'MDF enchapado en roble + accesorios PLA',
+            'Acabado': 'Laca mate resistente a rayones',
+            'Dimensiones': '120cm x 60cm x 75cm (alto)',
+            'Cajones': '2 cajones con cierre suave',
+            'Tecnología': 'Canaletas integradas + USB hub opcional',
+            'Accesorios 3D': 'Organizadores personalizables',
+            'Peso': '45 kg aproximadamente',
+            'Tiempo de fabricación': '12-15 días hábiles'
           }
+        },
+        'Cama flotante Bruma': {
+          image: 'Assets/Mesita4.jpg',
+          badge: '',
+          description: 'Cama con base suspendida y cabecero tapizado en lino orgánico. Incluye sistema de luces LED regulables integradas.',
+          specs: {
+            'Material': 'Estructura en pino laminado + tapicería lino orgánico',
+            'Dimensiones': '200cm x 160cm (Queen) / 200cm x 180cm (King)',
+            'Altura cabecero': '120cm',
+            'Iluminación': 'Tiras LED regulables 3000K-6000K',
+            'Tapicería': 'Lino orgánico certificado GOTS',
+            'Base': 'Sistema flotante con soportes ocultos',
+            'Control': 'Dimmer táctil integrado',
+            'Tiempo de fabricación': '20-25 días hábiles'
+          }
+        },
+        'Centro multimedia Horizonte': {
+          image: 'Assets/RACK 3.jpg',
+          badge: 'Hecho a pedido',
+          description: 'Panel ripado con almacenamiento oculto y sistema de pasacables integrados. Diseño minimalista para salas modernas.',
+          specs: {
+            'Material': 'Fresno laminado con estructura metálica',
+            'Acabado': 'Aceite natural + powder coating negro',
+            'Dimensiones': '180cm x 40cm x 60cm (alto)',
+            'Almacenamiento': '4 compartimentos ocultos',
+            'Cableado': 'Sistema de pasacables posterior',
+            'Montaje': 'Fijación a pared incluida',
+            'Capacidad': 'Hasta 65" + equipos de audio',
+            'Tiempo de fabricación': '18-22 días hábiles'
+          }
+        },
+        'Buffet Prisma': {
+          image: 'Assets/RACK 1.jpg',
+          badge: '',
+          description: 'Mueble de almacenamiento con puertas correderas en vidrio acanalado y estructura en madera de teka sostenible.',
+          specs: {
+            'Material': 'Teka certificada FSC + vidrio acanalado',
+            'Acabado': 'Aceite de teca natural',
+            'Dimensiones': '160cm x 45cm x 80cm (alto)',
+            'Puertas': '2 puertas correderas con freno suave',
+            'Interior': '2 estantes ajustables en altura',
+            'Herrajes': 'Bisagras alemanas Blum',
+            'Vidrio': 'Templado 6mm con textura acanalada',
+            'Tiempo de fabricación': '15-18 días hábiles'
+          }
+        },
+        'Organizador de pared Orbit': {
+          image: 'Assets/Mesa_auxiliar.jpg',
+          badge: '',
+          description: 'Panel magnético modular con accesorios intercambiables, ideal para espacios de trabajo creativos y estudios.',
+          specs: {
+            'Material': 'Acero lacado + accesorios en roble',
+            'Acabado': 'Pintura electroestática mate',
+            'Dimensiones': '80cm x 60cm x 3cm',
+            'Sistema': 'Base magnética con accesorios modulares',
+            'Accesorios': 'Estantes, ganchos, portalápices, cajas',
+            'Montaje': 'Sistema de rieles ocultos',
+            'Carga máxima': '15 kg distribuidos',
+            'Tiempo de fabricación': '8-10 días hábiles'
+          }
+        },
+        'Veladores Nimbus': {
+          image: 'Assets/Mesita2.jpg',
+          badge: '',
+          description: 'Set de dos mesas de noche con cargadores inalámbricos integrados y cajón oculto con sistema de apertura push.',
+          specs: {
+            'Material': 'Nogal americano + tecnología Qi',
+            'Acabado': 'Barniz satinado antibacterial',
+            'Dimensiones': '40cm x 35cm x 50cm (alto) c/u',
+            'Carga inalámbrica': 'Qi 15W integrado en superficie',
+            'Cajón': 'Sistema push-to-open con guías ocultas',
+            'USB': '2 puertos USB-C en parte posterior',
+            'LED': 'Indicador de carga discreto',
+            'Tiempo de fabricación': '10-12 días hábiles'
+          }
+        },
+        'Set decorativo Ritmo': {
+          image: 'Assets/Plato.jpg',
+          badge: '',
+          description: 'Colección de cuencos torneados a mano en tres alturas diferentes con acabado natural que resalta la veta de la madera.',
+          specs: {
+            'Material': 'Cerezo sólido torneado a mano',
+            'Acabado': 'Aceite de linaza + cera de abeja',
+            'Set incluye': '3 cuencos (S, M, L)',
+            'Dimensiones S': 'Ø 12cm x 6cm alto',
+            'Dimensiones M': 'Ø 16cm x 8cm alto',
+            'Dimensiones L': 'Ø 20cm x 10cm alto',
+            'Uso': 'Decorativo (no apto para alimentos)',
+            'Cuidados': 'Limpiar con paño seco, evitar humedad',
+            'Tiempo de fabricación': '5-7 días hábiles'
+          }
+        },
+        'Soporte dual Elevate': {
+          image: 'Assets/Mesita2.jpg',
+          badge: '',
+          description: 'Soporte ergonómico para dos monitores con bandeja para accesorios y sistema de canaletas posterior para cables.',
+          specs: {
+            'Material': 'Aluminio anodizado + detalles en nogal',
+            'Acabado': 'Anodizado mate + aceite natural',
+            'Compatibilidad': 'Monitores 24" a 32" (hasta 8kg c/u)',
+            'Ajustes': 'Altura, inclinación y rotación',
+            'Bandeja': 'Extraíble para teclado y accesorios',
+            'Cableado': 'Canal posterior integrado',
+            'Montaje': 'VESA 100x100 y 75x75',
+            'Tiempo de fabricación': '6-8 días hábiles'
+          }
+        },
+        'Tablas de servir Boreal': {
+          image: 'Assets/Plato2.jpg',
+          badge: '',
+          description: 'Set de tres tablas para servir en fresno con tratamiento alimentario, perfectas para presentaciones gastronómicas.',
+          specs: {
+            'Material': 'Fresno americano grado alimentario',
+            'Acabado': 'Aceite mineral food grade',
+            'Set incluye': '3 tablas (pequeña, mediana, grande)',
+            'Dimensiones pequeña': '25cm x 15cm x 2cm',
+            'Dimensiones mediana': '35cm x 20cm x 2cm',
+            'Dimensiones grande': '45cm x 25cm x 2cm',
+            'Certificación': 'FDA para contacto con alimentos',
+            'Cuidados': 'Lavar a mano, secar inmediatamente',
+            'Tiempo de fabricación': '4-6 días hábiles'
+          }
+        },
+        'Banca tapizada Flora': {
+          image: 'Assets/Mesita3.jpg',
+          badge: '',
+          description: 'Banca con estructura en roble y cojín en bouclé sustentable. Diseño versátil perfecto para pie de cama o vestidores.',
+          specs: {
+            'Material': 'Roble europeo + bouclé reciclado',
+            'Acabado madera': 'Tinte natural + barniz ecológico',
+            'Dimensiones': '120cm x 40cm x 45cm (alto)',
+            'Tapicería': 'Bouclé 100% poliéster reciclado',
+            'Relleno': 'Espuma HR densidad media',
+            'Estructura': 'Uniones tradicionales de carpintería',
+            'Colores': 'Natural, gris claro, beige',
+            'Tiempo de fabricación': '12-14 días hábiles'
+          }
+        }
+      };
+
+      // Open modal function
+      function openModal(productTitle) {
+        const product = productSpecs[productTitle];
+        if (!product) return;
+
+        modalImage.src = product.image;
+        modalImage.alt = productTitle;
+        modalTitle.textContent = productTitle;
+        modalDescription.textContent = product.description;
+
+        // Show/hide badge
+        if (product.badge) {
+          modalBadge.textContent = product.badge;
+          modalBadge.classList.add('show');
+        } else {
+          modalBadge.classList.remove('show');
+        }
+
+        // Populate specifications
+        modalSpecs.innerHTML = '';
+        Object.entries(product.specs).forEach(([key, value]) => {
+          const dt = document.createElement('dt');
+          dt.textContent = key;
+          const dd = document.createElement('dd');
+          dd.textContent = value;
+          modalSpecs.appendChild(dt);
+          modalSpecs.appendChild(dd);
         });
+
+        modal.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
       }
 
-      pills.forEach(btn => {
-        btn.addEventListener('click', () => applyFilter(btn.dataset.filter));
+      // Close modal function
+      function closeModal() {
+        modal.classList.remove('is-open');
+        document.body.style.overflow = '';
+      }
+
+      // Event listeners
+      modalOverlay.addEventListener('click', closeModal);
+      modalClose.addEventListener('click', closeModal);
+
+      // Close on Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+          closeModal();
+        }
+      });
+
+      // Add click event to all "Ver más" buttons
+      document.querySelectorAll('.product-card__cta').forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const card = link.closest('.product-card');
+          const productTitle = card.querySelector('.product-card__title').textContent;
+          openModal(productTitle);
+        });
+      });
+
+      // Contact advisor button
+      modal.querySelector('.product-modal__secondary').addEventListener('click', () => {
+        closeModal();
+        // You can add logic here to open the help panel or contact form
+        const helpButton = document.querySelector('.js-help-toggle');
+        if (helpButton) helpButton.click();
       });
     })();
   </script>
