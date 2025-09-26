@@ -3,101 +3,426 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Novedades — Agreste</title>
+  <title>Novedades &mdash; Agreste</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<body class="page-novedades">
+  <!-- Header -->
   <header class="header">
     <div class="header__bar">
+      <button class="header__menu-btn js-menu-toggle" aria-label="Abrir men&uacute;" aria-controls="offcanvas" aria-expanded="false">&#9776;</button>
+
       <a href="index.html" class="header__logo" aria-label="Inicio">
-        <img src="Logos/Agreste-44.png" alt="Agreste" class="header__logo-img" />
+        <img src="Logos/agreste-45.png" alt="Agreste" class="header__logo-img" />
       </a>
+
+      <form class="header__search" role="search" aria-label="Buscar">
+        <input type="search" placeholder="Buscar productos o servicios" aria-label="Buscar" />
+      </form>
+
+      <nav class="header__icons" aria-label="Acciones">
+        <button class="icon-btn js-help-toggle" type="button" aria-label="Ayuda" aria-controls="help-panel" aria-expanded="false">
+          <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M9.09 9a3 3 0 1 1 5.83 1c0 2-3 2-3 4"/>
+            <line x1="12" y1="17" x2="12" y2="17"/>
+          </svg>
+          <span class="visually-hidden">Ayuda</span>
+        </button>
+        <button class="icon-btn js-auth-toggle" type="button" aria-label="Iniciar sesi&oacute;n" aria-controls="auth-panel" aria-expanded="false">
+          <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21a8 8 0 0 0-16 0"/>
+            <circle cx="12" cy="8" r="4"/>
+          </svg>
+          <span class="visually-hidden">Cuenta</span>
+        </button>
+        <a href="cotizar.html" class="icon-btn" aria-label="Ir a cotizaciones">
+          <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 6h15l-1.5 9h-12z"/>
+            <path d="M6 6l-1-3H3"/>
+            <circle cx="9" cy="20" r="1"/>
+            <circle cx="18" cy="20" r="1"/>
+          </svg>
+          <span class="visually-hidden">Carrito</span>
+        </a>
+      </nav>
     </div>
+
+    <!-- Desktop nav -->
+    <nav class="nav" aria-label="Categor&iacute;as principales">
+      <ul class="nav__list">
+        <li class="nav__item">
+          <button class="nav__link" aria-haspopup="true" aria-expanded="false">Categor&iacute;as</button>
+          <div class="nav__dropdown" role="menu" aria-label="Submen&uacute; Hogar">
+            <a href="categorias.html#categorias-principales" role="menuitem">Hogar</a>
+            <a href="categorias.html#categorias-principales" role="menuitem">Cocina</a>
+            <a href="categorias.html#categorias-principales" role="menuitem">Oficina</a>
+            <a href="categorias.html#categorias-principales" role="menuitem">Decoraci&oacute;n</a>
+          </div>
+        </li>
+        <li class="nav__item">
+          <a class="nav__link nav__link--direct" href="cotizar.html">Cotizar</a>
+        </li>
+        <li class="nav__item">
+          <a class="nav__link nav__link--direct" href="proyectos.html">Proyectos</a>
+        </li>
+        <li class="nav__item">
+          <a class="nav__link nav__link--direct" href="novedades.html" aria-current="page">Novedades</a>
+        </li>
+        <li class="nav__item">
+          <a class="nav__link nav__link--direct" href="compania.html">Compa&ntilde;&iacute;a</a>
+        </li>
+      </ul>
+    </nav>
   </header>
 
+  <!-- Offcanvas mobile -->
+  <aside id="offcanvas" class="offcanvas" aria-hidden="true">
+    <div class="offcanvas__panel" role="dialog" aria-label="Men&uacute; principal">
+      <div class="offcanvas__header">
+        <span>Men&uacute;</span>
+        <button class="offcanvas__close js-menu-toggle" type="button" aria-label="Cerrar men&uacute;">Cerrar</button>
+      </div>
+      <nav class="offcanvas__nav">
+        <a href="categorias.html">Categor&iacute;as</a>
+        <a href="cotizar.html">Cotizar</a>
+        <a href="proyectos.html">Proyectos</a>
+        <a href="novedades.html" aria-current="page">Novedades</a>
+        <a href="compania.html">Compa&ntilde;&iacute;a</a>
+        <a href="contacto.html">Contacto</a>
+        <button type="button" class="offcanvas__auth js-auth-toggle" aria-controls="auth-panel" aria-expanded="false">Iniciar sesi&oacute;n</button>
+        <button type="button" class="offcanvas__help js-help-toggle" aria-controls="help-panel" aria-expanded="false">Ayuda y soporte</button>
+      </nav>
+    </div>
+    <div class="offcanvas__backdrop js-menu-toggle" aria-hidden="true"></div>
+  </aside>
+
   <main class="main">
-    <section class="grid" aria-label="Hero novedades">
-      <a class="tile tile--xl tile--hero" href="#" aria-label="Novedades">
-        <img class="tile__img tile__img--base js-lazy" alt="Novedades" width="1600" height="1000" data-src="Assets/Mesita2.jpg" />
-        <img class="tile__img tile__img--alt js-lazy" alt="Novedades" width="1600" height="1000" data-src="Assets/Plato2.jpg" />
-        <div class="tile__overlay tile__overlay--hero" role="dialog">
-          <div class="hero__copy">
-            <h2 class="hero__title">Novedades</h2>
-            <p class="hero__subtitle">Lo último en el taller</p>
+    <!-- Hero social -->
+    <section class="section social-hero" aria-label="Resumen social">
+      <div class="social-hero__inner">
+        <div class="social-hero__copy">
+          <span class="social-hero__tag">Novedades en vivo</span>
+          <h1 class="social-hero__title">Todo lo que sucede en Agreste, minuto a minuto</h1>
+          <p class="social-hero__lead">Historias del taller, lanzamientos en streaming y anuncios exclusivos. Sigue nuestras redes y no te pierdas ninguna actualizaci&oacute;n.</p>
+          <div class="social-hero__actions">
+            <a class="social-hero__btn" href="https://www.instagram.com" target="_blank" rel="noopener">Seguir en Instagram</a>
+            <a class="social-hero__ghost" href="https://www.tiktok.com" target="_blank" rel="noopener">Ver en TikTok</a>
           </div>
-          <span class="tile__cta">Ver lanzamientos</span>
+          <ul class="social-hero__stats" aria-label="Indicadores sociales">
+            <li><strong>45K</strong> seguidores activos</li>
+            <li><strong>12</strong> transmisiones este mes</li>
+            <li><strong>4</strong> showrooms en agenda</li>
+          </ul>
         </div>
-      </a>
+        <div class="social-hero__media" aria-hidden="true">
+          <img src="Assets/Mesita2.jpg" alt="Preview redes Agreste" />
+          <div class="social-hero__badge">Live ahora</div>
+        </div>
+      </div>
     </section>
 
-    <section class="categories" aria-label="Artículos y anuncios">
+    <!-- Historias destacadas -->
+    <section class="section social-stories" aria-label="Historias destacadas">
       <div class="section__header">
-        <h3 class="section__title">Lo nuevo</h3>
-        <p class="section__subtitle">Piezas, colecciones y noticias.</p>
+        <h2 class="section__title">Historias que no puedes perderte</h2>
+        <p class="section__subtitle">Desliza para ver los lanzamientos, colaboraciones y procesos en vivo.</p>
       </div>
-      <div class="categories__viewport">
-        <div class="categories__row js-cats-row">
-          <span id="grabado-laser"></span>
-          <article class="cat-card"><img class="cat-card__img js-lazy" alt="Grabado láser" width="800" height="600" data-src="Assets/Mesa_auxiliar.jpg" /><div class="cat-card__overlay"><h3 class="cat-card__title">Grabado láser</h3><p class="cat-card__desc">Personaliza tus piezas.</p><a class="cat-card__link" href="#">Ver más</a></div></article>
-          <span id="a-medida"></span>
-          <article class="cat-card"><img class="cat-card__img js-lazy" alt="A medida" width="800" height="600" data-src="Assets/MesaBanner.jpg" /><div class="cat-card__overlay"><h3 class="cat-card__title">A medida</h3><p class="cat-card__desc">Hecho para tu espacio.</p><a class="cat-card__link" href="#">Ver más</a></div></article>
-          <span id="proyectos"></span>
-          <article class="cat-card"><img class="cat-card__img js-lazy" alt="Proyectos" width="800" height="600" data-src="Assets/Mesita2.jpg" /><div class="cat-card__overlay"><h3 class="cat-card__title">Proyectos</h3><p class="cat-card__desc">Casos y lanzamientos.</p><a class="cat-card__link" href="#">Ver más</a></div></article>
+      <div class="social-stories__row">
+        <article class="story-card">
+          <span class="story-card__tag">Instagram</span>
+          <h3 class="story-card__title">Colecci&oacute;n Boreal</h3>
+          <p class="story-card__copy">Reels con el proceso de tinturado natural y montaje de vitrinas.</p>
+          <a href="#" class="story-card__cta">Ver historias guardadas</a>
+        </article>
+        <article class="story-card">
+          <span class="story-card__tag">TikTok</span>
+          <h3 class="story-card__title">Detr&aacute;s del taller</h3>
+          <p class="story-card__copy">Timelapses de lijado, armado y tips de mantenimiento en madera.</p>
+          <a href="#" class="story-card__cta">Abrir playlist</a>
+        </article>
+        <article class="story-card">
+          <span class="story-card__tag">YouTube</span>
+          <h3 class="story-card__title">Showrooms inmersivos</h3>
+          <p class="story-card__copy">Recorridos guiados por los espacios de Medell&iacute;n y Bogot&aacute;.</p>
+          <a href="#" class="story-card__cta">Ver canal</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- Feed social -->
+    <section class="section social-feed" aria-label="Feed social">
+      <div class="section__header">
+        <h2 class="section__title">Lo &uacute;ltimo en nuestro feed</h2>
+        <p class="section__subtitle">Contenido curado de Instagram, TikTok y Pinterest.</p>
+      </div>
+      <div class="social-feed__grid">
+        <article class="feed-card" aria-label="Post Instagram Rack modular">
+          <img src="Assets/RACK 3.jpg" alt="Rack modular en nogal" />
+          <div class="feed-card__body">
+            <span class="feed-card__platform">Instagram</span>
+            <p>Rack modular Horizonte listo para el showroom de la zona norte.</p>
+            <time date="2024-08-22">Hace 3 horas</time>
+          </div>
+        </article>
+        <article class="feed-card" aria-label="Post TikTok ajustes">
+          <img src="Assets/Mesita3.jpg" alt="Detalle de banco tapizado" />
+          <div class="feed-card__body">
+            <span class="feed-card__platform">TikTok</span>
+            <p>Video de ajuste de telas y prueba de resistencia en la l&iacute;nea Flora.</p>
+            <time date="2024-08-21">Hace 9 horas</time>
+          </div>
+        </article>
+        <article class="feed-card" aria-label="Post Instagram colaboraci&oacute;n">
+          <img src="Assets/Plato2.jpg" alt="Tabla de servir y cuencos" />
+          <div class="feed-card__body">
+            <span class="feed-card__platform">Instagram</span>
+            <p>Colaboraci&oacute;n con @atelierboreal para mesas sensoriales.</p>
+            <time date="2024-08-20">Ayer</time>
+          </div>
+        </article>
+        <article class="feed-card" aria-label="Post Pinterest moodboard">
+          <img src="Assets/MesaBanner.jpg" alt="Moodboard en tonos tierra" />
+          <div class="feed-card__body">
+            <span class="feed-card__platform">Pinterest</span>
+            <p>Moodboard de ambientes r&uacute;sticos con piezas Agreste 2024.</p>
+            <time date="2024-08-19">2 d&iacute;as</time>
+          </div>
+        </article>
+        <article class="feed-card" aria-label="Post TikTok live">
+          <img src="Assets/Mesita.jpg" alt="Equipo en vivo" />
+          <div class="feed-card__body">
+            <span class="feed-card__platform">TikTok Live</span>
+            <p>Resumen del live con preguntas sobre acabados y mantenimiento.</p>
+            <time date="2024-08-18">3 d&iacute;as</time>
+          </div>
+        </article>
+        <article class="feed-card" aria-label="Post Instagram eventos">
+          <img src="Assets/Mesa_auxiliar.jpg" alt="Mesa auxiliar Terra" />
+          <div class="feed-card__body">
+            <span class="feed-card__platform">Instagram</span>
+            <p>Lanzamiento de la mesa Terra Mini con acabados personalizados.</p>
+            <time date="2024-08-17">4 d&iacute;as</time>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Videos destacados -->
+    <section class="section social-videos" aria-label="Videos destacados">
+      <div class="section__header">
+        <h2 class="section__title">Videos recientes</h2>
+        <p class="section__subtitle">Tutoriales, charlas y recorridos en video.</p>
+      </div>
+      <div class="videos-slider" data-videos-slider>
+        <button class="videos-slider__nav videos-slider__nav--prev" type="button" aria-label="Ver video anterior">&#10094;</button>
+        <div class="videos-slider__viewport">
+          <div class="videos-slider__track">
+            <article class="video-card">
+              <div class="video-card__media">
+                <video controls preload="metadata" playsinline poster="Assets/Mesa_auxiliar_cajon.jpg">
+                  <source src="videos/DEPA%20MATI%20(1).mp4" type="video/mp4" />
+                  Tu navegador no soporta video en HTML5.
+                </video>
+              </div>
+              <div class="video-card__body">
+                <h3>Departamentos Mati</h3>
+                <p>Recorrido por el proyecto residencial donde integramos mobiliario personalizado en roble.</p>
+                <span class="video-card__meta">Duraci&oacute;n 4:12 &bull; Ayer</span>
+              </div>
+            </article>
+            <article class="video-card">
+              <div class="video-card__media">
+                <video controls preload="metadata" playsinline poster="Assets/Mesita3.jpg">
+                  <source src="videos/SILLA%20HUMEDAL%20.mp4" type="video/mp4" />
+                  Tu navegador no soporta video en HTML5.
+                </video>
+              </div>
+              <div class="video-card__body">
+                <h3>Silla Humedal</h3>
+                <p>Proceso de armado y ergonom&iacute;a de nuestra nueva silla de comedor inspirada en ecosistemas tropicales.</p>
+                <span class="video-card__meta">Duraci&oacute;n 3:05 &bull; Hoy</span>
+              </div>
+            </article>
+            <article class="video-card">
+              <div class="video-card__media">
+                <video controls preload="metadata" playsinline poster="Assets/Plato.jpg">
+                  <source src="videos/Trend%20llego%20agreste%201.mp4" type="video/mp4" />
+                  Tu navegador no soporta video en HTML5.
+                </video>
+              </div>
+              <div class="video-card__body">
+                <h3>Trend: lleg&oacute; Agreste</h3>
+                <p>Resumen del lanzamiento con prensa y creadores locales en nuestro taller principal.</p>
+                <span class="video-card__meta">Duraci&oacute;n 2:48 &bull; 2 d&iacute;as</span>
+              </div>
+            </article>
+            <article class="video-card">
+              <div class="video-card__media">
+                <video controls preload="metadata" playsinline poster="Assets/Mesita2.jpg">
+                  <source src="videos/TREND%20MUEBLES%20v2.mp4" type="video/mp4" />
+                  Tu navegador no soporta video en HTML5.
+                </video>
+              </div>
+              <div class="video-card__body">
+                <h3>Trend muebles v2</h3>
+                <p>Colecci&oacute;n modular 2024 con combinaciones sugeridas para living y home office.</p>
+                <span class="video-card__meta">Duraci&oacute;n 5:36 &bull; 4 d&iacute;as</span>
+              </div>
+            </article>
+          </div>
         </div>
+        <button class="videos-slider__nav videos-slider__nav--next" type="button" aria-label="Ver video siguiente">&#10095;</button>
+      </div>
+    </section>
+
+    <!-- Agenda y showrooms -->
+    <section class="section social-agenda" aria-label="Agenda de showrooms">
+      <div class="section__header">
+        <h2 class="section__title">Showrooms &amp; agenda</h2>
+        <p class="section__subtitle">Visita nuestros espacios o agenda tu recorrido virtual.</p>
+      </div>
+      <div class="agenda-card">
+        <div class="agenda-card__locations">
+          <h3>Showrooms activos</h3>
+          <ul>
+            <li><strong>Medell&iacute;n</strong> &mdash; Calle 48 #70-15 (Laureles)</li>
+            <li><strong>Bogot&aacute;</strong> &mdash; Carrera 11 #84-09 (Zona T)</li>
+            <li><strong>Barranquilla</strong> &mdash; Calle 85 #53-38 (Prado)</li>
+          </ul>
+        </div>
+        <div class="agenda-card__times">
+          <h3>Horarios ampliados</h3>
+          <dl>
+            <div>
+              <dt>Lunes a viernes</dt>
+              <dd>09:00 &ndash; 19:00</dd>
+            </div>
+            <div>
+              <dt>S&aacute;bados</dt>
+              <dd>10:00 &ndash; 18:00</dd>
+            </div>
+            <div>
+              <dt>Domingos virtual</dt>
+              <dd>11:00 &ndash; 16:00 (via streaming)</dd>
+            </div>
+          </dl>
+        </div>
+        <div class="agenda-card__cta">
+          <p>Reserva tu cita personalizada y recibe un moodboard exclusivo basado en tus espacios.</p>
+          <a class="agenda-card__btn" href="contacto.html">Agendar recorrido</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA final -->
+    <section class="section social-newsletter" aria-label="Suscripci&oacute;n a bolet&iacute;n">
+      <div class="social-newsletter__inner">
+        <div class="social-newsletter__copy">
+          <h2>&iquest;Quieres recibir las novedades antes que nadie?</h2>
+          <p>Suscr&iacute;bete a nuestro bolet&iacute;n semanal con res&uacute;menes de lives, fechas de showrooms y lanzamientos limitados.</p>
+        </div>
+        <form class="social-newsletter__form" action="#" method="post">
+          <label class="visually-hidden" for="social-newsletter-email">Correo electr&oacute;nico</label>
+          <input id="social-newsletter-email" type="email" name="email" required placeholder="tuemail@correo.com" />
+          <button type="submit">Recibir novedades</button>
+        </form>
       </div>
     </section>
   </main>
 
-  <footer class="footer" aria-label="Información del sitio">
+  <!-- Footer -->
+  <footer class="footer" aria-label="Informaci&oacute;n del sitio">
     <div class="footer__inner">
+      <div class="footer__newsletter" aria-label="Suscripci&oacute;n">
+        <div class="newsletter__inner">
+          <h2 class="newsletter__title">&Uacute;nete y obt&eacute;n 10% OFF</h2>
+          <p class="newsletter__desc">Recibe novedades, lanzamientos y ofertas en piezas de madera.</p>
+          <form class="newsletter__form" onsubmit="event.preventDefault(); alert('&iexcl;Gracias por suscribirte!');">
+            <label class="visually-hidden" for="newsletter-email">Correo electr&oacute;nico</label>
+            <input id="newsletter-email" type="email" required placeholder="Tu email" />
+            <button type="submit">Suscribirme</button>
+          </form>
+          <small class="newsletter__legal">Al suscribirte aceptas nuestra pol&iacute;tica de privacidad.</small>
+        </div>
+      </div>
       <div class="footer__brand">
         <a class="footer__logo" href="index.html" aria-label="Inicio">
-          <img src="Logos/Agreste-44.png" alt="Agreste" class="footer__logo-img" />
+          <img src="Logos/agreste-45.png" alt="Agreste" class="footer__logo-img" />
         </a>
-        <p class="footer__tagline">Hecho a mano en madera. Producción responsable.</p>
+        <p class="footer__tagline">Hecho a mano en madera. Producci&oacute;n responsable.</p>
+        <div class="footer__social">
+          <span class="footer__social-label">S&iacute;guenos</span>
+          <div class="social">
+            <a class="social__link" href="#" aria-label="Instagram" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="currentColor">
+                <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A5.5 5.5 0 1 1 6.5 13 5.5 5.5 0 0 1 12 7.5zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5z"/>
+                <circle cx="18.5" cy="5.5" r="1.2"/>
+              </svg>
+              <span class="visually-hidden">Instagram</span>
+            </a>
+            <a class="social__link" href="#" aria-label="Facebook" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="currentColor">
+                <path d="M13 22v-8h3l1-4h-4V8a1 1 0 0 1 1-1h3V3h-3a5 5 0 0 0-5 5v2H6v4h3v8z"/>
+              </svg>
+              <span class="visually-hidden">Facebook</span>
+            </a>
+            <a class="social__link" href="#" aria-label="TikTok" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="currentColor">
+                <path d="M14 3h3a5 5 0 0 0 5 5v3a7.9 7.9 0 0 1-5-1.6V15a6 6 0 1 1-6-6h1v3h-1a3 3 0 1 0 3 3z"/>
+              </svg>
+              <span class="visually-hidden">TikTok</span>
+            </a>
+            <a class="social__link" href="#" aria-label="YouTube" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="currentColor">
+                <path d="M23 12c0-3-1-5-1-5s-1-.9-2-.9C17 6 12 6 12 6s-5 0-8 .1C3 6.1 2 7 2 7S1 9 1 12s1 5 1 5 1 .9 2 .9C7 18 12 18 12 18s5 0 8-.1c1 0 2-.9 2-.9s1-2 1-5zM10 15V9l5 3-5 3z"/>
+              </svg>
+              <span class="visually-hidden">YouTube</span>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="footer__bottom"><small>© 2025 Agreste.</small></div>
+    <div class="footer__bottom"><small>&copy; 2025 Agreste.</small></div>
   </footer>
 
-  <!-- Back Button -->
-  <button class="back-button" onclick="window.history.back()" aria-label="Volver atrás">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="white">
-      <path d="M19 12H6.83l5.59-5.59L11 5l-8 8 8 8 1.41-1.41L6.83 13H19v-1z"/>
-    </svg>
-  </button>
-
-  <style>
-    .back-button {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #6F001D; /* Updated to the correct red color */
-      border: none;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      cursor: pointer;
-      z-index: 1000;
-    }
-
-    .back-button svg {
-      fill: white;
-    }
-
-    .back-button:hover {
-      background-color: #5A0017; /* Slightly darker shade for hover effect */
-    }
-  </style>
-
   <script src="app.js" defer></script>
+  <script>
+    (function(){
+      const slider = document.querySelector('[data-videos-slider]');
+      if (!slider) return;
+      const track = slider.querySelector('.videos-slider__track');
+      const prev = slider.querySelector('.videos-slider__nav--prev');
+      const next = slider.querySelector('.videos-slider__nav--next');
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const getBehavior = () => (prefersReducedMotion.matches ? 'auto' : 'smooth');
+      const getStep = () => {
+        const firstCard = track.querySelector('.video-card');
+        if (!firstCard) return track.clientWidth;
+        const styles = window.getComputedStyle(track);
+        const gapValue = styles.columnGap !== 'normal' ? styles.columnGap : styles.gap;
+        const gap = parseFloat(gapValue) || 0;
+        return firstCard.getBoundingClientRect().width + gap;
+      };
+      const updateButtons = () => {
+        const maxScroll = track.scrollWidth - track.clientWidth;
+        if (prev) prev.disabled = track.scrollLeft <= 0;
+        if (next) next.disabled = track.scrollLeft >= maxScroll - 1;
+      };
+      if (prev) prev.addEventListener('click', () => {
+        track.scrollBy({ left: -getStep(), behavior: getBehavior() });
+      });
+      if (next) next.addEventListener('click', () => {
+        track.scrollBy({ left: getStep(), behavior: getBehavior() });
+      });
+      track.addEventListener('scroll', updateButtons, { passive: true });
+      window.addEventListener('resize', () => window.requestAnimationFrame(updateButtons));
+      updateButtons();
+    })();
+  </script>
 </body>
 </html>

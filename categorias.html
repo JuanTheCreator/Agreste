@@ -11,23 +11,19 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+      <!-- Header -->
   <header class="header">
     <div class="header__bar">
+      <button class="header__menu-btn js-menu-toggle" aria-label="Abrir men&uacute;" aria-controls="offcanvas" aria-expanded="false">&#9776;</button>
+
       <a href="index.html" class="header__logo" aria-label="Inicio">
         <img src="Logos/agreste-45.png" alt="Agreste" class="header__logo-img" />
       </a>
-      <!-- Adjusted layout for the search bar to shift right -->
-      <form class="header__search" role="search" aria-label="Buscar categorías" style="display: flex; align-items: center; justify-content: space-between; border: 1px solid #ccc; border-radius: 25px; padding: 5px 10px; background-color: #ffffff; max-width: 400px; margin: 0 auto 0 20px; width: 100%; box-sizing: border-box;">
-        <input type="search" id="category-search" class="header__search-input" placeholder="Buscar categorías" aria-label="Buscar categorías" style="flex: 1; border: none; outline: none; font-size: 16px; padding: 5px; background: transparent;" />
-        <button type="submit" class="header__search-btn" aria-label="Buscar" style="background: none; border: none; cursor: pointer; padding: 5px;">
-          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8" />
-            <line x1="21" y1="21" x2="16.65" y2="16.65" />
-          </svg>
-        </button>
+
+      <form class="header__search" role="search" aria-label="Buscar categor&iacute;as">
+        <input id="category-search" type="search" placeholder="Buscar categor&iacute;as" aria-label="Buscar categor&iacute;as" />
       </form>
 
-      <!-- Added help, login, and cart buttons -->
       <nav class="header__icons" aria-label="Acciones">
         <button class="icon-btn js-help-toggle" type="button" aria-label="Ayuda" aria-controls="help-panel" aria-expanded="false">
           <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -37,7 +33,7 @@
           </svg>
           <span class="visually-hidden">Ayuda</span>
         </button>
-        <button class="icon-btn js-auth-toggle" type="button" aria-label="Iniciar sesión" aria-controls="auth-panel" aria-expanded="false">
+        <button class="icon-btn js-auth-toggle" type="button" aria-label="Iniciar sesi&oacute;n" aria-controls="auth-panel" aria-expanded="false">
           <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
             <path d="M20 21a8 8 0 0 0-16 0"/>
             <circle cx="12" cy="8" r="4"/>
@@ -56,58 +52,71 @@
            </button>
          </form>
       </nav>
-
-      <style>
-        @media (max-width: 768px) {
-          .header__bar {
-            flex-wrap: wrap;
-            justify-content: space-between;
-            padding: 10px;
-          }
-
-          .header__logo {
-            margin-bottom: 10px;
-          }
-
-          .header__search {
-            max-width: 100%;
-            margin: 10px 0;
-          }
-
-          .header__icons {
-            display: flex;
-            justify-content: space-around;
-            width: 100%;
-            margin-top: 10px;
-          }
-        }
-
-        @media (max-width: 480px) {
-          .header__bar {
-            flex-direction: column;
-            align-items: center;
-          }
-
-          .header__search {
-            flex-direction: column;
-            align-items: stretch;
-            padding: 10px;
-          }
-
-          .header__icons {
-            flex-direction: row;
-            justify-content: space-between;
-            width: 100%;
-          }
-        }
-      </style>
     </div>
+
+    <!-- Desktop nav -->
+    <nav class="nav" aria-label="Categor&iacute;as principales">
+      <ul class="nav__list">
+        <li class="nav__item">
+          <button class="nav__link" aria-haspopup="true" aria-expanded="false">Categor&iacute;as</button>
+          <div class="nav__dropdown" role="menu" aria-label="Submen&uacute; Hogar">
+            <a href="#" role="menuitem">Hogar</a>
+            <a href="#" role="menuitem">Cocina</a>
+            <a href="#" role="menuitem">Oficina</a>
+            <a href="#" role="menuitem">Decoraci&oacute;n</a>
+          </div>
+        </li>
+        <li class="nav__item">
+          <button class="nav__link" aria-haspopup="true" aria-expanded="false">Cotizar</button>
+        </li>
+        <li class="nav__item">
+          <button class="nav__link" aria-haspopup="true" aria-expanded="false">Proyectos</button>
+        </li>
+        <li class="nav__item">
+          <button class="nav__link" aria-haspopup="true" aria-expanded="false">Novedades</button>
+          <div class="nav__dropdown" role="menu" aria-label="Submen&uacute; Personalizados">
+            <a href="#" role="menuitem">Grabado l&aacute;ser</a>
+            <a href="#" role="menuitem">A medida</a>
+            <a href="#" role="menuitem">Proyectos</a>
+          </div>
+        </li>
+        <li class="nav__item">
+          <button class="nav__link" aria-haspopup="true" aria-expanded="false">Compa&ntilde;&iacute;a</button>
+          <div class="nav__dropdown" role="menu" aria-label="Submen&uacute; Compa&ntilde;&iacute;a">
+            <a href="#" role="menuitem">Historia</a>
+            <a href="#" role="menuitem">Valores</a>
+            <a href="#" role="menuitem">Equipo</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
   </header>
 
+  <!-- Offcanvas mobile -->
+  <aside id="offcanvas" class="offcanvas" aria-hidden="true">
+    <div class="offcanvas__panel" role="dialog" aria-label="Men&uacute; principal">
+      <div class="offcanvas__header">
+        <span>Men&uacute;</span>
+        <button class="offcanvas__close js-menu-toggle" type="button" aria-label="Cerrar men&uacute;">Cerrar</button>
+      </div>
+      <nav class="offcanvas__nav">
+        <a href="#">Categor&iacute;as</a>
+        <a href="#">Cotizar</a>
+        <a href="#">Proyectos</a>
+        <a href="#">Novedades</a>
+        <a href="#">Compa&ntilde;&iacute;a</a>
+        <a href="contacto.html">Contacto</a>
+        <button type="button" class="offcanvas__auth js-auth-toggle" aria-controls="auth-panel" aria-expanded="false">Iniciar sesi&oacute;n</button>
+        <button type="button" class="offcanvas__help js-help-toggle" aria-controls="help-panel" aria-expanded="false">Ayuda y soporte</button>
+      </nav>
+    </div>
+    <div class="offcanvas__backdrop js-menu-toggle" aria-hidden="true"></div>
+  </aside>
+
   <main class="main">
-    <section id="categorias-principales" class="categories section" aria-label="Categorías principales">
+    <section id="categorias-principales" class="categories section" aria-label="Categor&iacute;as principales">
       <div class="section__header">
-        <h2 class="section__title">Descubre tu categoría ideal</h2>
+        <h2 class="section__title">Descubre tu categor&iacute;a ideal</h2>
         <p class="section__subtitle">Explora por tipo de producto y encuentra lo que mejor va con tu espacio.</p>
       </div>
       <div class="categories__viewport" aria-live="polite">
@@ -115,8 +124,8 @@
           <img class="cat-card__img js-lazy" alt="Hogar" width="800" height="600" data-src="Assets/Mesita2.jpg" />
           <div class="cat-card__overlay">
             <h3 class="cat-card__title">Hogar</h3>
-            <p class="cat-card__desc">Muebles esenciales para salas y habitaciones cálidas.</p>
-            <a class="cat-card__link" href="#">Ver más</a>
+            <p class="cat-card__desc">Muebles esenciales para salas y habitaciones c&aacute;lidas.</p>
+            <a class="cat-card__link" href="#">Ver m&aacute;s</a>
           </div>
         </article>
         <article class="cat-card" data-category="cocina">
@@ -124,7 +133,7 @@
           <div class="cat-card__overlay">
             <h3 class="cat-card__title">Cocina</h3>
             <p class="cat-card__desc">Tablas, bandejas y piezas funcionales para cocinar y servir.</p>
-            <a class="cat-card__link" href="#">Ver más</a>
+            <a class="cat-card__link" href="#">Ver m&aacute;s</a>
           </div>
         </article>
         <article class="cat-card" data-category="oficina">
@@ -132,15 +141,15 @@
           <div class="cat-card__overlay">
             <h3 class="cat-card__title">Oficina</h3>
             <p class="cat-card__desc">Escritorios y accesorios que elevan tu jornada.</p>
-            <a class="cat-card__link" href="#">Ver más</a>
+            <a class="cat-card__link" href="#">Ver m&aacute;s</a>
           </div>
         </article>
         <article class="cat-card" data-category="almacenamiento">
           <img class="cat-card__img js-lazy" alt="Almacenamiento" width="800" height="600" data-src="Assets/RACK 3.jpg" />
           <div class="cat-card__overlay">
             <h3 class="cat-card__title">Almacenamiento</h3>
-            <p class="cat-card__desc">Estanterías y organizadores para cada rincón.</p>
-            <a class="cat-card__link" href="#">Ver más</a>
+            <p class="cat-card__desc">Estanter&iacute;as y organizadores para cada rinc&oacute;n.</p>
+            <a class="cat-card__link" href="#">Ver m&aacute;s</a>
           </div>
         </article>
       </div>
@@ -232,7 +241,7 @@
       <div class="social-cta__inner">
         <div class="social-cta__copy">
           <h2 class="social-cta__title">Conecta con nosotros</h2>
-          <p class="social-cta__desc">Ideas en madera, procesos detrás de cámaras y lanzamientos. ¡Síguenos para no perderte nada!</p>
+          <p class="social-cta__desc">Ideas en madera, procesos detr&aacute;s de c&aacute;maras y lanzamientos. &iexcl;S&iacute;guenos para no perderte nada!</p>
           <a class="social-cta__btn" href="#" aria-label="Seguir ahora">Seguir ahora</a>
         </div>
         <nav class="social-cta__links" aria-label="Redes sociales">
@@ -254,27 +263,27 @@
   </main>
 
   <!-- Footer -->
-  <footer class="footer" aria-label="Información del sitio">
+  <footer class="footer" aria-label="Informaci&oacute;n del sitio">
     <div class="footer__inner">
-      <div class="footer__newsletter" aria-label="Suscripción">
+      <div class="footer__newsletter" aria-label="Suscripci&oacute;n">
         <div class="newsletter__inner">
-          <h2 class="newsletter__title">Únete y obtén 10% OFF</h2>
+          <h2 class="newsletter__title">&Uacute;nete y obt&eacute;n 10% OFF</h2>
           <p class="newsletter__desc">Recibe novedades, lanzamientos y ofertas en piezas de madera.</p>
-          <form class="newsletter__form" onsubmit="event.preventDefault(); alert('¡Gracias por suscribirte!');">
-            <label class="visually-hidden" for="newsletter-email">Correo electrónico</label>
+          <form class="newsletter__form" onsubmit="event.preventDefault(); alert('&iexcl;Gracias por suscribirte!');">
+            <label class="visually-hidden" for="newsletter-email">Correo electr&oacute;nico</label>
             <input id="newsletter-email" type="email" required placeholder="Tu email" />
             <button type="submit">Suscribirme</button>
           </form>
-          <small class="newsletter__legal">Al suscribirte aceptas nuestra política de privacidad.</small>
+          <small class="newsletter__legal">Al suscribirte aceptas nuestra pol&iacute;tica de privacidad.</small>
         </div>
       </div>
       <div class="footer__brand">
         <a class="footer__logo" href="#" aria-label="Inicio">
           <img src="Logos/agreste-45.png" alt="Agreste" class="footer__logo-img" />
         </a>
-        <p class="footer__tagline">Hecho a mano en madera. Producción responsable.</p>
+        <p class="footer__tagline">Hecho a mano en madera. Producci&oacute;n responsable.</p>
         <div class="footer__social">
-          <span class="footer__social-label">Síguenos</span>
+          <span class="footer__social-label">S&iacute;guenos</span>
           <div class="social">
             <a class="social__link" href="#" aria-label="Instagram" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="currentColor">
@@ -306,48 +315,48 @@
       </div>
 
       <nav class="footer__nav" aria-label="Enlaces legales y ayuda">
-        <a href="#">Política de privacidad</a>
-        <a href="#">Términos y condiciones</a>
-        <a href="#">Política de cookies</a>
+        <a href="#">Pol&iacute;tica de privacidad</a>
+        <a href="#">T&eacute;rminos y condiciones</a>
+        <a href="#">Pol&iacute;tica de cookies</a>
         <a href="#">Seguridad</a>
         <a href="#">Devoluciones</a>
         <a href="#">Contacto</a>
       </nav>
     </div>
     <div class="footer__bottom">
-      <small>© 2025 Agreste. Todos los derechos reservados.</small>
+      <small>&copy; 2025 Agreste. Todos los derechos reservados.</small>
     </div>
   </footer>
 
   <div id="auth-panel" class="auth-panel" aria-hidden="true">
     <button class="auth-panel__overlay" type="button" data-auth-close aria-label="Cerrar panel de acceso"></button>
     <section class="auth-panel__dialog" role="dialog" aria-modal="true" aria-labelledby="auth-panel-title">
-      <button class="auth-panel__close" type="button" data-auth-close aria-label="Cerrar iniciar sesión">
+      <button class="auth-panel__close" type="button" data-auth-close aria-label="Cerrar iniciar sesi&oacute;n">
         <span aria-hidden="true">&times;</span>
       </button>
       <header class="auth-panel__header">
-        <h2 id="auth-panel-title">Inicia sesión</h2>
+        <h2 id="auth-panel-title">Inicia sesi&oacute;n</h2>
         <p class="auth-panel__subtitle">Accede para seguir tus pedidos y guardar favoritos.</p>
       </header>
       <form class="auth-form" autocomplete="on">
         <div class="auth-form__group">
-          <label for="auth-email">Correo electrónico</label>
+          <label for="auth-email">Correo electr&oacute;nico</label>
           <input id="auth-email" name="email" type="email" autocomplete="email" required placeholder="nombre@correo.com" />
         </div>
         <div class="auth-form__group">
-          <label for="auth-password">Contraseña</label>
-          <input id="auth-password" name="password" type="password" autocomplete="current-password" required minlength="6" placeholder="Tu contraseña" />
+          <label for="auth-password">Contrase&ntilde;a</label>
+          <input id="auth-password" name="password" type="password" autocomplete="current-password" required minlength="6" placeholder="Tu contrase&ntilde;a" />
         </div>
         <div class="auth-form__actions">
-          <button type="submit" class="auth-form__submit">Iniciar sesión</button>
-          <a href="#" class="auth-form__link" data-auth-action="forgot">¿Olvidaste tu contraseña?</a>
+          <button type="submit" class="auth-form__submit">Iniciar sesi&oacute;n</button>
+          <a href="#" class="auth-form__link" data-auth-action="forgot">&iquest;Olvidaste tu contrase&ntilde;a?</a>
         </div>
       </form>
       <footer class="auth-panel__footer">
-        <p>¿Primera vez en Agreste?</p>
+        <p>&iquest;Primera vez en Agreste?</p>
         <a href="#" class="auth-form__link" data-auth-action="signup">Crear cuenta</a>
       </footer>
-      <p class="auth-panel__legal">Al continuar aceptas nuestros <a href="#">Términos y condiciones</a> y <a href="#">Política de privacidad</a>.</p>
+      <p class="auth-panel__legal">Al continuar aceptas nuestros <a href="#">T&eacute;rminos y condiciones</a> y <a href="#">Pol&iacute;tica de privacidad</a>.</p>
     </section>
   </div>
 
@@ -357,40 +366,40 @@
       <button class="help-panel__close" type="button" data-help-close aria-label="Cerrar ayuda">
         <span aria-hidden="true">&times;</span>
       </button>
-      <h2 id="help-panel-title">¿Necesitas ayuda?</h2>
-      <p class="help-panel__intro">Estamos aquí para acompañarte en cada proyecto a medida.</p>
+      <h2 id="help-panel-title">&iquest;Necesitas ayuda?</h2>
+      <p class="help-panel__intro">Estamos aqu&iacute; para acompa&ntilde;arte en cada proyecto a medida.</p>
       <div class="help-panel__grid">
         <section>
-          <h3 class="help-panel__subtitle">Atención personalizada</h3>
+          <h3 class="help-panel__subtitle">Atenci&oacute;n personalizada</h3>
           <ul class="help-panel__list">
             <li>Horario: lunes a viernes, 9:00 - 18:00 (GMT-5).</li>
-            <li>Respuesta en menos de 24h para solicitudes de cotización.</li>
-            <li>Seguimiento de pedidos y ajustes de diseño incluidos.</li>
+            <li>Respuesta en menos de 24h para solicitudes de cotizaci&oacute;n.</li>
+            <li>Seguimiento de pedidos y ajustes de dise&ntilde;o incluidos.</li>
           </ul>
         </section>
         <section>
-          <h3 class="help-panel__subtitle">Contacto rápido</h3>
+          <h3 class="help-panel__subtitle">Contacto r&aacute;pido</h3>
           <p><strong>WhatsApp:</strong> <a href="https://wa.me/573001112233" target="_blank" rel="noopener">+57 300 111 2233</a></p>
           <p><strong>Email:</strong> <a href="mailto:hola@agreste.co">hola@agreste.co</a></p>
-          <p><strong>Showroom:</strong> Calle 48 #70-15, Medellín.</p>
+          <p><strong>Showroom:</strong> Calle 48 #70-15, Medell&iacute;n.</p>
         </section>
       </div>
       <div class="help-panel__actions">
-        <a class="help-panel__action help-panel__action--primary" href="cotizar.html">Solicitar cotización</a>
+        <a class="help-panel__action help-panel__action--primary" href="cotizar.html">Solicitar cotizaci&oacute;n</a>
         <a class="help-panel__action help-panel__action--ghost" href="contacto.html" data-help-focus>Hablar con nosotros</a>
       </div>
       <div class="help-panel__faq">
         <h3 class="help-panel__subtitle">Preguntas frecuentes</h3>
         <details>
-          <summary>¿Cuánto tarda la fabricación?</summary>
-          <p>Los proyectos estándar se entregan en 7-10 días hábiles. Para piezas especiales acordamos el plan contigo.</p>
+          <summary>&iquest;Cu&aacute;nto tarda la fabricaci&oacute;n?</summary>
+          <p>Los proyectos est&aacute;ndar se entregan en 7-10 d&iacute;as h&aacute;biles. Para piezas especiales acordamos el plan contigo.</p>
         </details>
         <details>
-          <summary>¿Realizan envíos nacionales?</summary>
-          <p>Enviamos a todo Colombia con aliados logísticos certificados. Empaques reforzados incluidos.</p>
+          <summary>&iquest;Realizan env&iacute;os nacionales?</summary>
+          <p>Enviamos a todo Colombia con aliados log&iacute;sticos certificados. Empaques reforzados incluidos.</p>
         </details>
         <details>
-          <summary>¿Puedo solicitar muestras de materiales?</summary>
+          <summary>&iquest;Puedo solicitar muestras de materiales?</summary>
           <p>Claro, programamos una visita o te enviamos un kit de muestras sin costo adicional.</p>
         </details>
       </div>
@@ -398,7 +407,7 @@
   </div>
 
   <!-- Back Button -->
-<button class="back-button" onclick="window.history.back()" aria-label="Volver atrás">
+<button class="back-button" onclick="window.history.back()" aria-label="Volver atr&aacute;s">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="white">
     <path d="M19 12H6.83l5.59-5.59L11 5l-8 8 8 8 1.41-1.41L6.83 13H19v-1z"/>
   </svg>
