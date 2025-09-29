@@ -143,6 +143,139 @@
     .carousel-control-next-icon {
       filter: invert(27%) sepia(100%) saturate(745%) hue-rotate(330deg) brightness(80%) contrast(90%);
     }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.875rem 2rem;
+      background: #6F001D;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 0.5rem;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      box-shadow: 0 2px 8px rgba(111, 0, 29, 0.2);
+    }
+
+    .cta-button:hover {
+      background: #5A0017;
+      color: white;
+      text-decoration: none;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(111, 0, 29, 0.3);
+    }
+
+    .cta-button:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 6px rgba(111, 0, 29, 0.25);
+    }
+
+    /* === Responsive Design for Mobile === */
+    @media (max-width: 768px) {
+      .steps-intro {
+        margin-bottom: 2rem !important;
+        padding: 0 1rem;
+      }
+      
+      .steps-title {
+        font-size: 2.2rem !important;
+        line-height: 1.2;
+      }
+      
+      .steps-description {
+        font-size: 1rem !important;
+        max-width: 100% !important;
+      }
+      
+      .step {
+        flex-direction: column !important;
+        gap: 1.5rem !important;
+        text-align: center;
+      }
+      
+      .step-image {
+        max-width: 100% !important;
+        width: 100%;
+        aspect-ratio: 16/9 !important;
+        order: 1;
+      }
+      
+      .step-content {
+        order: 2;
+        text-align: center !important;
+      }
+      
+      .step-title {
+        font-size: 1.5rem !important;
+        margin-bottom: 1rem;
+      }
+      
+      .step-content p {
+        font-size: 0.95rem !important;
+        line-height: 1.5;
+        margin-bottom: 0.75rem;
+      }
+      
+      .step-content p:last-child {
+        font-size: 0.85rem !important;
+      }
+      
+      .cta-button {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .step-by-step {
+        padding: 1.5rem 1rem !important;
+        margin-top: 20px !important;
+      }
+      
+      .steps-intro {
+        margin-bottom: 1.5rem !important;
+      }
+      
+      .steps-title {
+        font-size: 1.8rem !important;
+      }
+      
+      .steps-description {
+        font-size: 0.9rem !important;
+      }
+      
+      .step {
+        gap: 1rem !important;
+      }
+      
+      .step-title {
+        font-size: 1.3rem !important;
+      }
+      
+      .step-content p {
+        font-size: 0.9rem !important;
+      }
+      
+      .step-content p:last-child {
+        font-size: 0.8rem !important;
+      }
+      
+      .carousel-control-prev,
+      .carousel-control-next {
+        width: 35px;
+        height: 35px;
+      }
+      
+      .carousel-control-prev-icon,
+      .carousel-control-next-icon {
+        width: 18px;
+        height: 18px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -253,45 +386,49 @@
   <main class="main">
     <section class="step-by-step" aria-label="Guía paso a paso para cotizar" style="padding: 2rem 1rem; background-color: #FCFCFC;">
       <div class="steps-intro" style="text-align: center; margin-bottom: 3rem;">
-        <span class="steps-tag" style="font-family: 'Fraunces', serif; font-size: 0.9rem; color: #6F001D; text-transform: uppercase; letter-spacing: 0.1em;">Guía rápida</span>
-        <h2 class="steps-title" style="font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; color: #372717;">Cotiza en minutos</h2>
-        <p class="steps-description" style="font-family: 'Inter', sans-serif; font-size: 1.1rem; color: #6b6b6b; max-width: 600px; margin: 0 auto;">Descubre lo fácil que es solicitar tu cotización personalizada con estos simples pasos.</p>
+        <span class="steps-tag" style="font-family: 'Fraunces', serif; font-size: 0.9rem; color: #6F001D; text-transform: uppercase; letter-spacing: 0.1em;">Guía Rápida</span>
+        <h2 class="steps-title" style="font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; color: #372717;">Cómo completar tu cotización</h2>
+        <p class="steps-description" style="font-family: 'Inter', sans-serif; font-size: 1.1rem; color: #6b6b6b; max-width: 650px; margin: 0 auto;">Sigue esta guía paso a paso para completar correctamente el formulario y obtener la cotización más precisa para tu proyecto.</p>
       </div>
       <div id="stepCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
             <div class="step" style="display: flex; align-items: stretch; gap: 2rem;">
-              <img class="step-image" src="Assets/Mesa_auxiliar.jpg" alt="Formulario de cotización" style="flex: 1; max-width: 50%; border-radius: 12px; aspect-ratio: 4/3;" />
+              <img class="step-image" src="Assets/Mesa_auxiliar.jpg" alt="Datos personales" style="flex: 1; max-width: 50%; border-radius: 12px; aspect-ratio: 4/3;" />
               <div class="step-content" style="flex: 1;">
-                <h3 class="step-title" style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: #372717;">Paso 1</h3>
-                <p style="font-family: 'Inter', sans-serif; font-size: 1rem; color: #6b6b6b;">Completa el formulario con tus datos y especificaciones del producto.</p>
+                <h3 class="step-title" style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: #372717;">01. Datos personales</h3>
+                <p style="font-family: 'Inter', sans-serif; font-size: 1rem; color: #6b6b6b; margin-bottom: 1rem;">Ingresa tu nombre completo, teléfono y correo electrónico. Estos datos nos permitirán contactarte para coordinar los detalles de tu proyecto.</p>
+                <p style="font-family: 'Inter', sans-serif; font-size: 0.9rem; color: #8a8a8a; font-style: italic;">Tip: Asegúrate de que tu número de teléfono incluya el código de área para una comunicación más rápida.</p>
               </div>
             </div>
           </div>
           <div class="carousel-item">
             <div class="step" style="display: flex; align-items: stretch; gap: 2rem; flex-direction: row-reverse;">
-              <img class="step-image" src="Assets/Mesa_auxiliar_cajon.jpg" alt="Revisión de información" style="flex: 1; max-width: 50%; border-radius: 12px; aspect-ratio: 4/3;" />
+              <img class="step-image" src="Assets/Mesa_auxiliar_cajon.jpg" alt="Fecha de entrega" style="flex: 1; max-width: 50%; border-radius: 12px; aspect-ratio: 4/3;" />
               <div class="step-content" style="flex: 1;">
-                <h3 class="step-title" style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: #372717;">Paso 2</h3>
-                <p style="font-family: 'Inter', sans-serif; font-size: 1rem; color: #6b6b6b;">Revisa que toda la información sea correcta antes de enviarla.</p>
+                <h3 class="step-title" style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: #372717;">02. Fecha de entrega</h3>
+                <p style="font-family: 'Inter', sans-serif; font-size: 1rem; color: #6b6b6b; margin-bottom: 1rem;">Selecciona la fecha en que necesitas recibir tu proyecto. Considera que los muebles a medida requieren tiempo de fabricación.</p>
+                <p style="font-family: 'Inter', sans-serif; font-size: 0.9rem; color: #8a8a8a; font-style: italic;">Nota: Los proyectos estándar se entregan en 7-10 días hábiles, proyectos especiales pueden tomar más tiempo.</p>
               </div>
             </div>
           </div>
           <div class="carousel-item">
             <div class="step" style="display: flex; align-items: stretch; gap: 2rem;">
-              <img class="step-image" src="Assets/Mesita.jpg" alt="Envío de solicitud" style="flex: 1; max-width: 50%; border-radius: 12px; aspect-ratio: 4/3;" />
+              <img class="step-image" src="Assets/Mesita.jpg" alt="Especificaciones del producto" style="flex: 1; max-width: 50%; border-radius: 12px; aspect-ratio: 4/3;" />
               <div class="step-content" style="flex: 1;">
-                <h3 class="step-title" style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: #372717;">Paso 3</h3>
-                <p style="font-family: 'Inter', sans-serif; font-size: 1rem; color: #6b6b6b;">Haz clic en "Enviar solicitud" y espera nuestra confirmación.</p>
+                <h3 class="step-title" style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: #372717;">03. Especificaciones del producto</h3>
+                <p style="font-family: 'Inter', sans-serif; font-size: 1rem; color: #6b6b6b; margin-bottom: 1rem;">Describe detalladamente tu proyecto: dimensiones exactas, tipo de madera preferida, acabados, funcionalidades especiales y cualquier referencia visual.</p>
+                <p style="font-family: 'Inter', sans-serif; font-size: 0.9rem; color: #8a8a8a; font-style: italic;">Ejemplo: "Mesa de 120x80cm en roble natural, con cajón central y patas cónicas"</p>
               </div>
             </div>
           </div>
           <div class="carousel-item">
             <div class="step" style="display: flex; align-items: stretch; gap: 2rem; flex-direction: row-reverse;">
-              <img class="step-image" src="Assets/Mesita2.jpg" alt="Recibe tu cotización" style="flex: 1; max-width: 50%; border-radius: 12px; aspect-ratio: 4/3;" />
+              <img class="step-image" src="Assets/Mesita2.jpg" alt="Envío y seguimiento" style="flex: 1; max-width: 50%; border-radius: 12px; aspect-ratio: 4/3;" />
               <div class="step-content" style="flex: 1;">
-                <h3 class="step-title" style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: #372717;">Paso 4</h3>
-                <p style="font-family: 'Inter', sans-serif; font-size: 1rem; color: #6b6b6b;">Recibe tu cotización en menos de 24 horas por correo.</p>
+                <h3 class="step-title" style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: #372717;">04. Envío y seguimiento</h3>
+                <p style="font-family: 'Inter', sans-serif; font-size: 1rem; color: #6b6b6b; margin-bottom: 1rem;">Revisa toda la información, haz clic en "Enviar solicitud" y recibirás tu cotización detallada en menos de 24 horas con precios y tiempos exactos.</p>
+                <p style="font-family: 'Inter', sans-serif; font-size: 0.9rem; color: #8a8a8a; font-style: italic;">Te contactaremos por WhatsApp y email para confirmar todos los detalles de tu proyecto.</p>
               </div>
             </div>
           </div>
@@ -305,9 +442,12 @@
           <span class="visually-hidden">Siguiente</span>
         </button>
       </div>
+      <div style="text-align: center; margin-top: 2.5rem;">
+        <a href="#formulario" class="cta-button">Solicitar cotización</a>
+      </div>
     </section>
 
-    <section class="py-5">
+    <section id="formulario" class="py-5">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-8 col-xl-7">

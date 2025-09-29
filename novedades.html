@@ -102,27 +102,75 @@
   </aside>
 
   <main class="main">
-    <!-- Hero social -->
-    <section class="section social-hero" aria-label="Resumen social">
-      <div class="social-hero__inner">
-        <div class="social-hero__copy">
-          <span class="social-hero__tag">Novedades en vivo</span>
-          <h1 class="social-hero__title">Todo lo que sucede en Agreste, minuto a minuto</h1>
-          <p class="social-hero__lead">Historias del taller, lanzamientos en streaming y anuncios exclusivos. Sigue nuestras redes y no te pierdas ninguna actualizaci&oacute;n.</p>
-          <div class="social-hero__actions">
-            <a class="social-hero__btn" href="https://www.instagram.com" target="_blank" rel="noopener">Seguir en Instagram</a>
-            <a class="social-hero__ghost" href="https://www.tiktok.com" target="_blank" rel="noopener">Ver en TikTok</a>
-          </div>
-          <ul class="social-hero__stats" aria-label="Indicadores sociales">
-            <li><strong>45K</strong> seguidores activos</li>
-            <li><strong>12</strong> transmisiones este mes</li>
-            <li><strong>4</strong> showrooms en agenda</li>
-          </ul>
+    <!-- Hero slider -->
+    <section class="section hero-slider" aria-label="Novedades destacadas" data-hero-slider>
+      <div class="hero-slider__viewport">
+        <div class="hero-slider__track" data-slider-track>
+          <!-- Slide 1: Imagen - Nuevas colecciones -->
+          <article class="hero-slide hero-slide--active" data-slide="0">
+            <div class="hero-slide__media">
+              <img src="Assets/MesaBanner.jpg" alt="Nueva colección Terra" class="hero-slide__img" />
+            </div>
+            <div class="hero-slide__overlay">
+              <div class="hero-slide__content">
+                <span class="hero-slide__tag">Nuevas colecciones</span>
+                <h1 class="hero-slide__title">Terra llega con fuerza</h1>
+                <p class="hero-slide__desc">Explorando texturas orgánicas en roble y nogal</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Slide 2: Video - Proceso artesanal -->
+          <article class="hero-slide" data-slide="1">
+            <div class="hero-slide__media">
+              <video class="hero-slide__video" muted loop playsinline preload="metadata">
+                <source src="videos/DEPA MATI (1).mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="hero-slide__overlay">
+              <div class="hero-slide__content">
+                <span class="hero-slide__tag">Detrás del taller</span>
+                <h2 class="hero-slide__title">Donde nacen las ideas</h2>
+                <p class="hero-slide__desc">Cada pieza cuenta una historia de dedicación</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Slide 3: Imagen - Showrooms -->
+          <article class="hero-slide" data-slide="2">
+            <div class="hero-slide__media">
+              <img src="Assets/RACK 3.jpg" alt="Showroom experiencial" class="hero-slide__img" />
+            </div>
+            <div class="hero-slide__overlay">
+              <div class="hero-slide__content">
+                <span class="hero-slide__tag">Espacios únicos</span>
+                <h2 class="hero-slide__title">Showrooms que inspiran</h2>
+                <p class="hero-slide__desc">Vive la experiencia Agreste en nuestros espacios</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Slide 4: Video - Comunidad -->
+          <article class="hero-slide" data-slide="3">
+            <div class="hero-slide__media">
+              <video class="hero-slide__video" muted loop playsinline preload="metadata">
+                <source src="videos/SILLA%20HUMEDAL%20.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="hero-slide__overlay">
+              <div class="hero-slide__content">
+                <span class="hero-slide__tag">Comunidad creativa</span>
+                <h2 class="hero-slide__title">Conectando hogares</h2>
+                <p class="hero-slide__desc">Más de 45K personas que eligen lo auténtico</p>
+              </div>
+            </div>
+          </article>
         </div>
-        <div class="social-hero__media" aria-hidden="true">
-          <img src="Assets/Mesita2.jpg" alt="Preview redes Agreste" />
-          <div class="social-hero__badge">Live ahora</div>
-        </div>
+      </div>
+      
+      <!-- Progreso automático -->
+      <div class="hero-slider__progress">
+        <div class="hero-slider__progress-bar" data-progress-bar></div>
       </div>
     </section>
 
@@ -134,80 +182,31 @@
       </div>
       <div class="social-stories__row">
         <article class="story-card">
+          <video class="story-card__video" controls preload="metadata" playsinline>
+            <source src="videos/DEPA%20MATI%20(1).mp4" type="video/mp4" />
+            Tu navegador no soporta video en HTML5.
+          </video>
           <span class="story-card__tag">Instagram</span>
           <h3 class="story-card__title">Colecci&oacute;n Boreal</h3>
           <p class="story-card__copy">Reels con el proceso de tinturado natural y montaje de vitrinas.</p>
-          <a href="#" class="story-card__cta">Ver historias guardadas</a>
         </article>
         <article class="story-card">
+          <video class="story-card__video" controls preload="metadata" playsinline>
+            <source src="videos/SILLA%20HUMEDAL%20.mp4" type="video/mp4" />
+            Tu navegador no soporta video en HTML5.
+          </video>
           <span class="story-card__tag">TikTok</span>
           <h3 class="story-card__title">Detr&aacute;s del taller</h3>
           <p class="story-card__copy">Timelapses de lijado, armado y tips de mantenimiento en madera.</p>
-          <a href="#" class="story-card__cta">Abrir playlist</a>
         </article>
         <article class="story-card">
+          <video class="story-card__video" controls preload="metadata" playsinline>
+            <source src="videos/Trend%20llego%20agreste%201.mp4" type="video/mp4" />
+            Tu navegador no soporta video en HTML5.
+          </video>
           <span class="story-card__tag">YouTube</span>
           <h3 class="story-card__title">Showrooms inmersivos</h3>
           <p class="story-card__copy">Recorridos guiados por los espacios de Medell&iacute;n y Bogot&aacute;.</p>
-          <a href="#" class="story-card__cta">Ver canal</a>
-        </article>
-      </div>
-    </section>
-
-    <!-- Feed social -->
-    <section class="section social-feed" aria-label="Feed social">
-      <div class="section__header">
-        <h2 class="section__title">Lo &uacute;ltimo en nuestro feed</h2>
-        <p class="section__subtitle">Contenido curado de Instagram, TikTok y Pinterest.</p>
-      </div>
-      <div class="social-feed__grid">
-        <article class="feed-card" aria-label="Post Instagram Rack modular">
-          <img src="Assets/RACK 3.jpg" alt="Rack modular en nogal" />
-          <div class="feed-card__body">
-            <span class="feed-card__platform">Instagram</span>
-            <p>Rack modular Horizonte listo para el showroom de la zona norte.</p>
-            <time date="2024-08-22">Hace 3 horas</time>
-          </div>
-        </article>
-        <article class="feed-card" aria-label="Post TikTok ajustes">
-          <img src="Assets/Mesita3.jpg" alt="Detalle de banco tapizado" />
-          <div class="feed-card__body">
-            <span class="feed-card__platform">TikTok</span>
-            <p>Video de ajuste de telas y prueba de resistencia en la l&iacute;nea Flora.</p>
-            <time date="2024-08-21">Hace 9 horas</time>
-          </div>
-        </article>
-        <article class="feed-card" aria-label="Post Instagram colaboraci&oacute;n">
-          <img src="Assets/Plato2.jpg" alt="Tabla de servir y cuencos" />
-          <div class="feed-card__body">
-            <span class="feed-card__platform">Instagram</span>
-            <p>Colaboraci&oacute;n con @atelierboreal para mesas sensoriales.</p>
-            <time date="2024-08-20">Ayer</time>
-          </div>
-        </article>
-        <article class="feed-card" aria-label="Post Pinterest moodboard">
-          <img src="Assets/MesaBanner.jpg" alt="Moodboard en tonos tierra" />
-          <div class="feed-card__body">
-            <span class="feed-card__platform">Pinterest</span>
-            <p>Moodboard de ambientes r&uacute;sticos con piezas Agreste 2024.</p>
-            <time date="2024-08-19">2 d&iacute;as</time>
-          </div>
-        </article>
-        <article class="feed-card" aria-label="Post TikTok live">
-          <img src="Assets/Mesita.jpg" alt="Equipo en vivo" />
-          <div class="feed-card__body">
-            <span class="feed-card__platform">TikTok Live</span>
-            <p>Resumen del live con preguntas sobre acabados y mantenimiento.</p>
-            <time date="2024-08-18">3 d&iacute;as</time>
-          </div>
-        </article>
-        <article class="feed-card" aria-label="Post Instagram eventos">
-          <img src="Assets/Mesa_auxiliar.jpg" alt="Mesa auxiliar Terra" />
-          <div class="feed-card__body">
-            <span class="feed-card__platform">Instagram</span>
-            <p>Lanzamiento de la mesa Terra Mini con acabados personalizados.</p>
-            <time date="2024-08-17">4 d&iacute;as</time>
-          </div>
         </article>
       </div>
     </section>
@@ -224,7 +223,7 @@
           <div class="videos-slider__track">
             <article class="video-card">
               <div class="video-card__media">
-                <video controls preload="metadata" playsinline poster="Assets/Mesa_auxiliar_cajon.jpg">
+                <video controls preload="metadata" playsinline>
                   <source src="videos/DEPA%20MATI%20(1).mp4" type="video/mp4" />
                   Tu navegador no soporta video en HTML5.
                 </video>
@@ -237,7 +236,7 @@
             </article>
             <article class="video-card">
               <div class="video-card__media">
-                <video controls preload="metadata" playsinline poster="Assets/Mesita3.jpg">
+                <video controls preload="metadata" playsinline>
                   <source src="videos/SILLA%20HUMEDAL%20.mp4" type="video/mp4" />
                   Tu navegador no soporta video en HTML5.
                 </video>
@@ -250,7 +249,7 @@
             </article>
             <article class="video-card">
               <div class="video-card__media">
-                <video controls preload="metadata" playsinline poster="Assets/Plato.jpg">
+                <video controls preload="metadata" playsinline>
                   <source src="videos/Trend%20llego%20agreste%201.mp4" type="video/mp4" />
                   Tu navegador no soporta video en HTML5.
                 </video>
@@ -263,7 +262,7 @@
             </article>
             <article class="video-card">
               <div class="video-card__media">
-                <video controls preload="metadata" playsinline poster="Assets/Mesita2.jpg">
+                <video controls preload="metadata" playsinline>
                   <source src="videos/TREND%20MUEBLES%20v2.mp4" type="video/mp4" />
                   Tu navegador no soporta video en HTML5.
                 </video>
@@ -392,6 +391,108 @@
 
   <script src="app.js" defer></script>
   <script>
+    // Hero Slider functionality
+    (function(){
+      const heroSlider = document.querySelector('[data-hero-slider]');
+      if (!heroSlider) return;
+
+      const slides = heroSlider.querySelectorAll('.hero-slide');
+      const progressBar = heroSlider.querySelector('[data-progress-bar]');
+      
+      let currentSlide = 0;
+      let autoplayInterval;
+      let progressInterval;
+      const slideInterval = 10000; // 10 segundos
+      const progressSteps = 100;
+      const progressStepTime = slideInterval / progressSteps;
+
+      // Función para cambiar slide
+      function goToSlide(index) {
+        // Remover clase activa de slide actual
+        slides[currentSlide].classList.remove('hero-slide--active');
+        
+        // Parar videos del slide anterior
+        const prevVideo = slides[currentSlide].querySelector('video');
+        if (prevVideo) {
+          prevVideo.pause();
+          prevVideo.currentTime = 0;
+        }
+
+        // Activar nuevo slide
+        currentSlide = index;
+        slides[currentSlide].classList.add('hero-slide--active');
+        
+        // Reproducir video del slide actual si es video
+        const currentVideo = slides[currentSlide].querySelector('video');
+        if (currentVideo) {
+          currentVideo.play().catch(() => {}); // Catch en caso de autoplay bloqueado
+        }
+
+        // Reiniciar progreso
+        resetProgress();
+      }
+
+      // Función para ir al siguiente slide
+      function nextSlide() {
+        const next = (currentSlide + 1) % slides.length;
+        goToSlide(next);
+      }
+
+      // Función para resetear y comenzar progreso
+      function resetProgress() {
+        if (progressBar) {
+          progressBar.style.width = '0%';
+          clearInterval(progressInterval);
+          
+          let progress = 0;
+          progressInterval = setInterval(() => {
+            progress += 100 / progressSteps;
+            progressBar.style.width = progress + '%';
+            
+            if (progress >= 100) {
+              clearInterval(progressInterval);
+            }
+          }, progressStepTime);
+        }
+      }
+
+      // Función para iniciar autoplay
+      function startAutoplay() {
+        clearInterval(autoplayInterval);
+        autoplayInterval = setInterval(nextSlide, slideInterval);
+        resetProgress();
+      }
+
+      // Función para parar autoplay
+      function stopAutoplay() {
+        clearInterval(autoplayInterval);
+        clearInterval(progressInterval);
+      }
+
+      // Parar autoplay al hacer hover
+      heroSlider.addEventListener('mouseenter', stopAutoplay);
+      heroSlider.addEventListener('mouseleave', startAutoplay);
+
+      // Parar autoplay cuando tab no está visible
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          stopAutoplay();
+        } else {
+          startAutoplay();
+        }
+      });
+
+      // Inicializar slider
+      goToSlide(0);
+      startAutoplay();
+
+      // Respect reduced motion preferences  
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        stopAutoplay();
+      }
+    })();
+
+    // Videos slider functionality
     (function(){
       const slider = document.querySelector('[data-videos-slider]');
       if (!slider) return;
