@@ -3429,3 +3429,12 @@ body.mobile-menu-open {
     height: 18px;
   }
 }
+
+/* ============================================
+   AJUSTES ESPECÍFICOS DE IMÁGENES
+   ============================================ */
+
+/* Ajuste específico para la imagen del producto 1 - Sección Nuestros Favoritos */
+.product-card:first-child .product-card__img {
+  object-position: center 80% !important;
+}
