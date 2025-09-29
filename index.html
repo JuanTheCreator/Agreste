@@ -14,7 +14,12 @@
   <!-- Header -->
   <header class="header">
     <div class="header__bar">
-      <button class="header__menu-btn js-menu-toggle" aria-label="Abrir menú" aria-controls="offcanvas" aria-expanded="false">☰</button>
+      <button class="hamburger js-menu-toggle" type="button" aria-label="Abrir menú principal" aria-controls="mobile-menu" aria-expanded="false">
+        <span class="hamburger__box">
+          <span class="hamburger__inner"></span>
+        </span>
+        <span class="sr-only">Menú</span>
+      </button>
 
       <a href="index.html" class="header__logo" aria-label="Inicio">
         <img src="Logos/agreste-45.png" alt="Agreste" class="header__logo-img" />
@@ -92,26 +97,143 @@
     </nav>
   </header>
 
-  <!-- Offcanvas mobile -->
-  <aside id="offcanvas" class="offcanvas" aria-hidden="true">
-    <div class="offcanvas__panel" role="dialog" aria-label="Menú principal">
-      <div class="offcanvas__header">
-        <span>Menú</span>
-        <button class="offcanvas__close js-menu-toggle" aria-label="Cerrar menú">Cerrar</button>
+  <!-- Mobile Navigation Menu -->
+  <nav id="mobile-menu" class="mobile-nav" role="navigation" aria-label="Menú principal móvil" aria-hidden="true">
+    <div class="mobile-nav__overlay js-menu-toggle" aria-hidden="true"></div>
+    <div class="mobile-nav__panel" role="dialog" aria-labelledby="mobile-menu-title">
+      <!-- Header del menú -->
+      <header class="mobile-nav__header">
+        <h2 id="mobile-menu-title" class="mobile-nav__title">
+          <img src="Logos/agreste-45.png" alt="Agreste" class="mobile-nav__logo" width="32" height="32">
+          Menú
+        </h2>
+        <button class="mobile-nav__close js-menu-toggle" type="button" aria-label="Cerrar menú">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M18 6L6 18M6 6l12 12"/>
+          </svg>
+        </button>
+      </header>
+
+      <!-- Contenido principal del menú -->
+      <div class="mobile-nav__content">
+        <ul class="mobile-nav__list" role="list">
+          <!-- Categorías con submenú -->
+          <li class="mobile-nav__item mobile-nav__item--expandable">
+            <button class="mobile-nav__link mobile-nav__toggle" type="button" aria-expanded="false" aria-controls="categories-submenu">
+              <span class="mobile-nav__text">
+                <svg class="mobile-nav__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9zM9 21V9"/>
+                  <path d="M21 9h-6l-2-4H3v4"/>
+                </svg>
+                Categorías
+              </span>
+              <svg class="mobile-nav__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M9 18l6-6-6-6"/>
+              </svg>
+            </button>
+            <ul id="categories-submenu" class="mobile-nav__submenu" role="list" aria-hidden="true">
+              <li><a href="categorias.html#hogar" class="mobile-nav__sublink">Hogar</a></li>
+              <li><a href="categorias.html#cocina" class="mobile-nav__sublink">Cocina</a></li>
+              <li><a href="categorias.html#oficina" class="mobile-nav__sublink">Oficina</a></li>
+              <li><a href="categorias.html#decoracion" class="mobile-nav__sublink">Decoración</a></li>
+            </ul>
+          </li>
+
+          <!-- Cotizar -->
+          <li class="mobile-nav__item">
+            <a href="cotizar.html" class="mobile-nav__link">
+              <span class="mobile-nav__text">
+                <svg class="mobile-nav__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M9 11H7a4 4 0 0 1 0-8h2m4 0h2a4 4 0 0 1 0 8h-2"/>
+                  <path d="M9 7h6"/>
+                  <path d="M13 21v-4a2 2 0 0 0-2-2h0a2 2 0 0 0-2 2v4"/>
+                </svg>
+                Cotizar
+              </span>
+            </a>
+          </li>
+
+          <!-- Proyectos -->
+          <li class="mobile-nav__item">
+            <a href="proyectos.html" class="mobile-nav__link">
+              <span class="mobile-nav__text">
+                <svg class="mobile-nav__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                  <path d="M9 12l2 2 4-4"/>
+                </svg>
+                Proyectos
+              </span>
+            </a>
+          </li>
+
+          <!-- Novedades -->
+          <li class="mobile-nav__item">
+            <a href="novedades.html" class="mobile-nav__link">
+              <span class="mobile-nav__text">
+                <svg class="mobile-nav__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                </svg>
+                Novedades
+              </span>
+            </a>
+          </li>
+
+          <!-- Compañía con submenú -->
+          <li class="mobile-nav__item mobile-nav__item--expandable">
+            <button class="mobile-nav__link mobile-nav__toggle" type="button" aria-expanded="false" aria-controls="company-submenu">
+              <span class="mobile-nav__text">
+                <svg class="mobile-nav__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87m-4-12a4 4 0 0 1 0 7.75"/>
+                </svg>
+                Compañía
+              </span>
+              <svg class="mobile-nav__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M9 18l6-6-6-6"/>
+              </svg>
+            </button>
+            <ul id="company-submenu" class="mobile-nav__submenu" role="list" aria-hidden="true">
+              <li><a href="compania.html#historia" class="mobile-nav__sublink">Historia</a></li>
+              <li><a href="compania.html#valores" class="mobile-nav__sublink">Valores</a></li>
+              <li><a href="compania.html#equipo" class="mobile-nav__sublink">Equipo</a></li>
+            </ul>
+          </li>
+
+          <!-- Contacto -->
+          <li class="mobile-nav__item">
+            <a href="contacto.html" class="mobile-nav__link">
+              <span class="mobile-nav__text">
+                <svg class="mobile-nav__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+                Contacto
+              </span>
+            </a>
+          </li>
+        </ul>
+
+        <!-- Sección de acciones -->
+        <div class="mobile-nav__actions">
+          <button type="button" class="mobile-nav__action js-auth-toggle" aria-controls="auth-panel" aria-expanded="false">
+            <svg class="mobile-nav__action-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            Iniciar sesión
+          </button>
+          <button type="button" class="mobile-nav__action js-help-toggle" aria-controls="help-panel" aria-expanded="false">
+            <svg class="mobile-nav__action-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 2-3 4"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+            Ayuda y soporte
+          </button>
+        </div>
       </div>
-      <nav class="offcanvas__nav">
-        <a href="#">Categorías</a>
-        <a href="#">Cotizar</a>
-        <a href="#">Proyectos</a>
-        <a href="#">Novedades</a>
-        <a href="#">Compañía</a>
-        <a href="contacto.html">Contacto</a>
-        <button type="button" class="offcanvas__auth js-auth-toggle" aria-controls="auth-panel" aria-expanded="false">Iniciar sesión</button>
-        <button type="button" class="offcanvas__help js-help-toggle" aria-controls="help-panel" aria-expanded="false">Ayuda y soporte</button>
-      </nav>
     </div>
-    <div class="offcanvas__backdrop js-menu-toggle" aria-hidden="true"></div>
-  </aside>
+  </nav>
 
   <main class="main">
     <h1 class="visually-hidden">Colecciones destacadas en madera</h1>

@@ -595,26 +595,179 @@
   updateNav();
 })();
 
-// ==== Off-canvas menú mobile ====
+// ==== Mobile Navigation Menu ====
 (function(){
+  const mobileNav = document.getElementById('mobile-menu');
+  const hamburgerBtn = document.querySelector('.hamburger');
   const toggles = Array.from(document.querySelectorAll('.js-menu-toggle'));
-  const offcanvas = document.getElementById('offcanvas');
+  const expandableItems = Array.from(document.querySelectorAll('.mobile-nav__item--expandable'));
   const body = document.body;
   let isOpen = false;
+  let focusedElementBeforeOpen = null;
 
-  function setOpen(open){
+  // Función para abrir/cerrar el menú principal
+  function setOpen(open) {
+    if (isOpen === open) return;
+    
     isOpen = open;
-    offcanvas.classList.toggle('is-open', open);
-    body.classList.toggle('noscroll', open);
-    const btn = document.querySelector('.header__menu-btn');
-    if (btn) btn.setAttribute('aria-expanded', String(open));
-    offcanvas.setAttribute('aria-hidden', String(!open));
+    
+    // Actualizar clases y atributos
+    mobileNav.classList.toggle('is-open', open);
+    mobileNav.setAttribute('aria-hidden', String(!open));
+    body.classList.toggle('mobile-menu-open', open);
+    
+    // Animar el botón hamburguesa
+    if (hamburgerBtn) {
+      hamburgerBtn.classList.toggle('is-active', open);
+      hamburgerBtn.setAttribute('aria-expanded', String(open));
+    }
+    
+    // Gestión del foco para accesibilidad
+    if (open) {
+      focusedElementBeforeOpen = document.activeElement;
+      // Enfocar el botón de cerrar después de que se abra
+      setTimeout(() => {
+        const closeBtn = mobileNav.querySelector('.mobile-nav__close');
+        if (closeBtn) closeBtn.focus();
+      }, 100);
+    } else {
+      // Restaurar foco al elemento anterior
+      if (focusedElementBeforeOpen && focusedElementBeforeOpen.focus) {
+        focusedElementBeforeOpen.focus();
+      }
+      focusedElementBeforeOpen = null;
+      
+      // Cerrar todos los submenús al cerrar el menú principal
+      closeAllSubmenus();
+    }
   }
 
-  toggles.forEach(btn => btn.addEventListener('click', () => setOpen(!isOpen)));
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && isOpen) setOpen(false);
+  // Función para manejar submenús expandibles
+  function toggleSubmenu(button) {
+    const submenu = button.nextElementSibling;
+    const isExpanded = button.getAttribute('aria-expanded') === 'true';
+    const arrow = button.querySelector('.mobile-nav__arrow');
+    
+    if (!submenu) return;
+    
+    // Cerrar otros submenús abiertos (comportamiento acordeón)
+    expandableItems.forEach(item => {
+      if (item !== button.parentElement) {
+        const otherButton = item.querySelector('.mobile-nav__toggle');
+        const otherSubmenu = item.querySelector('.mobile-nav__submenu');
+        if (otherButton && otherSubmenu) {
+          otherButton.setAttribute('aria-expanded', 'false');
+          otherSubmenu.setAttribute('aria-hidden', 'true');
+          otherSubmenu.classList.remove('is-open');
+          const otherArrow = otherButton.querySelector('.mobile-nav__arrow');
+          if (otherArrow) otherArrow.classList.remove('is-rotated');
+        }
+      }
+    });
+    
+    // Toggle del submenú actual
+    const newExpandedState = !isExpanded;
+    button.setAttribute('aria-expanded', String(newExpandedState));
+    submenu.setAttribute('aria-hidden', String(!newExpandedState));
+    submenu.classList.toggle('is-open', newExpandedState);
+    
+    if (arrow) {
+      arrow.classList.toggle('is-rotated', newExpandedState);
+    }
+  }
+
+  // Función para cerrar todos los submenús
+  function closeAllSubmenus() {
+    expandableItems.forEach(item => {
+      const button = item.querySelector('.mobile-nav__toggle');
+      const submenu = item.querySelector('.mobile-nav__submenu');
+      const arrow = button?.querySelector('.mobile-nav__arrow');
+      
+      if (button && submenu) {
+        button.setAttribute('aria-expanded', 'false');
+        submenu.setAttribute('aria-hidden', 'true');
+        submenu.classList.remove('is-open');
+        if (arrow) arrow.classList.remove('is-rotated');
+      }
+    });
+  }
+
+  // Event listeners para toggle del menú principal
+  toggles.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      setOpen(!isOpen);
+    });
   });
+
+  // Event listeners para submenús expandibles
+  expandableItems.forEach(item => {
+    const button = item.querySelector('.mobile-nav__toggle');
+    if (button) {
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        toggleSubmenu(button);
+      });
+    }
+  });
+
+  // Cerrar menú con tecla Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isOpen) {
+      setOpen(false);
+    }
+  });
+
+  // Trap focus dentro del menú cuando está abierto
+  document.addEventListener('keydown', (e) => {
+    if (!isOpen || e.key !== 'Tab') return;
+    
+    const focusableElements = mobileNav.querySelectorAll(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+    
+    if (e.shiftKey) {
+      if (document.activeElement === firstElement) {
+        e.preventDefault();
+        lastElement.focus();
+      }
+    } else {
+      if (document.activeElement === lastElement) {
+        e.preventDefault();
+        firstElement.focus();
+      }
+    }
+  });
+
+  // Cerrar menú al hacer clic en enlaces (excepto toggles de submenú)
+  mobileNav.addEventListener('click', (e) => {
+    const target = e.target;
+    const isLink = target.tagName === 'A' || target.closest('a');
+    const isToggle = target.classList.contains('mobile-nav__toggle') || 
+                    target.closest('.mobile-nav__toggle');
+    
+    if (isLink && !isToggle) {
+      // Pequeño delay para permitir navegación suave
+      setTimeout(() => setOpen(false), 100);
+    }
+  });
+
+  // Prevenir scroll del body cuando el menú está abierto
+  mobileNav.addEventListener('touchmove', (e) => {
+    if (isOpen && !e.target.closest('.mobile-nav__content')) {
+      e.preventDefault();
+    }
+  }, { passive: false });
+
+  // Inicialización: asegurar estado correcto
+  if (mobileNav) {
+    mobileNav.setAttribute('aria-hidden', 'true');
+    if (hamburgerBtn) {
+      hamburgerBtn.setAttribute('aria-expanded', 'false');
+    }
+  }
 })();
 
 // ==== Overlay en móvil: primer tap muestra overlay, segundo navega ====
