@@ -97,6 +97,31 @@ body {
 .offcanvas.is-open .offcanvas__panel { transform: translateX(0); }
 .offcanvas.is-open .offcanvas__backdrop { opacity: 1; }
 
+/* Mobile nav: categorías en miniatura dentro del panel móvil */
+.mobile-nav__actions--images {
+  display: grid;
+  gap: .6rem;
+  padding: .75rem 1rem;
+  border-top: 1px solid var(--line);
+}
+.mobile-nav__categories { display: block; }
+.mobile-nav__categories-title { margin: 0 0 .45rem; font-weight: 700; font-size: .95rem; }
+.mobile-nav__categories-list { display: flex; gap: .6rem; list-style: none; padding: 0; margin: 0; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.mobile-nav__cat { flex: 0 0 auto; width: 80px; text-align: center; }
+.mobile-nav__cat-link { display: inline-flex; flex-direction: column; gap: .35rem; align-items: center; text-decoration: none; color: inherit; }
+.mobile-nav__cat-img { width: 80px; height: 60px; object-fit: cover; border-radius: .5rem; border: 1px solid #eee; box-shadow: 0 8px 18px rgba(0,0,0,.06); display: block; }
+.mobile-nav__cat-label { display: block; font-size: .8rem; color: var(--muted); }
+.mobile-nav__actions-controls { display: flex; gap: .5rem; margin-top: .45rem; }
+.mobile-nav__actions-controls .mobile-nav__action { padding: .5rem .75rem; border-radius: .65rem; }
+
+/* Ocultar esta sección en pantallas grandes (solo móvil) */
+@media (min-width: 900px) {
+  .mobile-nav__actions--images { display: none; }
+}
+
+/* Debug preview (temporary) */
+/* Removed: debug preview styles were used only for desktop verification and have been cleaned up. */
+
 /* === Main grid === */
 .main { padding: 1.25rem; }
 .grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
@@ -239,6 +264,26 @@ body {
 
 .tile__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0; transform: scale(1.02); transition: opacity .6s ease, transform .8s ease; }
 .tile.is-visible .tile__img { opacity: 1; transform: scale(1); }
+
+/* Helper: nudge the 'Cocina social' image slightly down for better framing */
+.tile__img--cocina {
+  /* object-position moves the image within the box; use a slightly lower focal point */
+  object-position: center 56%;
+}
+
+@media (min-width: 740px) {
+  .tile__img--cocina {
+    object-position: center 62%;
+  }
+}
+
+@media (min-width: 1280px) {
+  .tile__img--cocina {
+    object-position: center 66%;
+    /* small translate to add subtle vertical alignment when needed */
+    transform: translateY(4%);
+  }
+}
 
 .tile__overlay {
   position: absolute; left: 0; right: 0; bottom: 0;
@@ -461,6 +506,147 @@ input, textarea { caret-color: var(--accent-2); }
 .categories .cat-card__title { text-shadow: none; color: var(--text); font-family: inherit; font-weight: 600; font-size: 1.15rem; }
 .categories .cat-card__desc { color: var(--muted); }
 @media (hover: hover) and (pointer: fine) { .categories .cat-card:hover .cat-card__img { transform: scale(1.02); } }
+
+/* New: Image-first categories grid */
+.categories-grid {
+  display: grid;
+  gap: .75rem;
+  grid-template-columns: repeat(1, 1fr);
+  max-width: min(96vw, 1200px);
+  margin: 0 auto;
+  padding: 0 1rem 1.5rem;
+}
+.categories-grid__item { display: block; border-radius: .9rem; overflow: hidden; text-decoration: none; color: inherit; }
+.categories-grid__fig { margin: 0; position: relative; overflow: hidden; border-radius: .9rem; }
+.categories-grid__img { display: block; width: 100%; height: 320px; object-fit: cover; transition: transform .35s ease, filter .35s ease; }
+.categories-grid__caption { position: absolute; left: 0; right: 0; bottom: 0; padding: .9rem 1rem; background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.45) 100%); color: #fff; font-weight: 700; font-family: var(--display-sans); }
+.categories-grid__item:focus-within .categories-grid__img, .categories-grid__item:hover .categories-grid__img { transform: scale(1.04); filter: saturate(1.05); }
+
+/* Decorative, minimal typographic styles for captions */
+.categories-grid__title {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  line-height: 1.02;
+  text-transform: uppercase;
+}
+.categories-grid__subtitle {
+  display: block;
+  margin-top: .24rem;
+  font-size: .72rem;
+  font-weight: 600;
+  opacity: .95;
+  color: rgba(255,255,255,.96);
+  letter-spacing: .08em;
+  text-transform: none;
+}
+
+/* Card visual refinements: soft border, subtle shadow and lift on hover */
+.categories-grid__item {
+  border: 1px solid rgba(17,17,17,0.035);
+  box-shadow: 0 6px 18px rgba(11,11,11,0.035);
+  transition: transform .26s cubic-bezier(.2,.9,.2,1), box-shadow .26s ease;
+  background: #fff;
+  border-radius: 1rem;
+}
+.categories-grid__item:hover, .categories-grid__item:focus-within {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 36px rgba(11,11,11,0.06);
+}
+
+/* Soften the overlay gradient for a more elegant look */
+.categories-grid__fig::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0; top: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 48%, rgba(0,0,0,.36) 100%);
+  pointer-events: none;
+}
+
+/* Decorative separator above captions: thin line to add minimal detail */
+.categories-grid__caption::before {
+  content: '';
+  display: block;
+  height: 1px;
+  width: 36px;
+  background: rgba(255,255,255,0.6);
+  margin-bottom: .45rem;
+  border-radius: 1px;
+  opacity: .95;
+}
+
+/* Reduce caption padding on small screens and increase legibility */
+@media (max-width: 520px) {
+  .categories-grid__caption { padding: .6rem .75rem; }
+  .categories-grid__img { height: 220px; }
+  .categories-grid__title { font-size: 1rem; }
+  .categories-grid__subtitle { font-size: .72rem; }
+}
+
+/* Slightly taller images on mid screens for better balance */
+@media (min-width: 700px) and (max-width: 1199px) {
+  .categories-grid__img { height: 380px; }
+}
+@media (min-width: 1200px) {
+  .categories-grid__img { height: 300px; }
+}
+
+/* Larger layouts: show a multi-column grid */
+@media (min-width: 700px) {
+  .categories-grid { grid-template-columns: repeat(2, 1fr); }
+  .categories-grid__img { height: 360px; }
+}
+@media (min-width: 1200px) {
+  .categories-grid { grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .categories-grid__img { height: 320px; }
+}
+
+/* Accessibility: ensure focus outline */
+.categories-grid__item:focus { outline: 3px solid rgba(111,0,29,.18); outline-offset: 4px; }
+
+/* === Categories slider (shop-style) === */
+.categories-slider {
+  /* expand allowed max-width so slides can breathe on wide screens */
+  max-width: min(98vw, 1600px);
+  margin: 0 auto 1.25rem;
+  /* reduce side padding so slides can sit closer to viewport edges */
+  padding: 0 0.5rem;
+}
+.categories-slider__viewport { overflow: hidden; position: relative; }
+.categories-slider__track { display: flex; gap: 1rem; transition: transform .36s cubic-bezier(.2,.9,.2,1); will-change: transform; }
+.categories-slider__slide { min-width: 95%; flex: 0 0 95%; display: block; border-radius: 1rem; overflow: hidden; }
+.categories-slider__link { display: block; text-decoration: none; color: inherit; }
+
+/* On larger screens show fewer but larger slides so they occupy more horizontal space */
+@media (min-width: 700px) {
+  /* ~60% width lets the active slide be prominent with a gentle peek of next/prev */
+  .categories-slider__slide { min-width: 60%; flex: 0 0 60%; }
+}
+@media (min-width: 1200px) {
+  /* ~42% keeps slides large while allowing 2 slides to be comfortably visible */
+  .categories-slider__slide { min-width: 42%; flex: 0 0 42%; }
+}
+
+.categories-slider__controls { display: flex; align-items: center; justify-content: center; gap: .75rem; margin-top: .75rem; }
+.categories-slider__prev, .categories-slider__next { background: #fff; border: 1px solid rgba(17,17,17,0.06); width: 48px; height: 48px; border-radius: 999px; display: grid; place-items: center; cursor: pointer; font-size: 20px; color: #111; }
+.categories-slider__prev:hover, .categories-slider__next:hover { background: #faf8f6; transform: translateY(-2px); }
+
+/* Make slides touch-friendly */
+.categories-slider__track.is-dragging { transition: none; }
+
+/* Ensure images inside slides respect border-radius */
+.categories-slider__slide .categories-grid__fig { border-radius: 1rem; overflow: hidden; }
+
+/* Slightly increase image height inside slider for a more impactful presentation */
+.categories-slider__img { height: 320px; -webkit-user-drag: none; user-select: none; }
+@media (min-width: 700px) { .categories-slider__img { height: 420px; } }
+@media (min-width: 1200px) { .categories-slider__img { height: 380px; } }
+
+/* Cursor feedback while dragging */
+.categories-slider__track { cursor: grab; }
+.categories-slider__track:active { cursor: grabbing; }
+.categories-slider__slide img { pointer-events: none; }
 
 /* === Social CTA === */
 .social-cta { position: relative; margin: 2rem 0; }
