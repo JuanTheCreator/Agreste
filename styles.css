@@ -158,8 +158,31 @@ body {
 .products { max-width: min(96vw, 1300px); margin: 0 auto; box-sizing: border-box; overflow: hidden; }
 @media (min-width: 1280px) { .products { max-width: min(98vw, 1800px); } }
 @media (min-width: 1536px) { .products { max-width: min(98vw, 2000px); } }
-.products__filters { display: flex; gap: .5rem; padding: 0 1rem 1rem; }
-.pill { appearance: none; border: 1px solid #e6e2dd; background: #fff; color: var(--text); border-radius: 999px; padding: .5rem 1rem; cursor: pointer; font: inherit; }
+.products__filters { 
+  display: flex; 
+  gap: .5rem; 
+  padding: 0 1rem 1rem; 
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.products__filters::-webkit-scrollbar { display: none; }
+
+.pill { 
+  appearance: none; 
+  border: 1px solid #e6e2dd; 
+  background: #fff; 
+  color: var(--text); 
+  border-radius: 999px; 
+  padding: .5rem 1rem; 
+  cursor: pointer; 
+  font: inherit;
+  white-space: nowrap;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+}
 .pill.is-active { background: #111; color: #fff; border-color: #111; }
 .pill:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; }
 
