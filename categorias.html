@@ -64,11 +64,13 @@
       <ul class="nav__list">
         <li class="nav__item">
           <button class="nav__link" aria-haspopup="true" aria-expanded="false">Categor&iacute;as</button>
-          <div class="nav__dropdown" role="menu" aria-label="Submen&uacute; Hogar">
-            <a href="#" role="menuitem">Hogar</a>
-            <a href="#" role="menuitem">Cocina</a>
-            <a href="#" role="menuitem">Oficina</a>
-            <a href="#" role="menuitem">Decoraci&oacute;n</a>
+          <div class="nav__dropdown" role="menu" aria-label="Submen&uacute; Categorías">
+            <a href="#" role="menuitem">Arrimos</a>
+            <a href="#" role="menuitem">Buffet</a>
+            <a href="#" role="menuitem">Comedor</a>
+            <a href="#" role="menuitem">Mesas de Centro</a>
+            <a href="#" role="menuitem">Puertas</a>
+            <a href="#" role="menuitem">Sillas</a>
           </div>
         </li>
         <li class="nav__item">
@@ -128,10 +130,12 @@
               </svg>
             </button>
             <ul id="categories-submenu" class="mobile-nav__submenu" role="list" aria-hidden="true">
-              <li><a href="categorias.html#hogar" class="mobile-nav__sublink">Hogar</a></li>
-              <li><a href="categorias.html#cocina" class="mobile-nav__sublink">Cocina</a></li>
-              <li><a href="categorias.html#oficina" class="mobile-nav__sublink">Oficina</a></li>
-              <li><a href="categorias.html#decoracion" class="mobile-nav__sublink">Decoración</a></li>
+              <li><a href="categorias.html#arrimos" class="mobile-nav__sublink">Arrimos</a></li>
+              <li><a href="categorias.html#buffet" class="mobile-nav__sublink">Buffet</a></li>
+              <li><a href="categorias.html#comedor" class="mobile-nav__sublink">Comedor</a></li>
+              <li><a href="categorias.html#mesas-centro" class="mobile-nav__sublink">Mesas de Centro</a></li>
+              <li><a href="categorias.html#puertas" class="mobile-nav__sublink">Puertas</a></li>
+              <li><a href="categorias.html#sillas" class="mobile-nav__sublink">Sillas</a></li>
             </ul>
           </li>
 
@@ -215,27 +219,39 @@
             <h3 class="mobile-nav__categories-title">Categorías</h3>
             <ul class="mobile-nav__categories-list">
               <li class="mobile-nav__cat">
-                <a href="categorias.html#hogar" class="mobile-nav__cat-link" aria-label="Hogar">
-                  <img src="Hogar/ComedorIndex.jpg" alt="Hogar" class="mobile-nav__cat-img" width="80" height="60" />
-                  <span class="mobile-nav__cat-label">Hogar</span>
+                <a href="categorias.html#arrimos" class="mobile-nav__cat-link" aria-label="Arrimos">
+                  <img src="Hogar/ComedorIndex.jpg" alt="Arrimos" class="mobile-nav__cat-img" width="80" height="60" />
+                  <span class="mobile-nav__cat-label">Arrimos</span>
                 </a>
               </li>
               <li class="mobile-nav__cat">
-                <a href="categorias.html#cocina" class="mobile-nav__cat-link" aria-label="Cocina">
-                  <img src="Assets/Plato2.jpg" alt="Cocina" class="mobile-nav__cat-img" width="80" height="60" />
-                  <span class="mobile-nav__cat-label">Cocina</span>
+                <a href="categorias.html#buffet" class="mobile-nav__cat-link" aria-label="Buffet">
+                  <img src="Assets/Plato2.jpg" alt="Buffet" class="mobile-nav__cat-img" width="80" height="60" />
+                  <span class="mobile-nav__cat-label">Buffet</span>
                 </a>
               </li>
               <li class="mobile-nav__cat">
-                <a href="categorias.html#oficina" class="mobile-nav__cat-link" aria-label="Oficina">
-                  <img src="Oficina/MesaIndex.JPG" alt="Oficina" class="mobile-nav__cat-img" width="80" height="60" />
-                  <span class="mobile-nav__cat-label">Oficina</span>
+                <a href="categorias.html#comedor" class="mobile-nav__cat-link" aria-label="Comedor">
+                  <img src="Oficina/MesaIndex.JPG" alt="Comedor" class="mobile-nav__cat-img" width="80" height="60" />
+                  <span class="mobile-nav__cat-label">Comedor</span>
                 </a>
               </li>
               <li class="mobile-nav__cat">
-                <a href="categorias.html#decoracion" class="mobile-nav__cat-link" aria-label="Decoración">
-                  <img src="Assets/Mesita.jpg" alt="Decoración" class="mobile-nav__cat-img" width="80" height="60" />
-                  <span class="mobile-nav__cat-label">Decoración</span>
+                <a href="categorias.html#mesas-centro" class="mobile-nav__cat-link" aria-label="Mesas de Centro">
+                  <img src="Assets/Mesita.jpg" alt="Mesas de Centro" class="mobile-nav__cat-img" width="80" height="60" />
+                  <span class="mobile-nav__cat-label">Mesas de Centro</span>
+                </a>
+              </li>
+              <li class="mobile-nav__cat">
+                <a href="categorias.html#puertas" class="mobile-nav__cat-link" aria-label="Puertas">
+                  <img src="Personalizados/SillaIndex.png" alt="Puertas" class="mobile-nav__cat-img" width="80" height="60" />
+                  <span class="mobile-nav__cat-label">Puertas</span>
+                </a>
+              </li>
+              <li class="mobile-nav__cat">
+                <a href="categorias.html#sillas" class="mobile-nav__cat-link" aria-label="Sillas">
+                  <img src="Regalos/portada.png" alt="Sillas" class="mobile-nav__cat-img" width="80" height="60" />
+                  <span class="mobile-nav__cat-label">Sillas</span>
                 </a>
               </li>
             </ul>
@@ -277,60 +293,72 @@
         <div class="categories-slider__viewport">
           <div class="categories-slider__track" role="list">
             <div class="categories-slider__slide" role="listitem">
-              <a class="categories-slider__link" href="categorias.html#hogar" aria-label="Hogar, abrir categoría">
+              <a class="categories-slider__link" href="categorias.html#arrimos" aria-label="Arrimos, abrir categoría">
                 <figure class="categories-grid__fig">
-                  <img src="Hogar/ComedorIndex.jpg" alt="Hogar" loading="lazy" class="categories-grid__img" />
+                  <img src="Hogar/ComedorIndex.jpg" alt="Arrimos" loading="lazy" class="categories-grid__img" />
                   <figcaption class="categories-grid__caption">
-                    <span class="categories-grid__title">Hogar</span>
-                    <span class="categories-grid__subtitle">Mobiliario y comedor</span>
+                    <span class="categories-grid__title">Arrimos</span>
+                    <span class="categories-grid__subtitle">Mobiliario de apoyo</span>
                   </figcaption>
                 </figure>
               </a>
             </div>
 
             <div class="categories-slider__slide" role="listitem">
-              <a class="categories-slider__link" href="categorias.html#cocina" aria-label="Cocina, abrir categoría">
+              <a class="categories-slider__link" href="categorias.html#buffet" aria-label="Buffet, abrir categoría">
                 <figure class="categories-grid__fig">
-                  <img src="Assets/Plato2.jpg" alt="Cocina" loading="lazy" class="categories-grid__img" />
+                  <img src="Assets/Plato2.jpg" alt="Buffet" loading="lazy" class="categories-grid__img" />
                   <figcaption class="categories-grid__caption">
-                    <span class="categories-grid__title">Cocina</span>
-                    <span class="categories-grid__subtitle">Utensilios y tablas</span>
+                    <span class="categories-grid__title">Buffet</span>
+                    <span class="categories-grid__subtitle">Muebles de exhibición</span>
                   </figcaption>
                 </figure>
               </a>
             </div>
 
             <div class="categories-slider__slide" role="listitem">
-              <a class="categories-slider__link" href="categorias.html#oficina" aria-label="Oficina, abrir categoría">
+              <a class="categories-slider__link" href="categorias.html#comedor" aria-label="Comedor, abrir categoría">
                 <figure class="categories-grid__fig">
-                  <img src="Oficina/MesaIndex.JPG" alt="Oficina" loading="lazy" class="categories-grid__img" />
+                  <img src="Oficina/MesaIndex.JPG" alt="Comedor" loading="lazy" class="categories-grid__img" />
                   <figcaption class="categories-grid__caption">
-                    <span class="categories-grid__title">Oficina</span>
-                    <span class="categories-grid__subtitle">Mesas y puestos de trabajo</span>
+                    <span class="categories-grid__title">Comedor</span>
+                    <span class="categories-grid__subtitle">Mesas y sillas</span>
                   </figcaption>
                 </figure>
               </a>
             </div>
 
             <div class="categories-slider__slide" role="listitem">
-              <a class="categories-slider__link" href="categorias.html#almacenamiento" aria-label="Almacenamiento, abrir categoría">
+              <a class="categories-slider__link" href="categorias.html#mesas-centro" aria-label="Mesas de Centro, abrir categoría">
                 <figure class="categories-grid__fig">
-                  <img src="Almacenamiento/CajonIndex.jpg" alt="Almacenamiento" loading="lazy" class="categories-grid__img" />
+                  <img src="Almacenamiento/CajonIndex.jpg" alt="Mesas de Centro" loading="lazy" class="categories-grid__img" />
                   <figcaption class="categories-grid__caption">
-                    <span class="categories-grid__title">Almacenamiento</span>
-                    <span class="categories-grid__subtitle">Soluciones con cajones</span>
+                    <span class="categories-grid__title">Mesas de Centro</span>
+                    <span class="categories-grid__subtitle">El centro de tu sala</span>
                   </figcaption>
                 </figure>
               </a>
             </div>
 
             <div class="categories-slider__slide" role="listitem">
-              <a class="categories-slider__link" href="categorias.html#decoracion" aria-label="Decoración, abrir categoría">
+              <a class="categories-slider__link" href="categorias.html#puertas" aria-label="Puertas, abrir categoría">
                 <figure class="categories-grid__fig">
-                  <img src="Assets/Mesita.jpg" alt="Decoración" loading="lazy" class="categories-grid__img" />
+                  <img src="Personalizados/SillaIndex.png" alt="Puertas" loading="lazy" class="categories-grid__img" />
                   <figcaption class="categories-grid__caption">
-                    <span class="categories-grid__title">Decoración</span>
-                    <span class="categories-grid__subtitle">Detalles y accesorios</span>
+                    <span class="categories-grid__title">Puertas</span>
+                    <span class="categories-grid__subtitle">Elegancia artesanal</span>
+                  </figcaption>
+                </figure>
+              </a>
+            </div>
+            
+            <div class="categories-slider__slide" role="listitem">
+              <a class="categories-slider__link" href="categorias.html#sillas" aria-label="Sillas, abrir categoría">
+                <figure class="categories-grid__fig">
+                  <img src="Assets/Mesita.jpg" alt="Sillas" loading="lazy" class="categories-grid__img" />
+                  <figcaption class="categories-grid__caption">
+                    <span class="categories-grid__title">Sillas</span>
+                    <span class="categories-grid__subtitle">Asientos cómodos</span>
                   </figcaption>
                 </figure>
               </a>

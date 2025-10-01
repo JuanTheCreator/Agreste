@@ -64,11 +64,13 @@
       <ul class="nav__list">
         <li class="nav__item">
           <button class="nav__link" aria-haspopup="true" aria-expanded="false">Categorías</button>
-          <div class="nav__dropdown" role="menu" aria-label="Submenú Hogar">
-            <a href="#" role="menuitem">Hogar</a>
-            <a href="#" role="menuitem">Cocina</a>
-            <a href="#" role="menuitem">Oficina</a>
-            <a href="#" role="menuitem">Decoración</a>
+          <div class="nav__dropdown" role="menu" aria-label="Submenú Categorías">
+            <a href="#" role="menuitem">Arrimos</a>
+            <a href="#" role="menuitem">Buffet</a>
+            <a href="#" role="menuitem">Comedor</a>
+            <a href="#" role="menuitem">Mesas de Centro</a>
+            <a href="#" role="menuitem">Puertas</a>
+            <a href="#" role="menuitem">Sillas</a>
           </div>
         </li>
         <li class="nav__item">
@@ -128,10 +130,12 @@
               </svg>
             </button>
             <ul id="categories-submenu" class="mobile-nav__submenu" role="list" aria-hidden="true">
-              <li><a href="categorias.html#hogar" class="mobile-nav__sublink">Hogar</a></li>
-              <li><a href="categorias.html#cocina" class="mobile-nav__sublink">Cocina</a></li>
-              <li><a href="categorias.html#oficina" class="mobile-nav__sublink">Oficina</a></li>
-              <li><a href="categorias.html#decoracion" class="mobile-nav__sublink">Decoración</a></li>
+              <li><a href="categorias.html#arrimos" class="mobile-nav__sublink">Arrimos</a></li>
+              <li><a href="categorias.html#buffet" class="mobile-nav__sublink">Buffet</a></li>
+              <li><a href="categorias.html#comedor" class="mobile-nav__sublink">Comedor</a></li>
+              <li><a href="categorias.html#mesas-centro" class="mobile-nav__sublink">Mesas de Centro</a></li>
+              <li><a href="categorias.html#puertas" class="mobile-nav__sublink">Puertas</a></li>
+              <li><a href="categorias.html#sillas" class="mobile-nav__sublink">Sillas</a></li>
             </ul>
           </li>
 
@@ -254,7 +258,7 @@
         />
         <div class="tile__overlay tile__overlay--hero" role="dialog" aria-live="polite">
           <div class="hero__copy">
-            <h2 class="hero__title">Hogar </h2>
+            <h2 class="hero__title">Mesas de Centro</h2>
             <p class="hero__subtitle">Madera natural. Líneas puras. Hecho a medida.</p>
           </div>
           <span class="tile__cta">Ver colección</span>
@@ -298,29 +302,29 @@
 
     <!-- Editorial Grid -->
     <section class="grid" aria-label="Galería editorial">
-      <!-- Hogar -->
-      <a class="tile" href="#" aria-label="Hogar">
+      <!-- Arrimos -->
+      <a class="tile" href="#" aria-label="Arrimos">
         <span class="tile__badge tile__badge--top">Más vendido</span>
         <img class="tile__img js-lazy" alt="Sala con estantería de madera"
              width="800" height="900"
              data-src="https://source.unsplash.com/800x900/?wood,shelf,living" />
-        <div class="tile__overlay"><h3 class="tile__title">Hogar</h3><span class="tile__cta">Ver más</span></div>
+        <div class="tile__overlay"><h3 class="tile__title">Arrimos</h3><span class="tile__cta">Ver más</span></div>
       </a>
 
-      <!-- Cocina -->
-      <a class="tile" href="#" aria-label="Cocina">
+      <!-- Buffet -->
+      <a class="tile" href="#" aria-label="Buffet">
         <img class="tile__img js-lazy" alt="Tablas de cortar y utensilios de madera"
              width="800" height="900"
              data-src="https://source.unsplash.com/800x900/?wood,kitchen,boards" />
-        <div class="tile__overlay"><h3 class="tile__title">Cocina</h3><span class="tile__cta">Ver más</span></div>
+        <div class="tile__overlay"><h3 class="tile__title">Buffet</h3><span class="tile__cta">Ver más</span></div>
       </a>
 
-      <!-- Oficina -->
-      <a class="tile" href="#" aria-label="Oficina">
+      <!-- Comedor -->
+      <a class="tile" href="#" aria-label="Comedor">
         <img class="tile__img js-lazy" alt="Escritorio de madera con accesorios"
              width="800" height="900"
              data-src="https://source.unsplash.com/800x900/?wood,desk,workspace" />
-        <div class="tile__overlay"><h3 class="tile__title">Oficina</h3><span class="tile__cta">Ver más</span></div>
+        <div class="tile__overlay"><h3 class="tile__title">Comedor</h3><span class="tile__cta">Ver más</span></div>
       </a>
 
       <!-- Personalizados (tile madera con specs) -->
@@ -461,50 +465,50 @@
         <button class="categories__nav categories__nav--prev" type="button" aria-label="Anterior">‹</button>
         <div class="categories__row js-cats-row" tabindex="0">
           <article class="cat-card">
-            <img class="cat-card__img js-lazy" alt="Hogar" width="800" height="600" data-src="Hogar/MesaIndex.jpg" />
+            <img class="cat-card__img js-lazy" alt="Arrimos" width="800" height="600" data-src="9.png" />
             <div class="cat-card__overlay">
-              <h3 class="cat-card__title">Hogar</h3>
-              <p class="cat-card__desc">Muebles esenciales para salas y habitaciones cálidas.</p>
+              <h3 class="cat-card__title">Arrimos</h3>
+              <p class="cat-card__desc">Muebles esenciales contra la pared con estilo y funcionalidad.</p>
               <a class="cat-card__link" href="categorias.html">Ver más</a>
             </div>
           </article>
           <article class="cat-card">
-            <img class="cat-card__img js-lazy" alt="Cocina" width="800" height="600" data-src="Cocina/PlatosIndex.jpg" />
+            <img class="cat-card__img js-lazy" alt="Buffet" width="800" height="600" data-src="Cocina/PlatosIndex.jpg" />
             <div class="cat-card__overlay">
-              <h3 class="cat-card__title">Cocina</h3>
-              <p class="cat-card__desc">Tablas, bandejas y piezas funcionales para cocinar y servir.</p>
+              <h3 class="cat-card__title">Buffet</h3>
+              <p class="cat-card__desc">Muebles elegantes para almacenar y exhibir en tu comedor.</p>
               <a class="cat-card__link" href="categorias.html">Ver más</a>
             </div>
           </article>
           <article class="cat-card">
-            <img class="cat-card__img js-lazy" alt="Oficina" width="800" height="600" data-src="Oficina/MesaIndex.JPG" />
+            <img class="cat-card__img js-lazy" alt="Comedor" width="800" height="600" data-src="Hogar/ComedorIndex.jpg" />
             <div class="cat-card__overlay">
-              <h3 class="cat-card__title">Oficina</h3>
-              <p class="cat-card__desc">Escritorios y accesorios que elevan tu jornada.</p>
+              <h3 class="cat-card__title">Comedor</h3>
+              <p class="cat-card__desc">Mesas y conjuntos para compartir momentos especiales.</p>
               <a class="cat-card__link" href="categorias.html">Ver más</a>
             </div>
           </article>
           <article class="cat-card">
-            <img class="cat-card__img js-lazy" alt="Almacenamiento" width="800" height="600" data-src="Almacenamiento/index.jpg" />
+            <img class="cat-card__img js-lazy" alt="Mesas de Centro" width="800" height="600" data-src="Hogar/MesaIndex.jpg" />
             <div class="cat-card__overlay">
-              <h3 class="cat-card__title">Almacenamiento</h3>
-              <p class="cat-card__desc">Estanterías y organizadores para cada rincón.</p>
+              <h3 class="cat-card__title">Mesas de Centro</h3>
+              <p class="cat-card__desc">El punto focal perfecto para tu sala de estar.</p>
               <a class="cat-card__link" href="categorias.html">Ver más</a>
             </div>
           </article>
           <article class="cat-card">
-            <img class="cat-card__img js-lazy" alt="Personalizados" width="800" height="600" data-src="Personalizados/SillaIndex.png" />
+            <img class="cat-card__img js-lazy" alt="Puertas" width="800" height="600" data-src="Almacenamiento/CajonIndex.jpg" />
             <div class="cat-card__overlay">
-              <h3 class="cat-card__title">Personalizados</h3>
-              <p class="cat-card__desc">Hecho a medida, con acabados y detalles únicos.</p>
+              <h3 class="cat-card__title">Puertas</h3>
+              <p class="cat-card__desc">Puertas artesanales que definen cada espacio con carácter.</p>
               <a class="cat-card__link" href="categorias.html">Ver más</a>
             </div>
           </article>
           <article class="cat-card">
-            <img class="cat-card__img js-lazy" alt="Regalos" width="800" height="600" data-src="Regalos/portada.png" />
+            <img class="cat-card__img js-lazy" alt="Sillas" width="800" height="600" data-src="Personalizados/SillaIndex.png" />
             <div class="cat-card__overlay">
-              <h3 class="cat-card__title">Regalos</h3>
-              <p class="cat-card__desc">Detalles en madera para sorprender en cualquier ocasión.</p>
+              <h3 class="cat-card__title">Sillas</h3>
+              <p class="cat-card__desc">Asientos cómodos y elegantes para cada ambiente.</p>
               <a class="cat-card__link" href="categorias.html">Ver más</a>
             </div>
           </article>
