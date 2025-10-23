@@ -838,3 +838,366 @@
     });
   }
 })();
+
+// ==== Chatbot Modal ====
+(function(){
+  const bubble = document.getElementById('chatbot-bubble');
+  const modal = document.getElementById('chatbot-modal');
+  
+  if (!bubble || !modal) return;
+  
+  const trigger = bubble.querySelector('.chatbot-bubble__trigger');
+  const closeBtn = modal.querySelector('.chatbot-modal__close');
+  const overlay = modal.querySelector('.chatbot-modal__overlay');
+  const messagesContainer = modal.querySelector('.chatbot-modal__messages');
+  
+  let isOpen = false;
+  
+  // Variables para almacenar datos del chat
+  let chatData = {
+    category: '',
+    userMessages: [],
+    fullSpecs: ''
+  };
+  
+  // Mensajes iniciales del chatbot
+  const initialMessages = `
+    <div class="chatbot-message chatbot-message--bot">
+      <div class="chatbot-message__avatar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+      </div>
+      <div class="chatbot-message__content">
+        <p>¡Hola! 👋 Soy tu asistente para cotizaciones en Agreste.</p>
+        <p>¿Qué tipo de mueble en madera te gustaría cotizar hoy?</p>
+      </div>
+    </div>
+    
+    <div class="chatbot-message chatbot-message--bot">
+      <div class="chatbot-message__avatar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+      </div>
+      <div class="chatbot-message__content">
+        <p>Selecciona una opción para empezar tu cotización:</p>
+        <div class="chatbot-options">
+          <button class="chatbot-option" data-option="arrimos">🏠 Arrimos</button>
+          <button class="chatbot-option" data-option="buffet">🍽️ Buffet</button>
+          <button class="chatbot-option" data-option="comedor">🪑 Comedor</button>
+          <button class="chatbot-option" data-option="mesas-centro">☕ Mesas de centro</button>
+          <button class="chatbot-option" data-option="puertas">🚪 Puertas</button>
+          <button class="chatbot-option" data-option="sillas">🪑 Sillas</button>
+          <button class="chatbot-option" data-option="personalizado">✨ Personalizados</button>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  // Función para limpiar y resetear el chat
+  function resetChat() {
+    messagesContainer.innerHTML = initialMessages;
+    
+    // Resetear datos del chat
+    chatData = {
+      category: '',
+      userMessages: [],
+      fullSpecs: ''
+    };
+    
+    // Re-agregar event listeners a las nuevas opciones
+    const newOptions = messagesContainer.querySelectorAll('.chatbot-option');
+    newOptions.forEach(option => {
+      option.addEventListener('click', handleOptionClick);
+    });
+  }
+  
+  // Función para manejar clics en opciones
+  function handleOptionClick(e) {
+    const selectedOption = e.target.dataset.option;
+    
+    // Guardar categoría seleccionada
+    chatData.category = selectedOption;
+    chatData.userMessages.push(`Categoría: ${e.target.textContent}`);
+    
+    // Crear mensaje del usuario
+    const userMessage = document.createElement('div');
+    userMessage.className = 'chatbot-message chatbot-message--user';
+    userMessage.innerHTML = `
+      <div class="chatbot-message__content" style="background: var(--accent); color: white; border-radius: 18px 18px 4px 18px; margin-left: auto;">
+        <p style="color: white !important; margin: 0;">Quiero cotizar: ${e.target.textContent}</p>
+      </div>
+    `;
+    
+    // Crear respuesta del bot
+    const botResponse = document.createElement('div');
+    botResponse.className = 'chatbot-message chatbot-message--bot';
+    
+    let responseText = '';
+    let categoryName = '';
+    
+    switch(selectedOption) {
+      case 'arrimos':
+        responseText = '¡Perfecto! Vamos a cotizar tus arrimos.';
+        categoryName = 'arrimos';
+        break;
+      case 'buffet':
+        responseText = '¡Excelente! Vamos a cotizar tu buffet.';
+        categoryName = 'buffet';
+        break;
+      case 'comedor':
+        responseText = '¡Genial! Vamos a cotizar tu comedor.';
+        categoryName = 'comedor';
+        break;
+      case 'mesas-centro':
+        responseText = '¡Increíble! Vamos a cotizar tus mesas de centro.';
+        categoryName = 'mesas de centro';
+        break;
+      case 'puertas':
+        responseText = '¡Fantástico! Vamos a cotizar tus puertas.';
+        categoryName = 'puertas';
+        break;
+      case 'sillas':
+        responseText = '¡Perfecto! Vamos a cotizar tus sillas.';
+        categoryName = 'sillas';
+        break;
+      case 'personalizado':
+        responseText = '¡Increíble! Vamos a cotizar tu proyecto personalizado.';
+        categoryName = 'proyecto personalizado';
+        break;
+    }
+    
+    botResponse.innerHTML = `
+      <div class="chatbot-message__avatar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+      </div>
+      <div class="chatbot-message__content">
+        <p><strong>${responseText}</strong></p>
+        <p style="margin-top: 8px;">Por favor, cuéntame más detalles sobre tu ${categoryName}:</p>
+      </div>
+    `;
+    
+    // Agregar mensajes al contenedor
+    messagesContainer.appendChild(userMessage);
+    messagesContainer.appendChild(botResponse);
+    
+    // Crear input de texto interactivo
+    const inputContainer = document.createElement('div');
+    inputContainer.className = 'chatbot-input-container';
+    inputContainer.innerHTML = `
+      <div class="chatbot-input-wrapper">
+        <textarea 
+          class="chatbot-input" 
+          placeholder="Ej: Mesa de 120x80cm en roble natural, con cajones..." 
+          rows="3"
+          maxlength="500"
+        ></textarea>
+        <button class="chatbot-send-btn" type="button">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22,2 15,22 11,13 2,9"></polygon>
+          </svg>
+        </button>
+      </div>
+      <div class="chatbot-final-actions" style="display: none;">
+        <button class="chatbot-final-btn" type="button">Crear cotización completa</button>
+      </div>
+    `;
+    
+    messagesContainer.appendChild(inputContainer);
+    
+    // Agregar event listeners al input y botón
+    const textarea = inputContainer.querySelector('.chatbot-input');
+    const sendBtn = inputContainer.querySelector('.chatbot-send-btn');
+    const finalActions = inputContainer.querySelector('.chatbot-final-actions');
+    const finalBtn = inputContainer.querySelector('.chatbot-final-btn');
+    
+    // Función para enviar mensaje
+    function sendUserMessage() {
+      const message = textarea.value.trim();
+      if (!message) return;
+      
+      // Guardar mensaje del usuario
+      chatData.userMessages.push(message);
+      
+      // Crear mensaje del usuario
+      const userMsg = document.createElement('div');
+      userMsg.className = 'chatbot-message chatbot-message--user';
+      userMsg.innerHTML = `
+        <div class="chatbot-message__content" style="background: var(--accent); color: white; border-radius: 18px 18px 4px 18px; margin-left: auto;">
+          <p style="color: white !important; margin: 0;">${message}</p>
+        </div>
+      `;
+      
+      // Respuesta del bot
+      const botMsg = document.createElement('div');
+      botMsg.className = 'chatbot-message chatbot-message--bot';
+      botMsg.innerHTML = `
+        <div class="chatbot-message__avatar">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+        </div>
+        <div class="chatbot-message__content">
+          <p>¡Excelente información! ¿Algo más que quieras agregar sobre tu ${categoryName}?</p>
+        </div>
+      `;
+      
+      // Insertar antes del input container
+      messagesContainer.insertBefore(userMsg, inputContainer);
+      messagesContainer.insertBefore(botMsg, inputContainer);
+      
+      // Limpiar textarea y mostrar botón final
+      textarea.value = '';
+      finalActions.style.display = 'block';
+      
+      // Scroll to bottom
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+    
+    // Event listeners
+    sendBtn.addEventListener('click', sendUserMessage);
+    textarea.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendUserMessage();
+      }
+    });
+    
+    finalBtn.addEventListener('click', () => {
+      // Compilar toda la información
+      chatData.fullSpecs = `Categoría: ${e.target.textContent}\n\nDetalles:\n${chatData.userMessages.slice(1).join('\n\n')}`;
+      
+      // Guardar en localStorage para transferir
+      localStorage.setItem('agresteChatData', JSON.stringify(chatData));
+      
+      // Redireccionar a cotizar.html
+      window.location.href = 'cotizar.html#formulario';
+    });
+    
+    // Ocultar todas las opciones iniciales
+    const allOptions = messagesContainer.querySelectorAll('.chatbot-option');
+    allOptions.forEach(opt => opt.style.display = 'none');
+    
+    // Scroll to bottom y focus en textarea
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    setTimeout(() => textarea.focus(), 300);
+  }
+  
+  // Función para abrir modal
+  function openModal() {
+    isOpen = true;
+    modal.setAttribute('aria-hidden', 'false');
+    trigger.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+    
+    // Limpiar y resetear chat cada vez que se abre
+    resetChat();
+    
+    // Focus management
+    setTimeout(() => {
+      const firstFocusable = modal.querySelector('.chatbot-modal__close, .chatbot-option');
+      if (firstFocusable) firstFocusable.focus();
+    }, 300);
+  }
+  
+  // Función para cerrar modal
+  function closeModal() {
+    isOpen = false;
+    modal.setAttribute('aria-hidden', 'true');
+    trigger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+    
+    // Return focus to trigger
+    setTimeout(() => {
+      trigger.focus();
+    }, 100);
+  }
+  
+  // Event listeners
+  trigger.addEventListener('click', openModal);
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', closeModal);
+  
+  // Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isOpen) {
+      closeModal();
+    }
+  });
+  
+  // Inicializar el chat por primera vez
+  resetChat();
+  
+  // Auto-mostrar bubble después de unos segundos
+  setTimeout(() => {
+    if (bubble && !isOpen) {
+      bubble.style.animation = 'chatbot-bounce 0.6s ease-in-out 3';
+    }
+  }, 3000);
+})();
+
+// ============================================
+// FUNCIONALIDAD PARA COTIZAR.HTML
+// ============================================
+
+// Cargar datos del chatbot en cotizar.html
+document.addEventListener('DOMContentLoaded', () => {
+  // Verificar si estamos en cotizar.html
+  if (window.location.pathname.includes('cotizar.html') || document.getElementById('productDetails')) {
+    const productDetailsTextarea = document.getElementById('productDetails');
+    
+    if (productDetailsTextarea) {
+      // Obtener datos del localStorage
+      const chatDataString = localStorage.getItem('agresteChatData');
+      
+      if (chatDataString) {
+        try {
+          const chatData = JSON.parse(chatDataString);
+          
+          // Compilar información del chatbot
+          let compiledInfo = '';
+          
+          if (chatData.category && chatData.userMessages && chatData.userMessages.length > 0) {
+            // Agregar categoría
+            compiledInfo += `${chatData.userMessages[0]}\n\n`;
+            
+            // Agregar detalles del usuario
+            if (chatData.userMessages.length > 1) {
+              compiledInfo += 'Detalles especificados:\n';
+              for (let i = 1; i < chatData.userMessages.length; i++) {
+                compiledInfo += `- ${chatData.userMessages[i]}\n`;
+              }
+            }
+            
+            // Agregar timestamp
+            compiledInfo += `\n[Información recopilada desde el chatbot - ${new Date().toLocaleDateString()}]`;
+            
+            // Insertar en el textarea
+            productDetailsTextarea.value = compiledInfo;
+            
+            // Limpiar localStorage después de usar
+            localStorage.removeItem('agresteChatData');
+            
+            // Scroll hacia el formulario si viene del chatbot
+            if (window.location.hash === '#formulario') {
+              setTimeout(() => {
+                const formulario = document.getElementById('formulario');
+                if (formulario) {
+                  formulario.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+              }, 500);
+            }
+          }
+        } catch (error) {
+          console.error('Error al procesar datos del chatbot:', error);
+          // Limpiar localStorage si hay error
+          localStorage.removeItem('agresteChatData');
+        }
+      }
+    }
+  }
+});

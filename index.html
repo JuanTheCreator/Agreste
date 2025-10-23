@@ -274,7 +274,6 @@
           <h2 class="social-cta__title">Conecta con nosotros</h2>
           <p class="social-cta__desc">Ideas en madera, procesos detrás de cámaras y lanzamientos. ¡Síguenos para no perderte nada!</p>
           <div class="social-cta__buttons">
-            <a class="social-cta__btn" href="#" aria-label="Seguir ahora">Seguir ahora</a>
             <a class="social-cta__btn social-cta__btn--secondary" href="novedades.html" aria-label="Ver novedades">Novedades</a>
           </div>
         </div>
@@ -606,7 +605,6 @@
         <h2 class="social-cta__title">Conecta con nosotros</h2>
         <p class="social-cta__desc">Ideas en madera, procesos detrás de cámaras y lanzamientos. ¡Síguenos para no perderte nada!</p>
         <div class="social-cta__buttons">
-          <a class="social-cta__btn" href="#" aria-label="Seguir ahora">Seguir ahora</a>
           <a class="social-cta__btn social-cta__btn--secondary" href="novedades.html" aria-label="Ver novedades">Novedades</a>
         </div>
       </div>
@@ -627,16 +625,84 @@
     </div>
   </section>
 
-  <!-- CTA Cotizar -->
-  <section class="quote-cta section" aria-label="Solicita tu cotización">
-    <div class="quote-cta__inner">
-      <div class="quote-cta__content">
-        <h2 class="quote-cta__title">¿Tienes un proyecto en mente?</h2>
-        <p class="quote-cta__desc">Cotiza tu mueble personalizado. Te acompañamos desde el diseño hasta la entrega final.</p>
-        <a class="quote-cta__btn" href="cotizar.html" aria-label="Solicitar cotización">Solicitar cotización</a>
+  <!-- CTA Cotizar - Burbuja Chatbot -->
+  <div class="chatbot-bubble" id="chatbot-bubble" aria-label="Asistente de cotización">
+    <button class="chatbot-bubble__trigger" type="button" aria-label="Abrir asistente de cotización" aria-controls="chatbot-modal" aria-expanded="false">
+      <div class="chatbot-bubble__avatar">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+      </div>
+      <div class="chatbot-bubble__preview">
+        <span class="chatbot-bubble__title">¿Tienes un proyecto en mente?</span>
+        <span class="chatbot-bubble__subtitle">Te ayudo con tu cotización</span>
+      </div>
+    </button>
+  </div>
+
+  <!-- Modal Chatbot -->
+  <div id="chatbot-modal" class="chatbot-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="chatbot-modal-title">
+    <div class="chatbot-modal__overlay"></div>
+    <div class="chatbot-modal__container">
+      <div class="chatbot-modal__header">
+        <div class="chatbot-modal__avatar">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+        </div>
+        <div class="chatbot-modal__info">
+          <h3 id="chatbot-modal-title" class="chatbot-modal__name">Asistente Agreste</h3>
+          <p class="chatbot-modal__status">En línea</p>
+        </div>
+        <button class="chatbot-modal__close" type="button" aria-label="Cerrar asistente">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M18 6L6 18M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+      
+      <div class="chatbot-modal__messages">
+        <div class="chatbot-message chatbot-message--bot">
+          <div class="chatbot-message__avatar">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
+          <div class="chatbot-message__content">
+            <p>¡Hola! 👋 Soy tu asistente para cotizaciones.</p>
+            <p>¿Tienes un proyecto de muebles en mente? Te ayudo a crear una cotización personalizada.</p>
+          </div>
+        </div>
+        
+        <div class="chatbot-message chatbot-message--bot">
+          <div class="chatbot-message__avatar">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
+          <div class="chatbot-message__content">
+            <p>¿Qué tipo de mueble necesitas?</p>
+            <div class="chatbot-options">
+              <button class="chatbot-option" data-option="mesa">🪑 Mesa</button>
+              <button class="chatbot-option" data-option="silla">💺 Silla</button>
+              <button class="chatbot-option" data-option="armario">🗄️ Armario</button>
+              <button class="chatbot-option" data-option="personalizado">✨ Personalizado</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="chatbot-modal__footer">
+        <a class="chatbot-modal__cta" href="cotizar.html">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M9 11H7a4 4 0 0 1 0-8h2m4 0h2a4 4 0 0 1 0 8h-2"/>
+            <path d="M9 7h6"/>
+          </svg>
+          Crear cotización completa
+        </a>
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- Footer -->
   <footer class="footer" aria-label="Información del sitio">
