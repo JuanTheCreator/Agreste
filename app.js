@@ -528,71 +528,210 @@
   next && next.addEventListener('click', () => scrollByAmount2(1));
 })();
 
-// ==== Mejora de navegación: estados de flechas y teclado en carrusel ====
+// ==== Mejora de navegación: estados de flechas y teclado en carrusel de productos ====
 (function(){
   const section = document.querySelector('section.products');
   if (!section) return;
+  
   const row = section.querySelector('.js-products-row');
-  const prev = section.querySelector('.products__nav--prev');
-  const next = section.querySelector('.products__nav--next');
-  if (!row || !prev || !next) return;
+  const prevOriginal = section.querySelector('.products__nav--prev');
+  const nextOriginal = section.querySelector('.products__nav--next');
+  
+  if (!row || !prevOriginal || !nextOriginal) return;
 
   // Reemplaza botones para limpiar posibles listeners previos
-  const prevBtn = prev.cloneNode(true); prev.replaceWith(prevBtn);
-  const nextBtn = next.cloneNode(true); next.replaceWith(nextBtn);
+  const prevBtn = prevOriginal.cloneNode(true); 
+  const nextBtn = nextOriginal.cloneNode(true);
+  prevOriginal.replaceWith(prevBtn);
+  nextOriginal.replaceWith(nextBtn);
+
+  // Añadir contenido a los botones si están vacíos
+  if (!prevBtn.textContent.trim()) {
+    prevBtn.innerHTML = '‹';
+  }
+  if (!nextBtn.textContent.trim()) {
+    nextBtn.innerHTML = '›';
+  }
 
   function updateNav(){
-    const maxScroll = row.scrollWidth - row.clientWidth - 1;
-    prevBtn.toggleAttribute('disabled', row.scrollLeft <= 0);
-    nextBtn.toggleAttribute('disabled', row.scrollLeft >= maxScroll);
+    const maxScroll = Math.max(0, row.scrollWidth - row.clientWidth);
+    const currentScroll = row.scrollLeft;
+    
+    prevBtn.toggleAttribute('disabled', currentScroll <= 5);
+    nextBtn.toggleAttribute('disabled', currentScroll >= maxScroll - 5);
   }
+  
   function scrollByView(dir){
-    const amount = Math.round(row.clientWidth * 0.9);
-    row.scrollBy({ left: dir * amount, behavior: 'smooth' });
-    setTimeout(updateNav, 250);
+    const containerWidth = row.clientWidth;
+    const cardWidth = 280; // Ancho aproximado de una tarjeta de producto
+    
+    // En móviles, scrollear una tarjeta; en desktop, scrollear múltiples
+    const isMobile = window.innerWidth <= 768;
+    const scrollAmount = isMobile ? cardWidth : Math.round(containerWidth * 0.8);
+    
+    row.scrollBy({ 
+      left: dir * scrollAmount, 
+      behavior: 'smooth' 
+    });
+    
+    // Actualizar navegación después del scroll
+    setTimeout(updateNav, 300);
   }
-  prevBtn.addEventListener('click', () => scrollByView(-1));
-  nextBtn.addEventListener('click', () => scrollByView(1));
-  row.addEventListener('scroll', () => updateNav(), { passive: true });
-  row.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight') { e.preventDefault(); scrollByView(1); }
-    if (e.key === 'ArrowLeft') { e.preventDefault(); scrollByView(-1); }
+
+  // Event listeners para los botones
+  prevBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    scrollByView(-1);
   });
-  updateNav();
+  
+  nextBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    scrollByView(1);
+  });
+
+  // Event listener para scroll manual
+  row.addEventListener('scroll', () => {
+    requestAnimationFrame(updateNav);
+  }, { passive: true });
+
+  // Soporte de teclado
+  row.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') { 
+      e.preventDefault(); 
+      scrollByView(1); 
+    }
+    if (e.key === 'ArrowLeft') { 
+      e.preventDefault(); 
+      scrollByView(-1); 
+    }
+  });
+
+  // Inicializar navegación
+  setTimeout(updateNav, 100);
+  
+  // Actualizar en resize
+  window.addEventListener('resize', () => {
+    setTimeout(updateNav, 100);
+  });
 })();
 
 // ==== Carrusel de categorías (slider horizontal) ====
 (function(){
   const section = document.querySelector('section.categories');
   if (!section) return;
+  
   const row = section.querySelector('.js-cats-row');
-  const prev = section.querySelector('.categories__nav--prev');
-  const next = section.querySelector('.categories__nav--next');
-  if (!row || !prev || !next) return;
+  const prevOriginal = section.querySelector('.categories__nav--prev');
+  const nextOriginal = section.querySelector('.categories__nav--next');
+  
+  if (!row || !prevOriginal || !nextOriginal) return;
 
-  const prevBtn = prev.cloneNode(true); prev.replaceWith(prevBtn);
-  const nextBtn = next.cloneNode(true); next.replaceWith(nextBtn);
+  // Clonar botones para limpiar event listeners anteriores
+  const prevBtn = prevOriginal.cloneNode(true); 
+  const nextBtn = nextOriginal.cloneNode(true);
+  prevOriginal.replaceWith(prevBtn);
+  nextOriginal.replaceWith(nextBtn);
+
+  // Añadir contenido a los botones si están vacíos
+  if (!prevBtn.textContent.trim()) {
+    prevBtn.innerHTML = '‹';
+  }
+  if (!nextBtn.textContent.trim()) {
+    nextBtn.innerHTML = '›';
+  }
 
   function updateNav(){
-    const maxScroll = row.scrollWidth - row.clientWidth - 1;
-    prevBtn.toggleAttribute('disabled', row.scrollLeft <= 0);
-    nextBtn.toggleAttribute('disabled', row.scrollLeft >= maxScroll);
+    const maxScroll = Math.max(0, row.scrollWidth - row.clientWidth);
+    const currentScroll = row.scrollLeft;
+    
+    prevBtn.toggleAttribute('disabled', currentScroll <= 5);
+    nextBtn.toggleAttribute('disabled', currentScroll >= maxScroll - 5);
   }
+  
   function scrollByView(dir){
-    const amount = Math.round(row.clientWidth * 0.9);
-    row.scrollBy({ left: dir * amount, behavior: 'smooth' });
+    const containerWidth = row.clientWidth;
+    const cardWidth = 320; // Ancho aproximado de una tarjeta de categoría
+    
+    // En móviles, scrollear una tarjeta completa; en desktop, scrollear múltiples
+    const isMobile = window.innerWidth <= 768;
+    const scrollAmount = isMobile ? cardWidth : Math.round(containerWidth * 0.8);
+    
+    row.scrollBy({ 
+      left: dir * scrollAmount, 
+      behavior: 'smooth' 
+    });
+    
+    // Efectos visuales
     row.classList.add(dir > 0 ? 'bump-right' : 'bump-left');
     setTimeout(() => row.classList.remove('bump-right', 'bump-left'), 240);
-    setTimeout(updateNav, 260);
+    
+    // Actualizar navegación después del scroll
+    setTimeout(updateNav, 300);
   }
-  prevBtn.addEventListener('click', () => scrollByView(-1));
-  nextBtn.addEventListener('click', () => scrollByView(1));
-  row.addEventListener('scroll', () => updateNav(), { passive: true });
-  row.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight') { e.preventDefault(); scrollByView(1); }
-    if (e.key === 'ArrowLeft') { e.preventDefault(); scrollByView(-1); }
+
+  // Event listeners para los botones
+  prevBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    scrollByView(-1);
   });
-  updateNav();
+  
+  nextBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    scrollByView(1);
+  });
+
+  // Event listener para scroll manual
+  row.addEventListener('scroll', () => {
+    requestAnimationFrame(updateNav);
+  }, { passive: true });
+
+  // Soporte de teclado
+  row.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') { 
+      e.preventDefault(); 
+      scrollByView(1); 
+    }
+    if (e.key === 'ArrowLeft') { 
+      e.preventDefault(); 
+      scrollByView(-1); 
+    }
+  });
+
+  // Touch/swipe soporte básico
+  let startX = 0;
+  let scrollLeft = 0;
+  let isDown = false;
+
+  row.addEventListener('touchstart', (e) => {
+    isDown = true;
+    startX = e.touches[0].pageX - row.offsetLeft;
+    scrollLeft = row.scrollLeft;
+  }, { passive: true });
+
+  row.addEventListener('touchend', () => {
+    isDown = false;
+    updateNav();
+  }, { passive: true });
+
+  row.addEventListener('touchmove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.touches[0].pageX - row.offsetLeft;
+    const walk = (x - startX) * 2;
+    row.scrollLeft = scrollLeft - walk;
+  });
+
+  // Inicializar navegación
+  setTimeout(updateNav, 100);
+  
+  // Actualizar en resize
+  window.addEventListener('resize', () => {
+    setTimeout(updateNav, 100);
+  });
 })();
 
 // ==== Mobile Navigation Menu ====

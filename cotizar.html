@@ -601,38 +601,32 @@
 
   <footer class="footer" aria-label="Informaci&oacute;n del sitio">
     <div class="footer__inner">
+      <div class="footer__newsletter" aria-label="Suscripci&oacute;n">
+        <div class="newsletter__inner">
+          <h2 class="newsletter__title">&Uacute;nete y obt&eacute;n 10% OFF</h2>
+          <p class="newsletter__desc">Recibe novedades, lanzamientos y ofertas en piezas de madera.</p>
+          <form class="newsletter__form" onsubmit="event.preventDefault(); alert('&iexcl;Gracias por suscribirte!');">
+            <label class="visually-hidden" for="newsletter-email">Correo electr&oacute;nico</label>
+            <input id="newsletter-email" type="email" required placeholder="Tu email" />
+            <button type="submit">Suscribirme</button>
+          </form>
+          <small class="newsletter__legal">Al suscribirte aceptas nuestra pol&iacute;tica de privacidad.</small>
+        </div>
+      </div>
       <div class="footer__brand">
-        <a class="footer__logo" href="#" aria-label="Inicio">
+        <a class="footer__logo" href="index.html" aria-label="Inicio">
           <img src="Logos/agreste-45.png" alt="Agreste" class="footer__logo-img" />
         </a>
         <p class="footer__tagline">Hecho a mano en madera. Producci&oacute;n responsable.</p>
         <div class="footer__social">
           <span class="footer__social-label">S&iacute;guenos</span>
           <div class="social">
-            <a class="social__link" href="#" aria-label="Instagram" target="_blank" rel="noopener">
+            <a class="social__link" href="https://www.instagram.com/talleragreste/?hl=es" aria-label="Instagram" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="currentColor">
                 <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A5.5 5.5 0 1 1 6.5 13 5.5 5.5 0 0 1 12 7.5zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5z"/>
                 <circle cx="18.5" cy="5.5" r="1.2"/>
               </svg>
               <span class="visually-hidden">Instagram</span>
-            </a>
-            <a class="social__link" href="#" aria-label="Facebook" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="currentColor">
-                <path d="M13 22v-8h3l1-4h-4V8a1 1 0 0 1 1-1h3V3h-3a5 5 0 0 0-5 5v2H6v4h3v8z"/>
-              </svg>
-              <span class="visually-hidden">Facebook</span>
-            </a>
-            <a class="social__link" href="#" aria-label="TikTok" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="currentColor">
-                <path d="M14 3h3a5 5 0 0 0 5 5v3a7.9 7.9 0 0 1-5-1.6V15a6 6 0 1 1-6-6h1v3h-1a3 3 0 1 0 3 3z"/>
-              </svg>
-              <span class="visually-hidden">TikTok</span>
-            </a>
-            <a class="social__link" href="#" aria-label="YouTube" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="currentColor">
-                <path d="M23 12c0-3-1-5-1-5s-1-.9-2-.9C17 6 12 6 12 6s-5 0-8 .1C3 6.1 2 7 2 7S1 9 1 12s1 5 1 5 1 .9 2 .9C7 18 12 18 12 18s5 0 8-.1c1 0 2-.9 2-.9s1-2 1-5zM10 15V9l5 3-5 3z"/>
-              </svg>
-              <span class="visually-hidden">YouTube</span>
             </a>
           </div>
         </div>
