@@ -407,7 +407,7 @@
     const phone = fields.phone.value.trim();
     const subject = (fields.subject.value || 'Nueva solicitud de contacto').trim();
     const message = fields.message.value.trim();
-    const dest = '573001234567';
+    const dest = '56957500385';
     const plain = `Hola, soy ${name}.\nEmail: ${email}\nTeléfono: ${phone}\nAsunto: ${subject}\n\n${message}`;
     const url = `https://wa.me/${dest}?text=${encodeURIComponent(plain)}`;
     const btn = form.querySelector('button[type="submit"]');
