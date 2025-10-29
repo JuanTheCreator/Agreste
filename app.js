@@ -1340,3 +1340,119 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 });
+
+// === Envío de formulario de cotización a backend ===
+document.addEventListener('DOMContentLoaded', () => {
+  const cotizarForm = document.querySelector('#formulario form');
+  if (cotizarForm) {
+    cotizarForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = {
+        fullName: cotizarForm.querySelector('#fullName').value,
+        phone: cotizarForm.querySelector('#phone').value,
+        email: cotizarForm.querySelector('#email').value,
+        deliveryDate: cotizarForm.querySelector('#deliveryDate').value,
+        productDetails: cotizarForm.querySelector('#productDetails').value
+      };
+      try {
+        const res = await fetch('http://localhost:3001/api/cotizaciones', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        if (res.ok) {
+          cotizarForm.reset();
+          alert('¡Solicitud enviada correctamente!');
+        } else {
+          alert('Error al enviar la solicitud.');
+        }
+      } catch (err) {
+        alert('Error de conexión.');
+      }
+    });
+  }
+
+  // === Envío de formulario de contacto a backend ===
+  const contactForm = document.getElementById('contact-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = {
+        name: contactForm.querySelector('#cf-name').value,
+        email: contactForm.querySelector('#cf-email').value,
+        phone: contactForm.querySelector('#cf-phone').value,
+        subject: contactForm.querySelector('#cf-subject').value,
+        message: contactForm.querySelector('#cf-message').value
+      };
+      try {
+        const res = await fetch('http://localhost:3001/api/contactos', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        if (res.ok) {
+          contactForm.reset();
+          alert('¡Mensaje enviado correctamente!');
+        } else {
+          alert('Error al enviar el mensaje.');
+        }
+      } catch (err) {
+        alert('Error de conexión.');
+      }
+    });
+  }
+
+  // === Envío de registro/login a backend ===
+  const authForm = document.querySelector('.auth-form');
+  if (authForm) {
+    authForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = {
+        email: authForm.querySelector('#auth-email').value,
+        password: authForm.querySelector('#auth-password') ? authForm.querySelector('#auth-password').value : '',
+        name: authForm.querySelector('#auth-name') ? authForm.querySelector('#auth-name').value : ''
+      };
+      try {
+        const res = await fetch('http://localhost:3001/api/usuarios', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        if (res.ok) {
+          authForm.reset();
+          alert('¡Usuario registrado/iniciado correctamente!');
+        } else {
+          alert('Error al procesar usuario.');
+        }
+      } catch (err) {
+        alert('Error de conexión.');
+      }
+    });
+  }
+
+  // === Envío de suscripción newsletter a backend ===
+  const newsletterForm = document.querySelector('.newsletter__form');
+  if (newsletterForm) {
+    newsletterForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = {
+        email: newsletterForm.querySelector('#newsletter-email').value
+      };
+      try {
+        const res = await fetch('http://localhost:3001/api/suscripciones', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        if (res.ok) {
+          newsletterForm.reset();
+          alert('¡Suscripción exitosa!');
+        } else {
+          alert('Error al suscribirse.');
+        }
+      } catch (err) {
+        alert('Error de conexión.');
+      }
+    });
+  }
+});
