@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contacto — Agreste</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="header__bar">
+      <a href="index.html" class="header__logo" aria-label="Inicio">
+        <img src="Logos/Agreste-44.png" alt="Agreste" class="header__logo-img" />
+      </a>
+    </div>
+  </header>
+
+  <main class="main">
+    
+
+    <!-- Formulario de contacto -->
+    <section class="contact" aria-label="Escríbenos">
+      <div class="section__header">
+        <h3 class="section__title">Escríbenos</h3>
+        <p class="section__subtitle">Déjanos tus datos y cuéntanos tu idea. Te contactaremos pronto.</p>
+      </div>
+      <form id="contact-form" class="contact__form" novalidate>
+        <div class="form__group">
+          <label for="cf-name">Nombre completo</label>
+          <input id="cf-name" name="name" class="form__control" type="text" required placeholder="Tu nombre" />
+        </div>
+        <div class="form__group">
+          <label for="cf-email">Correo electrónico</label>
+          <input id="cf-email" name="email" class="form__control" type="email" required placeholder="tunombre@email.cl" />
+        </div>
+        <div class="form__group">
+          <label for="cf-phone">Teléfono</label>
+          <input id="cf-phone" name="phone" class="form__control" type="tel" inputmode="tel" pattern="[0-9+\-\s]{7,15}" required placeholder="Ej: +56 957 500 385" />
+        </div>
+        <div class="form__group">
+          <label for="cf-subject">Asunto</label>
+          <input id="cf-subject" name="subject" class="form__control" type="text" placeholder="Tema (opcional)" />
+        </div>
+        <div class="form__group form__group--full">
+          <label for="cf-message">Mensaje</label>
+          <textarea id="cf-message" name="message" class="form__control" rows="5" required placeholder="Cuéntanos tu idea, medidas, madera preferida, etc."></textarea>
+        </div>
+        <div class="form__actions">
+          <button type="button" class="product-card__cta" onclick="window.open('https://wa.me/56957500385?text=Hola%2C%20quiero%20contactar%20con%20ustedes', '_blank');">Enviar por WhatsApp</button>
+          <a href="mailto:contacto@talleragreste.cl" class="contact__alt">Prefiero correo</a>
+        </div>
+        <small class="contact__legal">Al enviar aceptas ser contactado por nuestros canales. Cuidamos tus datos.</small>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer" aria-label="Información del sitio">
+    <div class="footer__inner">
+      <div class="footer__newsletter" aria-label="Suscripción">
+        <div class="newsletter__inner">
+          <h2 class="newsletter__title">Únete y obtén 10% OFF</h2>
+          <p class="newsletter__desc">Recibe novedades, lanzamientos y ofertas en piezas de madera.</p>
+          <form class="newsletter__form" onsubmit="event.preventDefault(); alert('¡Gracias por suscribirte!');">
+            <label class="visually-hidden" for="newsletter-email">Correo electrónico</label>
+            <input id="newsletter-email" type="email" required placeholder="Tu email" />
+            <button type="submit">Suscribirme</button>
+          </form>
+          <small class="newsletter__legal">Al suscribirte aceptas nuestra política de privacidad.</small>
+        </div>
+      </div>
+      <div class="footer__brand">
+        <a class="footer__logo" href="index.html" aria-label="Inicio">
+          <img src="Logos/agreste-45.png" alt="Agreste" class="footer__logo-img" />
+        </a>
+        <p class="footer__tagline">Hecho a mano en madera. Producción responsable.</p>
+        <div class="footer__social">
+          <span class="footer__social-label">Síguenos</span>
+          <div class="social">
+            <a class="social__link" href="https://www.instagram.com/talleragreste/?hl=es" aria-label="Instagram" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="currentColor">
+                <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A5.5 5.5 0 1 1 6.5 13 5.5 5.5 0 0 1 12 7.5zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5z"/>
+                <circle cx="18.5" cy="5.5" r="1.2"/>
+              </svg>
+              <span class="visually-hidden">Instagram</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom"><small>© 2025 Agreste.</small></div>
+  </footer>
+
+  <!-- Back Button -->
+<button class="back-button" onclick="window.history.back()" aria-label="Volver atrás">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="white">
+    <path d="M19 12H6.83l5.59-5.59L11 5l-8 8 8 8 1.41-1.41L6.83 13H19v-1z"/>
+  </svg>
+</button>
+
+<style>
+  .back-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #6F001D; /* Updated to the correct red color */
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    z-index: 1000;
+  }
+
+  .back-button svg {
+    fill: white;
+  }
+
+  .back-button:hover {
+    background-color: #5A0017; /* Slightly darker shade for hover effect */
+  }
+</style>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cotizar - Agreste</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      background-color: #FCFCFC;
+      min-height: 100vh;
+      font-size: 16px;
+      font-family: 'Montserrat', sans-serif;
+      color: #000000;
+      margin: 0;
+    }
+    .main {
+      flex: 1;
+      width: 100%;
+      max-width: 1200px;
+      padding: 20px;
+      margin: 0 auto;
+    }
+    footer {
+      width: 100%;
+      background-color: #F9F4E1;
+      padding: 20px;
+      text-align: center;
+    }
+    .footer__brand {
+      text-align: left;
+    }
+    .footer__social-label {
+      text-align: left;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .step-by-step {
+      background-color: #fff;
+      padding: 40px 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-top: 40px;
+    }
+    .step-layout {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .steps-intro {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .steps-tag {
+      display: inline-block;
+      font-size: 14px;
+      color: #6c757d;
+      margin-bottom: 10px;
+      font-family: 'Fraunces', serif;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .steps-title {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      font-family: 'Cormorant Garamond', serif;
+      color: #000000;
+    }
+    .steps-description {
+      font-size: 16px;
+      color: #495057;
+      margin-bottom: 0;
+      font-family: 'Inter', sans-serif;
+      color: #6b6b6b;
+    }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    .step-card {
+      background-color: #F9F4E1;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+    .step-card:hover {
+      transform: translateY(-5px);
+    }
+    .step-info {
+      text-align: center;
+    }
+    .step-index {
+      display: block;
+      font-size: 14px;
+      color: #6c757d;
+      margin-bottom: 10px;
+      font-family: 'Fraunces', serif;
+    }
+    .step-title {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 10px;
+      font-family: 'Cormorant Garamond', serif;
+      color: #000000;
+    }
+    .back-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #6F001D; /* Updated to the correct red color */
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    .back-button svg {
+      fill: white;
+    }
+
+    .back-button:hover {
+      background-color: #5A0017; /* Slightly darker shade for hover effect */
+    }
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+      filter: invert(27%) sepia(100%) saturate(745%) hue-rotate(330deg) brightness(80%) contrast(90%);
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.875rem 2rem;
+      background: #6F001D;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 0.5rem;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      box-shadow: 0 2px 8px rgba(111, 0, 29, 0.2);
+    }
+
+    .cta-button:hover {
+      background: #5A0017;
+      color: white;
+      text-decoration: none;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(111, 0, 29, 0.3);
+    }
+
+    .cta-button:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 6px rgba(111, 0, 29, 0.25);
+    }
+
+    /* === Responsive Design for Mobile === */
+    /* Ajuste específico para la imagen del paso 3 */
+    img[src="Cotizar/paso3.1.jpg"] {
+      object-position: center 30% !important;
+    }
+
+    @media (max-width: 768px) {
+      .steps-intro {
+        margin-bottom: 2rem !important;
+        padding: 0 1rem;
+      }
+      
+      .steps-title {
+        font-size: 2.2rem !important;
+        line-height: 1.2;
+      }
+      
+      .steps-description {
+        font-size: 1rem !important;
+        max-width: 100% !important;
+      }
+      
+      .step {
+        flex-direction: column !important;
+        gap: 1.5rem !important;
+        text-align: center;
+      }
+      
+      .step-image {
+        max-width: 100% !important;
+        width: 100%;
+        aspect-ratio: 16/9 !important;
+        order: 1;
+      }
+      
+      .step-content {
+        order: 2;
+        text-align: center !important;
+      }
+      
+      .step-title {
+        font-size: 1.5rem !important;
+        margin-bottom: 1rem;
+      }
+      
+      .step-content p {
+        font-size: 0.95rem !important;
+        line-height: 1.5;
+        margin-bottom: 0.75rem;
+      }
+      
+      .step-content p:last-child {
+        font-size: 0.85rem !important;
+      }
+      
+      .cta-button {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .step-by-step {
+        padding: 1.5rem 1rem !important;
+        margin-top: 20px !important;
+      }
+      
+      .steps-intro {
+        margin-bottom: 1.5rem !important;
+      }
+      
+      .steps-title {
+        font-size: 1.8rem !important;
+      }
+      
+      .steps-description {
+        font-size: 0.9rem !important;
+      }
+      
+      .step {
+        gap: 1rem !important;
+      }
+      
+      .step-title {
+        font-size: 1.3rem !important;
+      }
+      
+      .step-content p {
+        font-size: 0.9rem !important;
+      }
+      
+      .step-content p:last-child {
+        font-size: 0.8rem !important;
+      }
+      
+      .carousel-control-prev,
+      .carousel-control-next {
+        width: 35px;
+        height: 35px;
+      }
+      
+      .carousel-control-prev-icon,
+      .carousel-control-next-icon {
+        width: 18px;
+        height: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+    <!-- Header -->
+  <header class="header">
+    <div class="header__bar">
+      <button class="hamburger js-menu-toggle" type="button" aria-label="Abrir menú principal" aria-controls="mobile-menu" aria-expanded="false">
+        <span class="hamburger__box">
+          <span class="hamburger__inner"></span>
+        </span>
+        <span class="sr-only">Menú</span>
+      </button>
+
+      <a href="index.html" class="header__logo" aria-label="Inicio">
+        <img src="Logos/agreste-45.png" alt="Agreste" class="header__logo-img" />
+      </a>
+
+      <form class="header__search" role="search" aria-label="Buscar">
+        <input type="search" placeholder="Buscar productos o servicios" aria-label="Buscar" />
+      </form>
+
+      <nav class="header__icons" aria-label="Acciones">
+        <button class="icon-btn js-help-toggle" type="button" aria-label="Ayuda" aria-controls="help-panel" aria-expanded="false">
+          <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M9.09 9a3 3 0 1 1 5.83 1c0 2-3 2-3 4"/>
+            <line x1="12" y1="17" x2="12" y2="17"/>
+          </svg>
+          <span class="visually-hidden">Ayuda</span>
+        </button>
+        <button class="icon-btn js-auth-toggle" type="button" aria-label="Iniciar sesi&oacute;n" aria-controls="auth-panel" aria-expanded="false">
+          <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21a8 8 0 0 0-16 0"/>
+            <circle cx="12" cy="8" r="4"/>
+          </svg>
+          <span class="visually-hidden">Cuenta</span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Desktop nav -->
+    <nav class="nav" aria-label="Categor&iacute;as principales">
+      <ul class="nav__list">
+        <li class="nav__item">
+          <button class="nav__link" aria-haspopup="true" aria-expanded="false">Categor&iacute;as</button>
+          <div class="nav__dropdown" role="menu" aria-label="Submen&uacute; Categorías">
+            <a href="categorias.html#categorias-principales" role="menuitem">Arrimos</a>
+            <a href="categorias.html#categorias-principales" role="menuitem">Buffet</a>
+            <a href="categorias.html#categorias-principales" role="menuitem">Comedor</a>
+            <a href="categorias.html#categorias-principales" role="menuitem">Mesas de Centro</a>
+            <a href="categorias.html#categorias-principales" role="menuitem">Puertas</a>
+            <a href="categorias.html#categorias-principales" role="menuitem">Sillas</a>
+          </div>
+        </li>
+        <li class="nav__item">
+          <a class="nav__link nav__link--direct" href="cotizar.html" aria-current="page">Cotizar</a>
+        </li>
+        <li class="nav__item">
+          <button class="nav__link" aria-haspopup="true" aria-expanded="false">Proyectos</button>
+          
+        </li>
+        <li class="nav__item">
+          <button class="nav__link" aria-haspopup="true" aria-expanded="false">Novedades</button>
+         
+        </li>
+        <li class="nav__item">
+          <button class="nav__link" aria-haspopup="true" aria-expanded="false">Compa&ntilde;&iacute;a</button>
+          <div class="nav__dropdown" role="menu" aria-label="Submen&uacute; Compa&ntilde;&iacute;a">
+            <a href="#" role="menuitem">Historia</a>
+            <a href="#" role="menuitem">Valores</a>
+            <a href="#" role="menuitem">Equipo</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <!-- Mobile Navigation Menu -->
+  <nav id="mobile-menu" class="mobile-nav" role="navigation" aria-label="Menú principal móvil" aria-hidden="true">
+    <div class="mobile-nav__overlay js-menu-toggle" aria-hidden="true"></div>
+    <div class="mobile-nav__panel" role="dialog" aria-labelledby="mobile-menu-title">
+      <!-- Header del menú -->
+      <header class="mobile-nav__header">
+        <h2 id="mobile-menu-title" class="mobile-nav__title">
+          <img src="Logos/agreste-45.png" alt="Agreste" class="mobile-nav__logo" width="32" height="32">
+          Menú
+        </h2>
+        <button class="mobile-nav__close js-menu-toggle" type="button" aria-label="Cerrar menú">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M18 6L6 18M6 6l12 12"/>
+          </svg>
+        </button>
+      </header>
+
+      <!-- Contenido principal del menú -->
+      <div class="mobile-nav__content">
+        <ul class="mobile-nav__list" role="list">
+          <!-- Categorías con submenú -->
+          <li class="mobile-nav__item mobile-nav__item--expandable">
+            <button class="mobile-nav__link mobile-nav__toggle" type="button" aria-expanded="false" aria-controls="categories-submenu">
+              <span class="mobile-nav__text">
+                <svg class="mobile-nav__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9zM9 21V9"/>
+                  <path d="M21 9h-6l-2-4H3v4"/>
+                </svg>
+                Categorías
+              </span>
+              <svg class="mobile-nav__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M9 18l6-6-6-6"/>
+              </svg>
+            </button>
+            <ul id="categories-submenu" class="mobile-nav__submenu" role="list" aria-hidden="true">
+              <li><a href="categorias.html#categorias-principales" class="mobile-nav__sublink">Arrimos</a></li>
+              <li><a href="categorias.html#categorias-principales" class="mobile-nav__sublink">Buffet</a></li>
+              <li><a href="categorias.html#categorias-principales" class="mobile-nav__sublink">Comedor</a></li>
+              <li><a href="categorias.html#categorias-principales" class="mobile-nav__sublink">Mesas de Centro</a></li>
+              <li><a href="categorias.html#categorias-principales" class="mobile-nav__sublink">Puertas</a></li>
+              <li><a href="categorias.html#categorias-principales" class="mobile-nav__sublink">Sillas</a></li>
+            </ul>
+          </li>
+
+          <!-- Cotizar -->
+          <li class="mobile-nav__item mobile-nav__item--active">
+            <a href="cotizar.html" class="mobile-nav__link" aria-current="page">
+              <span class="mobile-nav__text">
+                <svg class="mobile-nav__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M9 11H7a4 4 0 0 1 0-8h2m4 0h2a4 4 0 0 1 0 8h-2"/>
+                  <path d="M9 7h6"/>
+                  <path d="M13 21v-4a2 2 0 0 0-2-2h0a2 2 0 0 0-2 2v4"/>
+                </svg>
+                Cotizar
+              </span>
+            </a>
+          </li>
+
+          <!-- Proyectos -->
+          <li class="mobile-nav__item">
+            <a href="proyectos.html" class="mobile-nav__link">
+              <span class="mobile-nav__text">
+                <svg class="mobile-nav__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                  <path d="M9 12l2 2 4-4"/>
+                </svg>
+                Proyectos
+              </span>
+            </a>
+          </li>
+
+          <!-- Novedades -->
+          <li class="mobile-nav__item">
+            <a href="novedades.html" class="mobile-nav__link">
+              <span class="mobile-nav__text">
+                <svg class="mobile-nav__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                </svg>
+                Novedades
+              </span>
+            </a>
+          </li>
+
+          <!-- Compañía con submenú -->
+          <li class="mobile-nav__item mobile-nav__item--expandable">
+            <button class="mobile-nav__link mobile-nav__toggle" type="button" aria-expanded="false" aria-controls="company-submenu">
+              <span class="mobile-nav__text">
+                <svg class="mobile-nav__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87m-4-12a4 4 0 0 1 0 7.75"/>
+                </svg>
+                Compañía
+              </span>
+              <svg class="mobile-nav__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M9 18l6-6-6-6"/>
+              </svg>
+            </button>
+            <ul id="company-submenu" class="mobile-nav__submenu" role="list" aria-hidden="true">
+              <li><a href="compania.html#historia" class="mobile-nav__sublink">Historia</a></li>
+              <li><a href="compania.html#valores" class="mobile-nav__sublink">Valores</a></li>
+              <li><a href="compania.html#equipo" class="mobile-nav__sublink">Equipo</a></li>
+            </ul>
+          </li>
+
+          <!-- Contacto -->
+          <li class="mobile-nav__item">
+            <a href="contacto.html" class="mobile-nav__link">
+              <span class="mobile-nav__text">
+                <svg class="mobile-nav__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+                Contacto
+              </span>
+            </a>
+          </li>
+        </ul>
+
+        <!-- Sección de acciones -->
+        <div class="mobile-nav__actions">
+          <button type="button" class="mobile-nav__action js-auth-toggle" aria-controls="auth-panel" aria-expanded="false">
+            <svg class="mobile-nav__action-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            Iniciar sesión
+          </button>
+          <button type="button" class="mobile-nav__action js-help-toggle" aria-controls="help-panel" aria-expanded="false">
+            <svg class="mobile-nav__action-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 2-3 4"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+            Ayuda y soporte
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main">
+    <section class="step-by-step" aria-label="Guía paso a paso para cotizar" style="padding: 2rem 1rem; background-color: #FCFCFC;">
+      <div class="steps-intro" style="text-align: center; margin-bottom: 3rem;">
+        <span class="steps-tag" style="font-family: 'Fraunces', serif; font-size: 0.9rem; color: #6F001D; text-transform: uppercase; letter-spacing: 0.1em;">Guía Rápida</span>
+        <h2 class="steps-title" style="font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; color: #372717;">Cómo completar tu cotización</h2>
+        <p class="steps-description" style="font-family: 'Inter', sans-serif; font-size: 1.1rem; color: #6b6b6b; max-width: 650px; margin: 0 auto;">Sigue esta guía paso a paso para completar correctamente el formulario y obtener la cotización más precisa para tu proyecto.</p>
+      </div>
+      <div id="stepCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="step" style="display: flex; align-items: stretch; gap: 2rem;">
+              <img class="step-image" src="Cotizar/paso1.jpg" alt="Datos personales" style="flex: 1; max-width: 50%; border-radius: 12px; aspect-ratio: 4/3;" />
+              <div class="step-content" style="flex: 1;">
+                <h3 class="step-title" style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: #372717;">01. Datos personales</h3>
+                <p style="font-family: 'Inter', sans-serif; font-size: 1rem; color: #6b6b6b; margin-bottom: 1rem;">Ingresa tu nombre completo, teléfono y correo electrónico. Estos datos nos permitirán contactarte para coordinar los detalles de tu proyecto.</p>
+                <p style="font-family: 'Inter', sans-serif; font-size: 0.9rem; color: #8a8a8a; font-style: italic;">Tip: Asegúrate de que tu número de teléfono incluya el código de área para una comunicación más rápida.</p>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="step" style="display: flex; align-items: stretch; gap: 2rem; flex-direction: row-reverse;">
+              <img class="step-image" src="Cotizar/paso2.png" alt="Fecha de entrega" style="flex: 1; max-width: 50%; border-radius: 12px; aspect-ratio: 4/3;" />
+              <div class="step-content" style="flex: 1;">
+                <h3 class="step-title" style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: #372717;">02. Fecha de entrega</h3>
+                <p style="font-family: 'Inter', sans-serif; font-size: 1rem; color: #6b6b6b; margin-bottom: 1rem;">Selecciona la fecha en que necesitas recibir tu proyecto. Considera que los muebles a medida requieren tiempo de fabricación.</p>
+                <p style="font-family: 'Inter', sans-serif; font-size: 0.9rem; color: #8a8a8a; font-style: italic;">Nota: Los proyectos estándar se entregan en 7-10 días hábiles, proyectos especiales pueden tomar más tiempo.</p>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="step" style="display: flex; align-items: stretch; gap: 2rem;">
+              <img class="step-image" src="Cotizar/paso3.1.jpg" alt="Especificaciones del producto" style="flex: 1; max-width: 50%; border-radius: 12px; aspect-ratio: 4/3;" />
+              <div class="step-content" style="flex: 1;">
+                <h3 class="step-title" style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: #372717;">03. Especificaciones del producto</h3>
+                <p style="font-family: 'Inter', sans-serif; font-size: 1rem; color: #6b6b6b; margin-bottom: 1rem;">Describe detalladamente tu proyecto: dimensiones exactas, tipo de madera preferida, acabados, funcionalidades especiales y cualquier referencia visual.</p>
+                <p style="font-family: 'Inter', sans-serif; font-size: 0.9rem; color: #8a8a8a; font-style: italic;">Ejemplo: "Mesa de 120x80cm en roble natural, con cajón central y patas cónicas"</p>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="step" style="display: flex; align-items: stretch; gap: 2rem; flex-direction: row-reverse;">
+              <img class="step-image" src="categorias/Dise%C3%B1o%20medida%20y%20dem%C3%A1s/Entrega%20y%20montaje.jpg" alt="Envío y seguimiento" style="flex: 1; max-width: 50%; border-radius: 12px; aspect-ratio: 4/3;" />
+              <div class="step-content" style="flex: 1;">
+                <h3 class="step-title" style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: #372717;">04. Envío y seguimiento</h3>
+                <p style="font-family: 'Inter', sans-serif; font-size: 1rem; color: #6b6b6b; margin-bottom: 1rem;">Revisa toda la información, haz clic en "Enviar solicitud" y recibirás tu cotización detallada en menos de 24 horas con precios y tiempos exactos.</p>
+                <p style="font-family: 'Inter', sans-serif; font-size: 0.9rem; color: #8a8a8a; font-style: italic;">Te contactaremos por WhatsApp y email para confirmar todos los detalles de tu proyecto.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#stepCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#stepCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Siguiente</span>
+        </button>
+      </div>
+    </section>
+
+    <section id="formulario" class="py-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 col-xl-7">
+            <div class="card shadow-sm border-0">
+              <div class="card-body p-4 p-md-5">
+                <h1 class="h3 mb-4 text-center">Solicitar cotizaci&oacute;n</h1>
+                <p class="text-muted text-center mb-4">Completa el formulario y nos pondremos en contacto para coordinar tu pedido.</p>
+                <form class="row g-3">
+                  <div class="col-12">
+                    <label for="fullName" class="form-label">Nombre y apellido</label>
+                    <input type="text" class="form-control" id="fullName" placeholder="Ej. Ana P&eacute;rez" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="phone" class="form-label">Tel&eacute;fono</label>
+                    <input type="tel" class="form-control" id="phone" placeholder="Ej. +54 9 11 1234-5678" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="email" class="form-label">Correo electr&oacute;nico</label>
+                    <input type="email" class="form-control" id="email" placeholder="nombre@correo.com" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="deliveryDate" class="form-label">Fecha de entrega</label>
+                    <input type="date" class="form-control" id="deliveryDate" required>
+                  </div>
+                  <div class="col-12">
+                    <label for="productDetails" class="form-label">Detalles del producto</label>
+                    <textarea class="form-control" id="productDetails" rows="5" placeholder="Describe dimensiones, materiales, acabados y cualquier otra especificaci&oacute;n relevante." required></textarea>
+                  </div>
+                  <div class="col-12">
+                    <button type="submit" class="btn btn-dark w-100 form-submit">Enviar solicitud</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" aria-label="Informaci&oacute;n del sitio">
+    <div class="footer__inner">
+      <div class="footer__newsletter" aria-label="Suscripci&oacute;n">
+        <div class="newsletter__inner">
+          <h2 class="newsletter__title">&Uacute;nete y obt&eacute;n 10% OFF</h2>
+          <p class="newsletter__desc">Recibe novedades, lanzamientos y ofertas en piezas de madera.</p>
+          <form class="newsletter__form" onsubmit="event.preventDefault(); alert('&iexcl;Gracias por suscribirte!');">
+            <label class="visually-hidden" for="newsletter-email">Correo electr&oacute;nico</label>
+            <input id="newsletter-email" type="email" required placeholder="Tu email" />
+            <button type="submit">Suscribirme</button>
+          </form>
+          <small class="newsletter__legal">Al suscribirte aceptas nuestra pol&iacute;tica de privacidad.</small>
+        </div>
+      </div>
+      <div class="footer__brand">
+        <a class="footer__logo" href="index.html" aria-label="Inicio">
+          <img src="Logos/agreste-45.png" alt="Agreste" class="footer__logo-img" />
+        </a>
+        <p class="footer__tagline">Hecho a mano en madera. Producci&oacute;n responsable.</p>
+        <div class="footer__social">
+          <span class="footer__social-label">S&iacute;guenos</span>
+          <div class="social">
+            <a class="social__link" href="https://www.instagram.com/talleragreste/?hl=es" aria-label="Instagram" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="currentColor">
+                <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A5.5 5.5 0 1 1 6.5 13 5.5 5.5 0 0 1 12 7.5zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5z"/>
+                <circle cx="18.5" cy="5.5" r="1.2"/>
+              </svg>
+              <span class="visually-hidden">Instagram</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <nav class="footer__nav" aria-label="Enlaces legales y ayuda">
+        <a href="#">Pol&iacute;tica de privacidad</a>
+        <a href="#">T&eacute;rminos y condiciones</a>
+        <a href="#">Pol&iacute;tica de cookies</a>
+        <a href="#">Seguridad</a>
+        <a href="#">Devoluciones</a>
+        <a href="#">Contacto</a>
+      </nav>
+    </div>
+    <div class="footer__bottom">
+      <small>&copy; 2025 Agreste. Todos los derechos reservados.</small>
+    </div>
+  </footer>
+
+  <!-- Back Button -->
+  <button class="back-button" onclick="window.history.back()" aria-label="Volver atr&aacute;s">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="white">
+      <path d="M19 12H6.83l5.59-5.59L11 5l-8 8 8 8 1.41-1.41L6.83 13H19v-1z"/>
+    </svg>
+  </button>
+
+  <!-- Panel de ayuda -->
+  <div id="help-panel" class="help-panel" aria-hidden="true">
+    <button class="help-panel__overlay" type="button" data-help-close aria-label="Cerrar panel de ayuda"></button>
+    <section class="help-panel__dialog" role="dialog" aria-modal="true" aria-labelledby="help-panel-title">
+      <button class="help-panel__close" type="button" data-help-close aria-label="Cerrar ayuda">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h2 id="help-panel-title">&iquest;Necesitas ayuda?</h2>
+      <p class="help-panel__intro">Estamos aqu&iacute; para acompa&ntilde;arte en cada proyecto a medida.</p>
+      <div class="help-panel__grid">
+        <section>
+          <h3 class="help-panel__subtitle">Atenci&oacute;n personalizada</h3>
+          <ul class="help-panel__list">
+            <li>Horario: lunes a viernes, 9:00 - 18:00 (GMT-5).</li>
+            <li>Respuesta en menos de 24h para solicitudes de cotizaci&oacute;n.</li>
+            <li>Seguimiento de pedidos y ajustes de dise&ntilde;o incluidos.</li>
+          </ul>
+        </section>
+        <section>
+          <h3 class="help-panel__subtitle">Contacto r&aacute;pido</h3>
+          <p><strong>WhatsApp:</strong> <a href="https://wa.me/56957500385" target="_blank" rel="noopener">+56 957500385</a></p>
+          <p><strong>Email:</strong> <a href="mailto:contacto@talleragreste.cl">contacto@talleragreste.cl</a></p>
+          <p><strong>Showroom:</strong> Autopista 6750, Concepción - Talcahuano</p>
+        </section>
+      </div>
+      <div class="help-panel__actions">
+        <a class="help-panel__action help-panel__action--primary" href="cotizar.html">Solicitar cotizaci&oacute;n</a>
+        <a class="help-panel__action help-panel__action--ghost" href="contacto.html" data-help-focus>Hablar con nosotros</a>
+      </div>
+      <div class="help-panel__faq">
+        <h3 class="help-panel__subtitle">Preguntas frecuentes</h3>
+        <details>
+          <summary>&iquest;Cu&aacute;nto tarda la fabricaci&oacute;n?</summary>
+          <p>Los proyectos est&aacute;ndar se entregan en 7-10 d&iacute;as h&aacute;biles. Para piezas especiales acordamos el plan contigo.</p>
+        </details>
+        <details>
+          <summary>&iquest;Realizan env&iacute;os nacionales?</summary>
+          <p>Enviamos a todo Colombia con aliados log&iacute;sticos certificados. Empaques reforzados incluidos.</p>
+        </details>
+        <details>
+          <summary>&iquest;Puedo solicitar muestras de materiales?</summary>
+          <p>Claro, programamos una visita o te enviamos un kit de muestras sin costo adicional.</p>
+        </details>
+      </div>
+    </section>
+  </div>
+
+  <!-- Panel de inicio de sesi&oacute;n -->
+  <div id="auth-panel" class="auth-panel" aria-hidden="true">
+    <button class="auth-panel__overlay" type="button" data-auth-close aria-label="Cerrar panel de acceso"></button>
+    <section class="auth-panel__dialog" role="dialog" aria-modal="true" aria-labelledby="auth-panel-title">
+      <button class="auth-panel__close" type="button" data-auth-close aria-label="Cerrar iniciar sesi&oacute;n">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <header class="auth-panel__header">
+        <h2 id="auth-panel-title">Inicia sesi&oacute;n</h2>
+        <p class="auth-panel__subtitle">Accede para seguir tus pedidos y guardar favoritos.</p>
+      </header>
+  
+      <form class="auth-form" autocomplete="on">
+        <div class="auth-form__group">
+          <label for="auth-email">Correo electr&oacute;nico</label>
+          <input id="auth-email" name="email" type="email" autocomplete="email" required placeholder="nombre@correo.com" />
+        </div>
+        <div class="auth-form__group">
+          <label for="auth-password">Contrase&ntilde;a</label>
+          <input id="auth-password" name="password" type="password" autocomplete="current-password" required minlength="6" placeholder="Tu contrase&ntilde;a" />
+        </div>
+        <div class="auth-form__actions">
+          <button type="submit" class="auth-form__submit">Iniciar sesi&oacute;n</button>
+          <a href="#" class="auth-form__link" data-auth-action="forgot">&iquest;Olvidaste tu contrase&ntilde;a?</a>
+        </div>
+      </form>
+      <footer class="auth-panel__footer">
+        <p>&iquest;Primera vez en Agreste?</p>
+        <a href="#" class="auth-form__link" data-auth-action="signup">Crear cuenta</a>
+      </footer>
+      <p class="auth-panel__legal">Al continuar aceptas nuestros <a href="#">T&eacute;rminos y condiciones</a> y <a href="#">Pol&iacute;tica de privacidad</a>.</p>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="app.js" defer></script>
+</body>
+</html>
+

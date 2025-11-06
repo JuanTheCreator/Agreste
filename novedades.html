@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Novedades &mdash; Agreste</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Prevenir scroll horizontal en página de novedades */
+    html, body {
+      overflow-x: hidden !important;
+      max-width: 100vw;
+      box-sizing: border-box;
+    }
+    
+    /* Control global de cualquier elemento que pueda causar overflow */
+    * {
+      max-width: 100vw;
+      box-sizing: border-box;
+    }
+    
+    /* Ajustes específicos para la sección de videos */
+    .page-novedades .social-videos {
+      overflow: hidden !important;
+      max-width: min(96vw, 1400px);
+      margin: 0 auto;
+      padding: 0 clamp(0.75rem, 3vw, 1rem);
+    }
+    
+    .page-novedades .videos-slider {
+      max-width: 100%;
+      overflow: hidden !important;
+      position: relative;
+      padding: 0;
+    }
+    
+    .page-novedades .videos-slider__viewport {
+      overflow: hidden !important;
+      max-width: 100%;
+      margin: 0 3rem;
+    }
+    
+    .page-novedades .videos-slider__track {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      overscroll-behavior-x: contain;
+      -webkit-overflow-scrolling: touch;
+      padding: 0.25rem 0 1.5rem;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      max-width: none;
+    }
+    
+    .page-novedades .videos-slider__track::-webkit-scrollbar {
+      display: none;
+    }
+    
+    .page-novedades .video-card {
+      flex: 0 0 clamp(280px, 32vw + 220px, 520px);
+      max-width: clamp(280px, 32vw + 220px, 520px);
+      scroll-snap-align: start;
+    }
+    
+    /* Media queries específicos para responsive */
+    @media (max-width: 1024px) {
+      .page-novedades .video-card {
+        flex: 0 0 clamp(260px, 38vw + 200px, 480px);
+        max-width: clamp(260px, 38vw + 200px, 480px);
+      }
+    }
+    
+    @media (max-width: 900px) {
+      .page-novedades .videos-slider__viewport {
+        margin: 0 2rem;
+      }
+      
+      .page-novedades .video-card {
+        flex: 0 0 clamp(260px, 75vw, 400px);
+        max-width: clamp(260px, 75vw, 400px);
+      }
+    }
+    
+    @media (max-width: 720px) {
+      .page-novedades .social-videos {
+        padding: 0 0.5rem;
+      }
+      
+      .page-novedades .videos-slider__viewport {
+        margin: 0;
+      }
+      
+      .page-novedades .video-card {
+        flex: 0 0 85vw;
+        max-width: 85vw;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .page-novedades .video-card {
+        flex: 0 0 90vw;
+        max-width: 90vw;
+      }
+    }
+    
+    /* Asegurar que las navegaciones no causen overflow */
+    .page-novedades .videos-slider__nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      width: 44px;
+      height: 44px;
+    }
+    
+    .page-novedades .videos-slider__nav--prev {
+      left: 0.5rem;
+    }
+    
+    .page-novedades .videos-slider__nav--next {
+      right: 0.5rem;
+    }
+  </style>
+</head>
+<body class="page-novedades" style="overflow-x: hidden;">
+  <!-- Header -->
+  <header class="header">
+    <div class="header__bar">
+      <button class="hamburger js-menu-toggle" type="button" aria-label="Abrir menú principal" aria-controls="mobile-menu" aria-expanded="false">
+        <span class="hamburger__box">
+          <span class="hamburger__inner"></span>
+        </span>
+        <span class="sr-only">Menú</span>
+      </button>
+
+      <a href="index.html" class="header__logo" aria-label="Inicio">
+        <img src="Logos/agreste-45.png" alt="Agreste" class="header__logo-img" />
+      </a>
+
+      <nav class="header__icons" aria-label="Acciones">
+        <button class="icon-btn js-help-toggle" type="button" aria-label="Ayuda" aria-controls="help-panel" aria-expanded="false">
+          <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M9.09 9a3 3 0 1 1 5.83 1c0 2-3 2-3 4"/>
+            <line x1="12" y1="17" x2="12" y2="17"/>
+          </svg>
+          <span class="visually-hidden">Ayuda</span>
+        </button>
+        <button class="icon-btn js-auth-toggle" type="button" aria-label="Iniciar sesi&oacute;n" aria-controls="auth-panel" aria-expanded="false">
+          <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21a8 8 0 0 0-16 0"/>
+            <circle cx="12" cy="8" r="4"/>
+          </svg>
+          <span class="visually-hidden">Cuenta</span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Desktop nav -->
+    <nav class="nav" aria-label="Categor&iacute;as principales">
+      <ul class="nav__list">
+        <li class="nav__item">
+          <button class="nav__link" aria-haspopup="true" aria-expanded="false">Categor&iacute;as</button>
+          <div class="nav__dropdown" role="menu" aria-label="Submen&uacute; Categorías">
+            <a href="categorias.html#categorias-principales" role="menuitem">Arrimos</a>
+            <a href="categorias.html#categorias-principales" role="menuitem">Buffet</a>
+            <a href="categorias.html#categorias-principales" role="menuitem">Comedor</a>
+            <a href="categorias.html#categorias-principales" role="menuitem">Mesas de Centro</a>
+            <a href="categorias.html#categorias-principales" role="menuitem">Puertas</a>
+            <a href="categorias.html#categorias-principales" role="menuitem">Sillas</a>
+          </div>
+        </li>
+        <li class="nav__item">
+          <a class="nav__link nav__link--direct" href="cotizar.html">Cotizar</a>
+        </li>
+        <li class="nav__item">
+          <a class="nav__link nav__link--direct" href="proyectos.html">Proyectos</a>
+        </li>
+        <li class="nav__item">
+          <a class="nav__link nav__link--direct" href="novedades.html" aria-current="page">Novedades</a>
+        </li>
+        <li class="nav__item">
+          <button class="nav__link" aria-haspopup="true" aria-expanded="false">Compañía</button>
+          <div class="nav__dropdown" role="menu" aria-label="Submenú Compañía">
+            <a href="compania.html" role="menuitem">Historia</a>
+            <a href="compania.html" role="menuitem">Valores</a>
+            <a href="compania.html" role="menuitem">Equipo</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Mobile Navigation Menu -->
+  <nav id="mobile-menu" class="mobile-nav" role="navigation" aria-label="Menú principal móvil" aria-hidden="true">
+    <div class="mobile-nav__overlay js-menu-toggle" aria-hidden="true"></div>
+    <div class="mobile-nav__panel" role="dialog" aria-labelledby="mobile-menu-title">
+      <!-- Header del menú -->
+      <header class="mobile-nav__header">
+        <h2 id="mobile-menu-title" class="mobile-nav__title">
+          <img src="Logos/agreste-45.png" alt="Agreste" class="mobile-nav__logo" width="32" height="32">
+          Menú
+        </h2>
+        <button class="mobile-nav__close js-menu-toggle" type="button" aria-label="Cerrar menú">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M18 6L6 18M6 6l12 12"/>
+          </svg>
+        </button>
+      </header>
+
+      <!-- Contenido principal del menú -->
+      <div class="mobile-nav__content">
+        <ul class="mobile-nav__list" role="list">
+          <!-- Categorías con submenú -->
+          <li class="mobile-nav__item mobile-nav__item--expandable">
+            <button class="mobile-nav__link mobile-nav__toggle" type="button" aria-expanded="false" aria-controls="categories-submenu">
+              <span class="mobile-nav__text">
+                <svg class="mobile-nav__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9zM9 21V9"/>
+                  <path d="M21 9h-6l-2-4H3v4"/>
+                </svg>
+                Categorías
+              </span>
+              <svg class="mobile-nav__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M9 18l6-6-6-6"/>
+              </svg>
+            </button>
+            <ul id="categories-submenu" class="mobile-nav__submenu" role="list" aria-hidden="true">
+              <li><a href="categorias.html#categorias-principales" class="mobile-nav__sublink">Arrimos</a></li>
+              <li><a href="categorias.html#categorias-principales" class="mobile-nav__sublink">Buffet</a></li>
+              <li><a href="categorias.html#categorias-principales" class="mobile-nav__sublink">Comedor</a></li>
+              <li><a href="categorias.html#categorias-principales" class="mobile-nav__sublink">Mesas de Centro</a></li>
+              <li><a href="categorias.html#categorias-principales" class="mobile-nav__sublink">Puertas</a></li>
+              <li><a href="categorias.html#categorias-principales" class="mobile-nav__sublink">Sillas</a></li>
+            </ul>
+          </li>
+
+          <!-- Cotizar -->
+          <li class="mobile-nav__item">
+            <a href="cotizar.html" class="mobile-nav__link">
+              <span class="mobile-nav__text">
+                <svg class="mobile-nav__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M9 11H7a4 4 0 0 1 0-8h2m4 0h2a4 4 0 0 1 0 8h-2"/>
+                  <path d="M9 7h6"/>
+                  <path d="M13 21v-4a2 2 0 0 0-2-2h0a2 2 0 0 0-2 2v4"/>
+                </svg>
+                Cotizar
+              </span>
+            </a>
+          </li>
+
+          <!-- Proyectos -->
+          <li class="mobile-nav__item">
+            <a href="proyectos.html" class="mobile-nav__link">
+              <span class="mobile-nav__text">
+                <svg class="mobile-nav__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                  <path d="M9 12l2 2 4-4"/>
+                </svg>
+                Proyectos
+              </span>
+            </a>
+          </li>
+
+          <!-- Novedades -->
+          <li class="mobile-nav__item mobile-nav__item--active">
+            <a href="novedades.html" class="mobile-nav__link" aria-current="page">
+              <span class="mobile-nav__text">
+                <svg class="mobile-nav__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                </svg>
+                Novedades
+              </span>
+            </a>
+          </li>
+
+          <!-- Compañía con submenú -->
+          <li class="mobile-nav__item mobile-nav__item--expandable">
+            <button class="mobile-nav__link mobile-nav__toggle" type="button" aria-expanded="false" aria-controls="company-submenu">
+              <span class="mobile-nav__text">
+                <svg class="mobile-nav__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87m-4-12a4 4 0 0 1 0 7.75"/>
+                </svg>
+                Compañía
+              </span>
+              <svg class="mobile-nav__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M9 18l6-6-6-6"/>
+              </svg>
+            </button>
+            <ul id="company-submenu" class="mobile-nav__submenu" role="list" aria-hidden="true">
+              <li><a href="compania.html#historia" class="mobile-nav__sublink">Historia</a></li>
+              <li><a href="compania.html#valores" class="mobile-nav__sublink">Valores</a></li>
+              <li><a href="compania.html#equipo" class="mobile-nav__sublink">Equipo</a></li>
+            </ul>
+          </li>
+
+          <!-- Contacto -->
+          <li class="mobile-nav__item">
+            <a href="contacto.html" class="mobile-nav__link">
+              <span class="mobile-nav__text">
+                <svg class="mobile-nav__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+                Contacto
+              </span>
+            </a>
+          </li>
+        </ul>
+
+        <!-- Sección de acciones -->
+        <div class="mobile-nav__actions">
+          <button type="button" class="mobile-nav__action js-auth-toggle" aria-controls="auth-panel" aria-expanded="false">
+            <svg class="mobile-nav__action-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            Iniciar sesión
+          </button>
+          <button type="button" class="mobile-nav__action js-help-toggle" aria-controls="help-panel" aria-expanded="false">
+            <svg class="mobile-nav__action-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 2-3 4"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+            Ayuda y soporte
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main">
+    <!-- Hero slider -->
+    <section class="section hero-slider" aria-label="Novedades destacadas" data-hero-slider>
+      <div class="hero-slider__viewport">
+        <div class="hero-slider__track" data-slider-track>
+          <!-- Slide 1: Imagen - Nuevas colecciones -->
+          <article class="hero-slide hero-slide--active" data-slide="0">
+            <div class="hero-slide__media">
+              <img src="Assets/MesaBanner.jpg" alt="Nueva colección Terra" class="hero-slide__img" />
+            </div>
+            <div class="hero-slide__overlay">
+              <div class="hero-slide__content">
+                <span class="hero-slide__tag">Nuevas colecciones</span>
+                <h1 class="hero-slide__title">Terra llega con fuerza</h1>
+                <p class="hero-slide__desc">Explorando texturas orgánicas en roble y nogal</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Slide 2: Video - Proceso artesanal -->
+          <article class="hero-slide" data-slide="1">
+            <div class="hero-slide__media">
+              <video class="hero-slide__video" muted loop playsinline preload="metadata">
+                <source src="videos/DEPA MATI (1).mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="hero-slide__overlay">
+              <div class="hero-slide__content">
+                <span class="hero-slide__tag">Detrás del taller</span>
+                <h2 class="hero-slide__title">Donde nacen las ideas</h2>
+                <p class="hero-slide__desc">Cada pieza cuenta una historia de dedicación</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Slide 3: Imagen - Showrooms -->
+          <article class="hero-slide" data-slide="2">
+            <div class="hero-slide__media">
+              <img src="Assets/RACK 3.jpg" alt="Showroom experiencial" class="hero-slide__img" />
+            </div>
+            <div class="hero-slide__overlay">
+              <div class="hero-slide__content">
+                <span class="hero-slide__tag">Espacios únicos</span>
+                <h2 class="hero-slide__title">Showrooms que inspiran</h2>
+                <p class="hero-slide__desc">Vive la experiencia Agreste en nuestros espacios</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Slide 4: Video - Comunidad -->
+          <article class="hero-slide" data-slide="3">
+            <div class="hero-slide__media">
+              <video class="hero-slide__video" muted loop playsinline preload="metadata">
+                <source src="videos/SILLA%20HUMEDAL%20.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="hero-slide__overlay">
+              <div class="hero-slide__content">
+                <span class="hero-slide__tag">Comunidad creativa</span>
+                <h2 class="hero-slide__title">Conectando hogares</h2>
+                <p class="hero-slide__desc">Más de 45K personas que eligen lo auténtico</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+      
+      <!-- Progreso automático -->
+      <div class="hero-slider__progress">
+        <div class="hero-slider__progress-bar" data-progress-bar></div>
+      </div>
+    </section>
+
+    <!-- Historias destacadas -->
+    <section class="section social-stories" aria-label="Historias destacadas">
+      <div class="section__header">
+        <h2 class="section__title">Historias que no puedes perderte</h2>
+        <p class="section__subtitle">Desliza para ver los lanzamientos, colaboraciones y procesos en vivo.</p>
+      </div>
+      <div class="social-stories__row">
+        <article class="story-card">
+          <video class="story-card__video" controls preload="metadata" playsinline>
+            <source src="videos/DEPA%20MATI%20(1).mp4" type="video/mp4" />
+            Tu navegador no soporta video en HTML5.
+          </video>
+          <span class="story-card__tag">Instagram</span>
+          <h3 class="story-card__title">Colecci&oacute;n Boreal</h3>
+          <p class="story-card__copy">Reels con el proceso de tinturado natural y montaje de vitrinas.</p>
+        </article>
+        <article class="story-card">
+          <video class="story-card__video" controls preload="metadata" playsinline>
+            <source src="videos/SILLA%20HUMEDAL%20.mp4" type="video/mp4" />
+            Tu navegador no soporta video en HTML5.
+          </video>
+          <span class="story-card__tag">TikTok</span>
+          <h3 class="story-card__title">Detr&aacute;s del taller</h3>
+          <p class="story-card__copy">Timelapses de lijado, armado y tips de mantenimiento en madera.</p>
+        </article>
+        <article class="story-card">
+          <video class="story-card__video" controls preload="metadata" playsinline>
+            <source src="videos/Trend%20llego%20agreste%201.mp4" type="video/mp4" />
+            Tu navegador no soporta video en HTML5.
+          </video>
+          <span class="story-card__tag">YouTube</span>
+          <h3 class="story-card__title">Showrooms inmersivos</h3>
+          <p class="story-card__copy">Recorridos guiados por los espacios de Medell&iacute;n y Bogot&aacute;.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Videos destacados -->
+    <section class="section social-videos" aria-label="Videos destacados">
+      <div class="section__header">
+        <h2 class="section__title">Videos recientes</h2>
+        <p class="section__subtitle">Tutoriales, charlas y recorridos en video.</p>
+      </div>
+      <div class="videos-slider" data-videos-slider>
+        <button class="videos-slider__nav videos-slider__nav--prev" type="button" aria-label="Ver video anterior">&#10094;</button>
+        <div class="videos-slider__viewport">
+          <div class="videos-slider__track">
+            <article class="video-card">
+              <div class="video-card__media">
+                <video controls preload="metadata" playsinline>
+                  <source src="videos/DEPA%20MATI%20(1).mp4" type="video/mp4" />
+                  Tu navegador no soporta video en HTML5.
+                </video>
+              </div>
+              <div class="video-card__body">
+                <h3>Departamentos Mati</h3>
+                <p>Recorrido por el proyecto residencial donde integramos mobiliario personalizado en roble.</p>
+                <span class="video-card__meta">Duraci&oacute;n 4:12 &bull; Ayer</span>
+              </div>
+            </article>
+            <article class="video-card">
+              <div class="video-card__media">
+                <video controls preload="metadata" playsinline>
+                  <source src="videos/SILLA%20HUMEDAL%20.mp4" type="video/mp4" />
+                  Tu navegador no soporta video en HTML5.
+                </video>
+              </div>
+              <div class="video-card__body">
+                <h3>Silla Humedal</h3>
+                <p>Proceso de armado y ergonom&iacute;a de nuestra nueva silla de comedor inspirada en ecosistemas tropicales.</p>
+                <span class="video-card__meta">Duraci&oacute;n 3:05 &bull; Hoy</span>
+              </div>
+            </article>
+            <article class="video-card">
+              <div class="video-card__media">
+                <video controls preload="metadata" playsinline>
+                  <source src="videos/Trend%20llego%20agreste%201.mp4" type="video/mp4" />
+                  Tu navegador no soporta video en HTML5.
+                </video>
+              </div>
+              <div class="video-card__body">
+                <h3>Trend: lleg&oacute; Agreste</h3>
+                <p>Resumen del lanzamiento con prensa y creadores locales en nuestro taller principal.</p>
+                <span class="video-card__meta">Duraci&oacute;n 2:48 &bull; 2 d&iacute;as</span>
+              </div>
+            </article>
+            <article class="video-card">
+              <div class="video-card__media">
+                <video controls preload="metadata" playsinline>
+                  <source src="videos/TREND%20MUEBLES%20v2.mp4" type="video/mp4" />
+                  Tu navegador no soporta video en HTML5.
+                </video>
+              </div>
+              <div class="video-card__body">
+                <h3>Trend muebles v2</h3>
+                <p>Colecci&oacute;n modular 2024 con combinaciones sugeridas para living y home office.</p>
+                <span class="video-card__meta">Duraci&oacute;n 5:36 &bull; 4 d&iacute;as</span>
+              </div>
+            </article>
+          </div>
+        </div>
+        <button class="videos-slider__nav videos-slider__nav--next" type="button" aria-label="Ver video siguiente">&#10095;</button>
+      </div>
+    </section>
+
+    <!-- Agenda y showrooms -->
+    <section class="section social-agenda" aria-label="Agenda de showrooms">
+      <div class="section__header">
+        <h2 class="section__title">Showrooms &amp; agenda</h2>
+        <p class="section__subtitle">Visita nuestros espacios o agenda tu recorrido virtual.</p>
+      </div>
+      <div class="agenda-card">
+        <div class="agenda-card__locations">
+          <h3>Showrooms activos</h3>
+          <ul>
+            <li><strong>Medell&iacute;n</strong> &mdash; Calle 48 #70-15 (Laureles)</li>
+            <li><strong>Bogot&aacute;</strong> &mdash; Carrera 11 #84-09 (Zona T)</li>
+            <li><strong>Barranquilla</strong> &mdash; Calle 85 #53-38 (Prado)</li>
+          </ul>
+        </div>
+        <div class="agenda-card__times">
+          <h3>Horarios ampliados</h3>
+          <dl>
+            <div>
+              <dt>Lunes a viernes</dt>
+              <dd>09:00 &ndash; 19:00</dd>
+            </div>
+            <div>
+              <dt>S&aacute;bados</dt>
+              <dd>10:00 &ndash; 18:00</dd>
+            </div>
+            <div>
+              <dt>Domingos virtual</dt>
+              <dd>11:00 &ndash; 16:00 (via streaming)</dd>
+            </div>
+          </dl>
+        </div>
+        <div class="agenda-card__cta">
+          <p>Reserva tu cita personalizada y recibe un moodboard exclusivo basado en tus espacios.</p>
+          <a class="agenda-card__btn" href="contacto.html">Agendar recorrido</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA final -->
+    <section class="section social-newsletter" aria-label="Suscripci&oacute;n a bolet&iacute;n">
+      <div class="social-newsletter__inner">
+        <div class="social-newsletter__copy">
+          <h2>&iquest;Quieres recibir las novedades antes que nadie?</h2>
+          <p>Suscr&iacute;bete a nuestro bolet&iacute;n semanal con res&uacute;menes de lives, fechas de showrooms y lanzamientos limitados.</p>
+        </div>
+        <form class="social-newsletter__form" action="#" method="post">
+          <label class="visually-hidden" for="social-newsletter-email">Correo electr&oacute;nico</label>
+          <input id="social-newsletter-email" type="email" name="email" required placeholder="tuemail@correo.com" />
+          <button type="submit">Recibir novedades</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" aria-label="Informaci&oacute;n del sitio">
+    <div class="footer__inner">
+      <div class="footer__newsletter" aria-label="Suscripci&oacute;n">
+        <div class="newsletter__inner">
+          <h2 class="newsletter__title">&Uacute;nete y obt&eacute;n 10% OFF</h2>
+          <p class="newsletter__desc">Recibe novedades, lanzamientos y ofertas en piezas de madera.</p>
+          <form class="newsletter__form" onsubmit="event.preventDefault(); alert('&iexcl;Gracias por suscribirte!');">
+            <label class="visually-hidden" for="newsletter-email">Correo electr&oacute;nico</label>
+            <input id="newsletter-email" type="email" required placeholder="Tu email" />
+            <button type="submit">Suscribirme</button>
+          </form>
+          <small class="newsletter__legal">Al suscribirte aceptas nuestra pol&iacute;tica de privacidad.</small>
+        </div>
+      </div>
+      <div class="footer__brand">
+        <a class="footer__logo" href="index.html" aria-label="Inicio">
+          <img src="Logos/agreste-45.png" alt="Agreste" class="footer__logo-img" />
+        </a>
+        <p class="footer__tagline">Hecho a mano en madera. Producci&oacute;n responsable.</p>
+        <div class="footer__social">
+          <span class="footer__social-label">S&iacute;guenos</span>
+          <div class="social">
+            <a class="social__link" href="https://www.instagram.com/talleragreste/?hl=es" aria-label="Instagram" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="currentColor">
+                <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A5.5 5.5 0 1 1 6.5 13 5.5 5.5 0 0 1 12 7.5zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5z"/>
+                <circle cx="18.5" cy="5.5" r="1.2"/>
+              </svg>
+              <span class="visually-hidden">Instagram</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <nav class="footer__nav" aria-label="Enlaces legales y ayuda">
+        <a href="#">Pol&iacute;tica de privacidad</a>
+        <a href="#">T&eacute;rminos y condiciones</a>
+        <a href="#">Pol&iacute;tica de cookies</a>
+        <a href="#">Seguridad</a>
+        <a href="#">Devoluciones</a>
+        <a href="#">Contacto</a>
+      </nav>
+    </div>
+    <div class="footer__bottom">
+      <small>&copy; 2025 Agreste. Todos los derechos reservados.</small>
+    </div>
+  </footer>
+
+  <!-- Back Button -->
+  <button class="back-button" type="button" onclick="window.history.back()" aria-label="Volver atr&aacute;s">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="white">
+      <path d="M19 12H6.83l5.59-5.59L11 5l-8 8 8 8 1.41-1.41L6.83 13H19v-1z"/>
+    </svg>
+  </button>
+
+  <script src="app.js" defer></script>
+  <script>
+    // Hero Slider functionality
+    (function(){
+      const heroSlider = document.querySelector('[data-hero-slider]');
+      if (!heroSlider) return;
+
+      const slides = heroSlider.querySelectorAll('.hero-slide');
+      const progressBar = heroSlider.querySelector('[data-progress-bar]');
+      
+      let currentSlide = 0;
+      let autoplayInterval;
+      let progressInterval;
+      const slideInterval = 10000; // 10 segundos
+      const progressSteps = 100;
+      const progressStepTime = slideInterval / progressSteps;
+
+      // Función para cambiar slide
+      function goToSlide(index) {
+        // Remover clase activa de slide actual
+        slides[currentSlide].classList.remove('hero-slide--active');
+        
+        // Parar videos del slide anterior
+        const prevVideo = slides[currentSlide].querySelector('video');
+        if (prevVideo) {
+          prevVideo.pause();
+          prevVideo.currentTime = 0;
+        }
+
+        // Activar nuevo slide
+        currentSlide = index;
+        slides[currentSlide].classList.add('hero-slide--active');
+        
+        // Reproducir video del slide actual si es video
+        const currentVideo = slides[currentSlide].querySelector('video');
+        if (currentVideo) {
+          currentVideo.play().catch(() => {}); // Catch en caso de autoplay bloqueado
+        }
+
+        // Reiniciar progreso
+        resetProgress();
+      }
+
+      // Función para ir al siguiente slide
+      function nextSlide() {
+        const next = (currentSlide + 1) % slides.length;
+        goToSlide(next);
+      }
+
+      // Función para resetear y comenzar progreso
+      function resetProgress() {
+        if (progressBar) {
+          progressBar.style.width = '0%';
+          clearInterval(progressInterval);
+          
+          let progress = 0;
+          progressInterval = setInterval(() => {
+            progress += 100 / progressSteps;
+            progressBar.style.width = progress + '%';
+            
+            if (progress >= 100) {
+              clearInterval(progressInterval);
+            }
+          }, progressStepTime);
+        }
+      }
+
+      // Función para iniciar autoplay
+      function startAutoplay() {
+        clearInterval(autoplayInterval);
+        autoplayInterval = setInterval(nextSlide, slideInterval);
+        resetProgress();
+      }
+
+      // Función para parar autoplay
+      function stopAutoplay() {
+        clearInterval(autoplayInterval);
+        clearInterval(progressInterval);
+      }
+
+      // Parar autoplay al hacer hover
+      heroSlider.addEventListener('mouseenter', stopAutoplay);
+      heroSlider.addEventListener('mouseleave', startAutoplay);
+
+      // Parar autoplay cuando tab no está visible
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          stopAutoplay();
+        } else {
+          startAutoplay();
+        }
+      });
+
+      // Inicializar slider
+      goToSlide(0);
+      startAutoplay();
+
+      // Respect reduced motion preferences  
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        stopAutoplay();
+      }
+    })();
+
+    // Videos slider functionality
+    (function(){
+      const slider = document.querySelector('[data-videos-slider]');
+      if (!slider) return;
+      const track = slider.querySelector('.videos-slider__track');
+      const prev = slider.querySelector('.videos-slider__nav--prev');
+      const next = slider.querySelector('.videos-slider__nav--next');
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const getBehavior = () => (prefersReducedMotion.matches ? 'auto' : 'smooth');
+      const getStep = () => {
+        const firstCard = track.querySelector('.video-card');
+        if (!firstCard) return track.clientWidth;
+        const styles = window.getComputedStyle(track);
+        const gapValue = styles.columnGap !== 'normal' ? styles.columnGap : styles.gap;
+        const gap = parseFloat(gapValue) || 0;
+        return firstCard.getBoundingClientRect().width + gap;
+      };
+      const updateButtons = () => {
+        const maxScroll = track.scrollWidth - track.clientWidth;
+        if (prev) prev.disabled = track.scrollLeft <= 0;
+        if (next) next.disabled = track.scrollLeft >= maxScroll - 1;
+      };
+      if (prev) prev.addEventListener('click', () => {
+        track.scrollBy({ left: -getStep(), behavior: getBehavior() });
+      });
+      if (next) next.addEventListener('click', () => {
+        track.scrollBy({ left: getStep(), behavior: getBehavior() });
+      });
+      track.addEventListener('scroll', updateButtons, { passive: true });
+      window.addEventListener('resize', () => window.requestAnimationFrame(updateButtons));
+      updateButtons();
+    })();
+  </script>
+</body>
+</html>
